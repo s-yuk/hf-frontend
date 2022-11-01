@@ -1,0 +1,4 @@
+- React
+- React Router v6
+- Material UI/Icon
+- Prettier
