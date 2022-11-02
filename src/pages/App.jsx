@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Signup, Login } from '../_index.js'
 
-export const App = () => {
+const App = () => {
   return (
     <BrowserRouter>
       <Routes>
