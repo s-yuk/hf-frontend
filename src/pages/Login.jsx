@@ -1,8 +1,13 @@
-// import React from 'react'
+import Button from '@mui/material/Button'
+import { Link } from 'react-router-dom'
 
 export const Login = () => {
   return (
-    <div>Login</div>
+    <>
+      <Link to={'/Signup'}>
+        <Button variant='contained'>Signup</Button>
+      </Link>
+    </>
   )
 }
 
