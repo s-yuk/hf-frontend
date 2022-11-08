@@ -82,9 +82,9 @@ body {
 }
 
 .background {
-  margin: 100px auto auto auto;
+  margin: 0 auto auto auto;
   width: 375px;
-  height: 812px;
+  height: 70%;
   background: linear-gradient(rgba(188, 1, 255, 0.25), rgba(188, 255, 157, 0.6700000166893005));
   border-top-left-radius: 33px;
   border-top-right-radius: 33px;
@@ -94,9 +94,9 @@ body {
 }
 
 .background1 {
-  margin: 100px auto auto auto;
+  margin: 0 auto auto auto;
   width: 375px;
-  height: 812px;
+  height: 70%;
   border-top-left-radius: 33px;
   border-top-right-radius: 33px;
   border-bottom-left-radius: 33px;

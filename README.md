@@ -13,6 +13,9 @@ git push origin ブランチ名
 
 最新版にする
 git pull origin main
+
+起動
+yarn start
 ```
 
 ```
@@ -20,5 +23,5 @@ git pull origin main
 鷲見　  子供用メインページ
         ポップアップ
 筒井    履歴
-        会員ページ customer.jsx
+        会員ページ Customer.jsx
 ```

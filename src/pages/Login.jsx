@@ -1,12 +1,34 @@
 import Button from '@mui/material/Button'
 import { Link } from 'react-router-dom'
+import TextField from '@mui/material/TextField'
+import Box from '@mui/material/Box'
+import '../css/login.css'
 
 const Login = () => {
   return (
     <>
-      <Link to={'/Signup'}>
-        <Button variant='contained'>Signup</Button>
-      </Link>
+      <header></header>
+      <main></main>
+      <div class='background1'>
+        {/* <img src={icon}  width="130px" height="130px" /> */}
+        <div className='input-text-login'>
+          <TextField id='outlined-basic' label='メール' variant='outlined' sx={{ width: 300 }} />
+          <Box sx={{ m: 5 }} />
+          <TextField id='outlined-basic' label='パスワード' variant='outlined' sx={{ width: 300 }} />
+        </div>
+        <Link to={`/Home`}>
+          <div class='btn-box'>
+            <div class='btn'>
+              <p>ログイン</p>
+            </div>
+          </div>
+        </Link>
+        <div class='member-link'>
+          <p>会員登録済みの方</p>
+          <Link to={`/Signup`}>こちら</Link>
+        </div>
+      </div>
+      <footer></footer>
     </>
   )
 }
