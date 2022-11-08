@@ -1,0 +1,83 @@
+.btn-box {
+  display: flex;
+  justify-content: center;
+  padding-top: 660px;
+  padding-bottom: 10px;
+}
+
+.btn {
+  height: 60px;
+  width: 85%;
+  border-radius: 30px;
+  background: red;
+  margin: auto;
+  padding-top: 15px;
+}
+
+.btn p {
+  text-align: center;
+  font-size: 20px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.member-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 0;
+}
+
+.member-link p,
+.member-link a {
+  font-size: 15px;
+  margin: 10px 0 0 0;
+}
+
+/* icon tabs */
+
+.TabBottom {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%);
+}
+
+/* Membercard */
+
+.btn-box-reserve {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
+  padding-top: 40px;
+}
+
+.btn-reserve {
+  height: 60px;
+  width: 320px;
+  border-radius: 30px;
+  background: red;
+  margin: auto;
+  padding-top: 15px;
+}
+
+.btn-reserve p {
+  text-align: center;
+  font-size: 20px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.btn_center {
+  position: absolute;
+  bottom: 0;
+  top: 57%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+a {
+  text-decoration: none;
+}

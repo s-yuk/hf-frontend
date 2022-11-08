@@ -15,6 +15,8 @@ git pull origin main
 
 ```
 稲垣　チャート画面　Chart.jsx ブランチ名　chart
-鷲見
-筒井　
+鷲見　  子供用メインページ
+        ポップアップ
+筒井    履歴
+        会員ページ customer.jsx
 ```
