@@ -16,13 +16,13 @@ const Login = () => {
           <Box sx={{ m: 5 }} />
           <TextField id='outlined-basic' label='パスワード' variant='outlined' sx={{ width: 300 }} />
         </div>
-        <Link to={`/Home`}>
-          <div class='btn-box'>
-            <div class='btn'>
+        <div class='btn-box'>
+          <div class='btn'>
+            <Link to={`/Home`}>
               <p>ログイン</p>
-            </div>
+            </Link>
           </div>
-        </Link>
+        </div>
         <div class='member-link'>
           <p>会員登録済みの方</p>
           <Link to={`/Signup`}>こちら</Link>

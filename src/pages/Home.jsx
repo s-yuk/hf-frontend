@@ -7,10 +7,12 @@ const Customer = () => {
     <>
       <header></header>
       <main></main>
-      <div class='background1'></div>
-      <footer>
-        <IconTabs />
-      </footer>
+      <div className='background2'>
+        <div></div>
+        <footer>
+          <IconTabs />
+        </footer>
+      </div>
     </>
   )
 }
