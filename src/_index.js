@@ -1,3 +1,5 @@
 export { default as App } from './pages/App'
 export { default as Login } from './pages/Login'
 export { default as Signup } from './pages/Signup'
+export { default as Customer } from './pages/Customer'
+export { default as Home } from './pages/Home'

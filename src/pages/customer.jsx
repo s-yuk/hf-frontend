@@ -1,15 +1,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import {} from '../_index.js'
+import IconTabs from '../components/IconTabs.jsx'
 
-const customer = () => {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path={'/'} element={<Login />} />
-        <Route path={'/signup'} element={<Signup />} />
-      </Routes>
-    </BrowserRouter>
-  )
+const Customer = () => {
+  return <IconTabs />
 }
 
-export default customer
+export default Customer
