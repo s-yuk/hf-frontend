@@ -7,9 +7,11 @@
 
 ```
 git add .
-git commit -m ""
+git commit -m "何か入れる"
 git checkout -b ブランチ名
 git push origin ブランチ名
+
+最新版にする
 git pull origin main
 ```
 
