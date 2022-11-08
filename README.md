@@ -7,7 +7,7 @@
 
 ```
 git add .
-git commit -m ""
+git commit -m ""  //なんか入れる
 git checkout -b ブランチ名
 git push origin ブランチ名
 git pull origin main

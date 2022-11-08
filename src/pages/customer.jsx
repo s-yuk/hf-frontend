@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import {} from '../_index.js'
+import { } from '../_index.jsx'
 
 const customer = () => {
   return (
