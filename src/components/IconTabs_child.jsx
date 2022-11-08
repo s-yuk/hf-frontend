@@ -26,7 +26,7 @@ export default function IconTabs() {
         <Link to={`/MemberCard`}>
           <Tab icon={<Chart sx={{ fontSize: 40 }} />} aria-label='person' />
         </Link>
-        <Link to={`/MemberCard`}>
+        <Link to={`/customer`}>
           <Tab icon={<ManIcon sx={{ fontSize: 40 }} />} aria-label='person' />
         </Link>
       </Tabs>
