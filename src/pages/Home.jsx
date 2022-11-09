@@ -7,8 +7,7 @@ const Customer = () => {
     <>
       <header></header>
       <main></main>
-      <div className='background2'>
-        <div></div>
+      <div class='background2'>
         <footer>
           <IconTabs />
         </footer>

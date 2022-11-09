@@ -18,14 +18,14 @@ const Login = () => {
         </div>
         <div class='btn-box'>
           <div class='btn'>
-            <Link to={`/Home`}>
+            <Link to={`/home`}>
               <p>ログイン</p>
             </Link>
           </div>
         </div>
         <div class='member-link'>
           <p>会員登録済みの方</p>
-          <Link to={`/Signup`}>こちら</Link>
+          <Link to={`/signup`}>こちら</Link>
         </div>
       </div>
       <footer></footer>
