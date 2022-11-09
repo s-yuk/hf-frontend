@@ -77,7 +77,8 @@ video {
 body {
 }
 .background,
-.background1 {
+.background1,
+.background2 {
   position: relative;
 }
 
@@ -96,7 +97,7 @@ body {
 .background1 {
   margin: 0 auto auto auto;
   width: 375px;
-  height: 20%;
+  height: 800px;
   border-top-left-radius: 33px;
   border-top-right-radius: 33px;
   border-bottom-left-radius: 33px;
@@ -106,9 +107,9 @@ body {
 }
 
 .background2 {
-  margin: 100px auto auto auto;
+  margin: 5vh auto auto auto;
   width: 375px;
-  height: 70%;
+  height: 90vh;
   border-top-left-radius: 33px;
   border-top-right-radius: 33px;
   border-bottom-left-radius: 33px;

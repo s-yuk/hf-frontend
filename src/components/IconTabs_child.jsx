@@ -10,7 +10,7 @@ import QrCode2Icon from '@mui/icons-material/QrCode2'
 import Chart from '@mui/icons-material/SsidChart'
 import ManIcon from '@mui/icons-material/Man'
 import '../css/icons.css'
-import '../css/button-tnp.css'
+import '../css/buttons.css'
 
 export default function IconTabs() {
   const [value, setValue] = React.useState(0)
@@ -20,10 +20,10 @@ export default function IconTabs() {
   return (
     <div className='TabBottom'>
       <Tabs>
-        <Link to={`/Home`}>
+        <Link to={`/home`}>
           <Tab icon={<HomeIcon sx={{ fontSize: 40 }} />} aria-label='phone' />
         </Link>
-        <Link to={`/MemberCard`}>
+        <Link to={`/`}>
           <Tab icon={<Chart sx={{ fontSize: 40 }} />} aria-label='person' />
         </Link>
         <Link to={`/customer`}>

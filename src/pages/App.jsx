@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Signup, Login, Customer, Home } from '../_index.js'
-import '../css/button-tnp.css'
+import '../css/buttons.css'
 import '../css/tnp.css'
 
 const App = () => {
