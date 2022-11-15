@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import {} from '../_index.js'
 import IconTabs from '../components/IconTabs.jsx'
 import '../css/customer.css'
+import { MiddleButton } from '../components/Buttons'
 import { useState } from 'react'
 
 const Customer = () => {
@@ -56,14 +57,13 @@ const Customer = () => {
             onChange={(e) => handleChange(e)}
             variant='standard'
           />
-          <div className='update-btn-box'>
-            <div className='update-btn'>
-              <Link to={'/'}>
-                <p>変更</p>
-              </Link>
-            </div>
-          </div>
         </div>
+        <MiddleButton
+          text='変更'
+          sx={{
+            textAlign: 'center',
+          }}
+        />
 
         <div className='logout-box'>
           <div className='btn-customer'>
