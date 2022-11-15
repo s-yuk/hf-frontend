@@ -25,3 +25,7 @@ yarn start
 筒井    履歴
         会員ページ Customer.jsx
 ```
+
+# ディレクトリ役割
+page/ 遷移するページ
+components/ 部品たち
