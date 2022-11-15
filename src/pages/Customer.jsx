@@ -2,8 +2,9 @@ import * as React from 'react'
 import TextField from '@mui/material/TextField'
 import { Link } from 'react-router-dom'
 import {} from '../_index.js'
-import IconTabs from '../components/IconTabs_child.jsx'
+import IconTabs from '../components/IconTabs.jsx'
 import '../css/customer.css'
+import { MiddleButton } from '../components/Buttons'
 import { useState } from 'react'
 
 const Customer = () => {
@@ -25,7 +26,7 @@ const Customer = () => {
             label='名前'
             multiline
             maxRows={4}
-            value={name}
+            defaultValue={name}
             onChange={(e) => handleChange(e)}
             variant='standard'
           />
@@ -34,7 +35,7 @@ const Customer = () => {
             label='パスワード'
             multiline
             maxRows={4}
-            value={pass}
+            defaultValue={pass}
             onChange={(e) => handleChange(e)}
             variant='standard'
           />
@@ -43,7 +44,7 @@ const Customer = () => {
             label='新しいパスワード'
             multiline
             maxRows={4}
-            value={newpass}
+            defaultValue={newpass}
             onChange={(e) => handleChange(e)}
             variant='standard'
           />
@@ -52,22 +53,21 @@ const Customer = () => {
             label='メールアドレス'
             multiline
             maxRows={4}
-            value={mail}
+            defaultValue={mail}
             onChange={(e) => handleChange(e)}
             variant='standard'
           />
-          <div className='update-btn-box'>
-            <div className='update-btn'>
-              <Link to={`/`}>
-                <p>変更</p>
-              </Link>
-            </div>
-          </div>
         </div>
+        <MiddleButton
+          text='変更'
+          sx={{
+            textAlign: 'center',
+          }}
+        />
 
         <div className='logout-box'>
           <div className='btn-customer'>
-            <Link to={`/login`}>
+            <Link to={'/login'}>
               <p>ログアウト</p>
             </Link>
           </div>
