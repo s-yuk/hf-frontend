@@ -2,7 +2,7 @@ import * as React from 'react'
 import TextField from '@mui/material/TextField'
 import { Link } from 'react-router-dom'
 import {} from '../_index.js'
-import IconTabs from '../components/IconTabs_child.jsx'
+import IconTabs from '../components/IconTabs.jsx'
 import '../css/customer.css'
 import { useState } from 'react'
 
