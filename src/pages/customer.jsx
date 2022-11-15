@@ -25,7 +25,7 @@ const Customer = () => {
             label='名前'
             multiline
             maxRows={4}
-            value={name}
+            defaultValue={name}
             onChange={(e) => handleChange(e)}
             variant='standard'
           />
@@ -34,7 +34,7 @@ const Customer = () => {
             label='パスワード'
             multiline
             maxRows={4}
-            value={pass}
+            defaultValue={pass}
             onChange={(e) => handleChange(e)}
             variant='standard'
           />
@@ -43,7 +43,7 @@ const Customer = () => {
             label='新しいパスワード'
             multiline
             maxRows={4}
-            value={newpass}
+            defaultValue={newpass}
             onChange={(e) => handleChange(e)}
             variant='standard'
           />
@@ -52,13 +52,13 @@ const Customer = () => {
             label='メールアドレス'
             multiline
             maxRows={4}
-            value={mail}
+            defaultValue={mail}
             onChange={(e) => handleChange(e)}
             variant='standard'
           />
           <div className='update-btn-box'>
             <div className='update-btn'>
-              <Link to={`/`}>
+              <Link to={'/'}>
                 <p>変更</p>
               </Link>
             </div>
@@ -67,7 +67,7 @@ const Customer = () => {
 
         <div className='logout-box'>
           <div className='btn-customer'>
-            <Link to={`/login`}>
+            <Link to={'/login'}>
               <p>ログアウト</p>
             </Link>
           </div>
