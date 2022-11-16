@@ -19,11 +19,16 @@ yarn start
 ```
 
 ```
-稲垣　チャート画面　Chart.jsx ブランチ名　chart
-鷲見　  子供用メインページ ChildHome.jsx
+稲垣　チャート画面　Chart.jsx ブランチ名　ChildChart.jsx
+鷲見　  子供用メインページ      ChildHome.jsx
         ポップアップ
-筒井    履歴
-        会員ページ Customer.jsx
+筒井    履歴       ChildHistory.jsx
+        会員ページ ChildCustomer.jsx
+
+ログイン Login.jsx
+新規会員登録 Signup.jsx
+
+
 ```
 
 # ディレクトリ役割

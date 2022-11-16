@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const Signup = () => {
   return (
     <>
-      <Link to={'/Login'}>
+      <Link to={'/login'}>
         <Button variant='contained'>loginpページへ</Button>
       </Link>
     </>
