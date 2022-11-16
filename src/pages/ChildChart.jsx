@@ -1,13 +1,13 @@
 import * as React from 'react'
 import TextField from '@mui/material/TextField'
-import { Link } from 'react-router-dom'
 import {} from '../_index.js'
 import IconTabs from '../components/IconTabs.jsx'
 import '../css/customer.css'
 import { MiddleButton } from '../components/Buttons'
 import { useState } from 'react'
+import { Header } from '../components/Header'
 
-const Customer = () => {
+const ChildChart = () => {
   const [name, setNmae] = useState('名前')
   const [pass, setPass] = useState('パスワード')
   const [newpass, setNewpass] = useState('newパスワード')
@@ -17,8 +17,7 @@ const Customer = () => {
   }
   return (
     <>
-      <header></header>
-      <main></main>
+      <Header title='子供用会員ページ' />
       <div className='background2'>
         <div className='customerdata'>
           <TextField
@@ -57,21 +56,18 @@ const Customer = () => {
             onChange={(e) => handleChange(e)}
             variant='standard'
           />
-        </div>
-        <MiddleButton
-          text='変更'
-          sx={{
-            textAlign: 'center',
-          }}
-        />
-
-        <div className='logout-box'>
-          <div className='btn-customer'>
-            <Link to={'/login'}>
-              <p>ログアウト</p>
-            </Link>
+          <div style={{ textAlign: 'center' }}>
+            <MiddleButton
+              text='変更'
+              sx={{
+                alignItems: 'center',
+                justify: 'center',
+              }}
+            />
           </div>
         </div>
+
+        <MiddleButton text='アカウント削除' sx={{}} />
         <footer>
           <IconTabs />
         </footer>
@@ -80,4 +76,4 @@ const Customer = () => {
   )
 }
 
-export default Customer
+export default ChildChart
