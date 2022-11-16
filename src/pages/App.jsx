@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { Signup, Login, Customer, Home } from '../_index.js'
-import { ChildHome } from './ChildHome.jsx'
+import { Signup, Login, Customer, Home, ChildHome } from '../_index.js'
 
 const App = () => {
   return (
@@ -11,7 +10,7 @@ const App = () => {
         <Route path={'/customer'} element={<Customer />} />
         <Route path={'/login'} element={<Login />} />
         <Route path={'/home'} element={<Home />} />
-        <Route path={'/child'} element={<ChildHome />} />
+        <Route path={'/child/home'} element={<ChildHome />} />
       </Routes>
     </BrowserRouter>
   )
