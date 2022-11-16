@@ -1,11 +1,12 @@
-import { BigButton, MiddleButton, SmallButton } from '../components/Buttons'
+import { Header } from '../components/Header'
+import IconTabs from '../components/IconTabs'
 
-export const ChildHome = () => {
+const ChildHome = () => {
   return (
     <>
-      <BigButton text='更新' />
-      <BigButton text='戻る' />
-      <SmallButton text='履歴' />
+      <Header title='子ども用メインページ' />
+      <IconTabs />
     </>
   )
 }
+export default ChildHome

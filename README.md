@@ -20,7 +20,7 @@ yarn start
 
 ```
 稲垣　チャート画面　Chart.jsx ブランチ名　chart
-鷲見　  子供用メインページ
+鷲見　  子供用メインページ ChildHome.jsx
         ポップアップ
 筒井    履歴
         会員ページ Customer.jsx
