@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 export const Header = ({ title }) => {
   return (
     <AppBar
-      position='static'
+      position='sticky'
       sx={{
         bgcolor: 'white',
         mb: '10px',
