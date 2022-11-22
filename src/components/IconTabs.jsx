@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 export default function IconTabs() {
   return (
     <div className='TabBottom'>
-      <Tabs>
+      <Tabs style={{ margin: 'auto', width: '100%' }}>
         <Link to={'/child'}>
           <Tab icon={<Home sx={{ fontSize: 40 }} />} aria-label='phone' />
         </Link>

@@ -1,0 +1,25 @@
+.historybox {
+  width: 100%;
+  height: 60vh;
+  margin: auto;
+  display: grid;
+  top: 10%;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: 1fr;
+}
+
+.history {
+  border: solid black 1px;
+  margin-top: 3%;
+  width: 80%;
+  height: 60vh;
+}
+
+.topmargin {
+  margin-top: 3%;
+}
+
+.item {
+  border: solid black 1px;
+}

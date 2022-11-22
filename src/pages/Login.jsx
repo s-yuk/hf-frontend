@@ -26,7 +26,6 @@ const Login = () => {
           </Link>
         </div>
       </div>
-      <footer></footer>
     </>
   )
 }

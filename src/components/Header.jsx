@@ -2,7 +2,7 @@ import { ArrowBackIos } from '@mui/icons-material'
 import { AppBar, Toolbar, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
 
-export const Header = ({ title }) => {
+export const Header = ({ title, name }) => {
   return (
     <AppBar position='static' sx={{ bgcolor: 'white' }}>
       <Toolbar
