@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { Signup, Login, ChildCustomer, ChildHome, ChildChart } from '../_index.js'
+import { Signup, Login, ChildCustomer, ChildHome, ChildChart,Homepic } from '../_index.js'
 
 const App = () => {
   return (
@@ -12,6 +12,7 @@ const App = () => {
         <Route path={'/child/customer'} element={<ChildCustomer />} />
         {/* <Route path={'/child/history'} element={<ChildHistory />} /> */}
         <Route path={'/child/chart'} element={<ChildChart />} />
+        <Route path={'/home'} element={<Homepic />} />
       </Routes>
     </BrowserRouter>
   )

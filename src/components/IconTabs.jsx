@@ -11,7 +11,7 @@ export default function IconTabs() {
         <Link to={'/home'}>
           <Tab icon={<Home sx={{ fontSize: 40 }} />} aria-label='phone' />
         </Link>
-        <Link to={'/'}>
+        <Link to={'/child/chart'}>
           <Tab icon={<SsidChart sx={{ fontSize: 40 }} />} aria-label='person' />
         </Link>
         <Link to={'/customer'}>
