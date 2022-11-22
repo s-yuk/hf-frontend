@@ -4,7 +4,13 @@ import { Link } from 'react-router-dom'
 
 export const Header = ({ title }) => {
   return (
-    <AppBar position='static' sx={{ bgcolor: 'white' }}>
+    <AppBar
+      position='sticky'
+      sx={{
+        bgcolor: 'white',
+        mb: '10px',
+      }}
+    >
       <Toolbar
         sx={{
           display: 'flex',
