@@ -10,4 +10,5 @@ const Homepic = () => {
     </>
   )
 }
+
 export default Homepic
