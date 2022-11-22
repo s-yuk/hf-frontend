@@ -1,23 +1,12 @@
-import { Button, Modal, Typography } from '@mui/material'
-import { Box } from '@mui/system'
-import { useState } from 'react'
+import { Button } from '@mui/material'
+import { Link } from 'react-router-dom'
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-}
-
-export const SmallButton = ({ text, handleOpen }) => {
+export const SmallButton = ({ text, to, handleOpe }) => {
   return (
     <Button
       onClick={handleOpen}
+      component={Link}
+      to={to}
       sx={{
         width: '30%',
         bgcolor: 'red',
@@ -79,22 +68,25 @@ export const MiddleButton = ({ text, handleOpen }) => {
   )
 }
 
-export const BigButton = ({ text }) => {
+export const BigButton = ({ text, handleOpen }) => {
   return (
-    <Button
-      sx={{
-        width: '80%',
-        bgcolor: 'red',
-        borderRadius: '100px',
-        color: 'white',
-        fontSize: '1.2rem',
-        fontWeight: '600',
-        '&:hover': {
-          bgcolor: 'rgb(228, 0, 0)',
-        },
-      }}
-    >
-      {text}
-    </Button>
+    <>
+      <Button
+        onClick={handleOpen}
+        sx={{
+          width: '80%',
+          bgcolor: 'red',
+          borderRadius: '100px',
+          color: 'white',
+          fontSize: '1.2rem',
+          fontWeight: '600',
+          '&:hover': {
+            bgcolor: 'rgb(228, 0, 0)',
+          },
+        }}
+      >
+        {text}
+      </Button>
+    </>
   )
 }
