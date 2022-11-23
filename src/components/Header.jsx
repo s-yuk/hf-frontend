@@ -2,7 +2,7 @@ import { ArrowBackIos } from '@mui/icons-material'
 import { AppBar, Toolbar, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
 
-export const Header = ({ title, name }) => {
+export const Header = ({ title }) => {
   return (
     <AppBar
       position='sticky'

@@ -1,32 +1,53 @@
-import Button from '@mui/material/Button'
+import { LockOutlined } from '@mui/icons-material'
+import { Avatar, Box, Container, Grid, TextField, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
-import TextField from '@mui/material/TextField'
-import Box from '@mui/material/Box'
-import '../css/login.css'
-import { MiddleButton } from '../components/Buttons'
+import { BigButton } from '../components/Buttons'
 
 const Login = () => {
   return (
-    <>
-      <div class='background1'>
-        {/* <img src={icon}  width="130px" height="130px" /> */}
-        <div className='input-text-login'>
-          <TextField id='outlined-basic' label='メール' variant='outlined' sx={{ width: 300 }} />
-          <Box sx={{ m: 5 }} />
-          <TextField id='outlined-basic' label='パスワード' variant='outlined' sx={{ width: 300 }} />
-        </div>
-        <div style={{ textAlign: 'center' }}>
-          <Link to='/child'>
-            <MiddleButton text='ログイン' />
-          </Link>
-        </div>
-        <div style={{ textAlign: 'center' }}>
-          <Link to='/signup'>
-            <MiddleButton text='新規会員登録はこちら' />
-          </Link>
-        </div>
-      </div>
-    </>
+    <Container component='main'>
+      <Box
+        sx={{
+          mt: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <LockOutlined />
+        </Avatar>
+        <Typography component='h1' variant='h5'>
+          Login
+        </Typography>
+        <Box component='form' sx={{ mt: 1 }}>
+          <TextField margin='normal' required fullWidth label='ユーザー名' autoFocus />
+          <TextField
+            margin='normal'
+            required
+            fullWidth
+            label='パスワード'
+            type='password'
+            autoComplete='current-password'
+          />
+          <Box
+            sx={{
+              width: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              mt: 7,
+              gap: 3,
+            }}
+          >
+            <BigButton text='ログイン' />
+            <Link to='/signup'>
+              <Typography component='p'>会員登録済の方はこちら</Typography>
+            </Link>
+          </Box>
+        </Box>
+      </Box>
+    </Container>
   )
 }
 
