@@ -42,7 +42,7 @@ const Login = () => {
           >
             <BigButton text='ログイン' />
             <Link to='/signup'>
-              <Typography component='p'>会員登録済の方はこちら</Typography>
+              <Typography component='p'>会員登録がまだの方はこちら</Typography>
             </Link>
           </Box>
         </Box>
