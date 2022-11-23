@@ -1,7 +1,7 @@
 import { Button } from '@mui/material'
 import { Link } from 'react-router-dom'
 
-export const SmallButton = ({ text, to, handleOpe }) => {
+export const SmallButton = ({ text, to, handleOpen }) => {
   return (
     <Button
       onClick={handleOpen}
@@ -47,24 +47,22 @@ export const CloseSmall = ({ text, handleClose }) => {
 
 export const MiddleButton = ({ text, handleOpen }) => {
   return (
-    <Box>
-      <Button
-        onClick={handleOpen}
-        sx={{
-          width: '50%',
-          bgcolor: 'red',
-          borderRadius: '100px',
-          color: 'white',
-          fontSize: '1.2rem',
-          fontWeight: '600',
-          '&:hover': {
-            bgcolor: 'rgb(228, 0, 0)',
-          },
-        }}
-      >
-        {text}
-      </Button>
-    </Box>
+    <Button
+      onClick={handleOpen}
+      sx={{
+        width: '50%',
+        bgcolor: 'red',
+        borderRadius: '100px',
+        color: 'white',
+        fontSize: '1rem',
+        fontWeight: '600',
+        '&:hover': {
+          bgcolor: 'rgb(228, 0, 0)',
+        },
+      }}
+    >
+      {text}
+    </Button>
   )
 }
 

@@ -95,12 +95,12 @@ const ChildHome = () => {
       <Box
         sx={{
           width: '90%',
-          height: 300,
+          height: 220,
           mx: 'auto',
           bgcolor: 'background.paper',
         }}
       >
-        <FixedSizeList height={300} width={360} itemSize={46} itemCount={30} overscanCount={5}>
+        <FixedSizeList height={200} width={360} itemSize={46} itemCount={30} overscanCount={5}>
           {renderRow}
         </FixedSizeList>
       </Box>
