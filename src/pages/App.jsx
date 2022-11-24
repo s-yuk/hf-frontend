@@ -1,7 +1,5 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-
 import { Signup, Login, ChildCustomer, ChildHome, ChildHistory, ChildChart, Homepic } from '../_index.js'
-
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 const App = () => {
   return (
     <BrowserRouter>
