@@ -47,24 +47,22 @@ export const CloseSmall = ({ text, handleClose }) => {
 
 export const MiddleButton = ({ text, handleOpen }) => {
   return (
-    <Box>
-      <Button
-        onClick={handleOpen}
-        sx={{
-          width: '50%',
-          bgcolor: 'red',
-          borderRadius: '100px',
-          color: 'white',
-          fontSize: '1.2rem',
-          fontWeight: '600',
-          '&:hover': {
-            bgcolor: 'rgb(228, 0, 0)',
-          },
-        }}
-      >
-        {text}
-      </Button>
-    </Box>
+    <Button
+      onClick={handleOpen}
+      sx={{
+        width: '50%',
+        bgcolor: 'red',
+        borderRadius: '100px',
+        color: 'white',
+        fontSize: '1rem',
+        fontWeight: '600',
+        '&:hover': {
+          bgcolor: 'rgb(228, 0, 0)',
+        },
+      }}
+    >
+      {text}
+    </Button>
   )
 }
 

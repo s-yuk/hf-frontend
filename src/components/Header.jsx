@@ -28,7 +28,7 @@ export const Header = ({ title }) => {
         >
           {title}
         </Typography>
-        <Link to='logout'>
+        <Link to='/'>
           <Typography>ログアウト</Typography>
         </Link>
       </Toolbar>
