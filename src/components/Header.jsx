@@ -13,8 +13,11 @@ export const Header = ({ title }) => {
     >
       <Toolbar
         sx={{
+          width: '100%',
+          height: '100%',
           display: 'flex',
           justifyContent: 'space-between',
+          alignItems: 'center',
         }}
       >
         <Link to=''>
