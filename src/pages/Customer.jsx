@@ -7,6 +7,15 @@ import { MiddleButton, SmallButton, CloseSmall } from '../components/Buttons'
 import { useState } from 'react'
 import { Header } from '../components/Header'
 import { Modal, Box, Typography, Button } from '@mui/material'
+import List from '@mui/material/List'
+import ListItemButton from '@mui/material/ListItemButton'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemText from '@mui/material/ListItemText'
+import Collapse from '@mui/material/Collapse'
+import InboxIcon from '@mui/icons-material/MoveToInbox'
+import ExpandLess from '@mui/icons-material/ExpandLess'
+import ExpandMore from '@mui/icons-material/ExpandMore'
+import AccountBoxIcon from '@mui/icons-material/AccountBox'
 
 const textstyle = {
   paddingRight: '200px',
@@ -27,14 +36,19 @@ const ChildCustomer = () => {
   const dhandelopen = () => {
     setDelopen(true)
   }
+  const [acountopen, setAcountopen] = useState(false)
+
+  const handleClick = () => {
+    setAcountopen(!acountopen)
+  }
 
   return (
     <Box>
-      <Header title='子供用会員ページ' />
+      <Header title='会員ページ' />
       <div className='background2'>
         <div
           className='customerdata'
-          style={{ transform: 'translateY(40px)', display: 'grid', gap: '20px', margin: '10% 0 0 0' }}
+          style={{ transform: 'translateY(30px)', display: 'grid', gap: '20px', margin: '10% 0 0 0' }}
         >
           <TextField
             id='standard-multiline-flexible'
@@ -95,6 +109,45 @@ const ChildCustomer = () => {
               <CloseSmall text='戻る' handleClose={handleClose}></CloseSmall>
             </Box>
           </Modal>
+
+          {/* アカウント切り替え*/}
+          <List
+            sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+            component='nav'
+            aria-labelledby='nested-list-subheader'
+          >
+            <ListItemButton onClick={handleClick}>
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary='アカウント一覧' />
+              {acountopen ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            <Collapse in={acountopen} timeout='auto' unmountOnExit>
+              <List component='div' disablePadding>
+                <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemIcon>
+                    <AccountBoxIcon />
+                  </ListItemIcon>
+                  <ListItemText primary='Starred' />
+                </ListItemButton>
+
+                <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemIcon>
+                    <AccountBoxIcon />
+                  </ListItemIcon>
+                  <ListItemText primary='Starred' />
+                </ListItemButton>
+                <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemIcon>
+                    <AccountBoxIcon />
+                  </ListItemIcon>
+                  <ListItemText primary='Starred' />
+                </ListItemButton>
+              </List>
+            </Collapse>
+          </List>
+
           <div style={{ textAlign: 'center' }}>
             <SmallButton text='アカウント削除' handleOpen={dhandelopen} sx={{}} />
           </div>
@@ -134,6 +187,7 @@ const ChildCustomer = () => {
         <div style={{ margin: '0 auto' }}>
           <IconTabs />
         </div>
+        <Box sx={{ m: '100px' }}></Box>
       </div>
     </Box>
   )

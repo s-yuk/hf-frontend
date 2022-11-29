@@ -66,11 +66,13 @@ export const MiddleButton = ({ text, handleOpen }) => {
   )
 }
 
-export const BigButton = ({ text, handleOpen }) => {
+export const BigButton = ({ text, to, handleOpen }) => {
   return (
     <>
       <Button
         onClick={handleOpen}
+        component={Link}
+        to={to}
         sx={{
           width: '80%',
           bgcolor: 'red',

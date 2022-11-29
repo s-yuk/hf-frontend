@@ -7,6 +7,7 @@ export const Header = ({ title }) => {
     <AppBar
       position='sticky'
       sx={{
+        position: 'fixed',
         bgcolor: 'white',
         mb: '10px',
       }}
