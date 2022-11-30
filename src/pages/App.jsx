@@ -11,7 +11,7 @@ const App = () => {
         <Route path={'/child/customer'} element={<ChildCustomer />} />
         <Route path={'/child/history'} element={<ChildHistory />} />
         <Route path={'/child/chart'} element={<ChildChart />} />
-        <Route path={'/home'} element={<Homepic />} />
+        <Route path={'/homepic'} element={<Homepic />} />
       </Routes>
     </BrowserRouter>
   )
