@@ -21,7 +21,7 @@ const Login = () => {
           Login
         </Typography>
         <Box component='form' sx={{ mt: 1 }}>
-          <TextField margin='normal' required fullWidth label='ユーザー名' autoFocus />
+          <TextField margin='normal' required fullWidth label='ID又はメールアドレス' autoFocus />
           <TextField
             margin='normal'
             required

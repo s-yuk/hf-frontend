@@ -25,12 +25,20 @@ function renderRow(props) {
 
   return (
     <ListItem style={style} key={index} component='div' disablePadding>
-      <ListItemButton>
+      <ListItemButton component='button' onClick={handleOpen}>
         <ListItemText primary={`Item ${index + 1}`} />
       </ListItemButton>
     </ListItem>
   )
 }
+const handleOpen = () => {
+  setOpen(true)
+}
+
+const handleClick = () => {
+  console.log('aaa')
+}
+
 const ChildHome = () => {
   const [open, setOpen] = useState(false)
   const handleOpen = () => {
@@ -114,7 +122,8 @@ const ChildHome = () => {
           mb: 1,
         }}
       >
-        <BigButton text='交換' handleOpen={handleOpen} />
+        <BigButton handleOpen={handleOpen} text={'交換'} sx={{ mb: '10px' }} />
+
         <Modal
           open={open}
           onClose={() => setOpen(false)}
