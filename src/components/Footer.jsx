@@ -1,6 +1,8 @@
-import { Favorite, LocationOn, Restore } from '@mui/icons-material'
+import { Restore } from '@mui/icons-material'
 import { BottomNavigation, BottomNavigationAction, Box } from '@mui/material'
 import { useState } from 'react'
+import HomeIcon from '@mui/icons-material/Home'
+import PersonIcon from '@mui/icons-material/Person'
 
 export const Footer = () => {
   const [value, setValue] = useState(0)
@@ -17,9 +19,9 @@ export const Footer = () => {
         setValue(newValue)
       }}
     >
-      <BottomNavigationAction label='home' icon={<Restore />} />
-      <BottomNavigationAction label='point' icon={<Favorite />} />
-      <BottomNavigationAction label='user' icon={<LocationOn />} />
+      <BottomNavigationAction label='home' icon={<HomeIcon />} />
+      <BottomNavigationAction label='point' icon={<Restore />} />
+      <BottomNavigationAction label='user' icon={<PersonIcon />} />
     </BottomNavigation>
   )
 }

@@ -107,16 +107,6 @@ const ChildHome = () => {
         <FixedSizeList height={200} width={360} itemSize={46} itemCount={30} overscanCount={5}>
           {renderRow}
         </FixedSizeList>
-
-        <ListItem
-          style={{ height: '200', width: '360', itemSize: '46', itemCount: '30' }}
-          component='div'
-          disablePadding
-        >
-          <ListItemButton component='button' onClick={handleOpen}>
-            <ListItemText primary={`Item ${index + 1}`} />
-          </ListItemButton>
-        </ListItem>
       </Box>
       <Box
         sx={{
