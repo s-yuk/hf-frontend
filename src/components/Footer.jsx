@@ -3,6 +3,7 @@ import { BottomNavigation, BottomNavigationAction, Box } from '@mui/material'
 import { useState } from 'react'
 import HomeIcon from '@mui/icons-material/Home'
 import PersonIcon from '@mui/icons-material/Person'
+import { Link } from 'react-router-dom'
 
 export const Footer = () => {
   const [value, setValue] = useState(0)
@@ -19,9 +20,9 @@ export const Footer = () => {
         setValue(newValue)
       }}
     >
-      <BottomNavigationAction label='home' icon={<HomeIcon />} />
-      <BottomNavigationAction label='point' icon={<Restore />} />
-      <BottomNavigationAction label='user' icon={<PersonIcon />} />
+      <BottomNavigationAction label='home' icon={<HomeIcon />} component={Link} to='/homepic' />
+      <BottomNavigationAction label='point' icon={<Restore />} component={Link} to='/products' />
+      <BottomNavigationAction label='user' icon={<PersonIcon />} component={Link} to='/customer' />
     </BottomNavigation>
   )
 }

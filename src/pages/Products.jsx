@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { FolderSpecial } from '@mui/icons-material'
 import {
   Modal,
@@ -20,9 +19,10 @@ import { Link } from 'react-router-dom'
 import {} from '../_index.js'
 import IconTabs from '../components/IconTabs.jsx'
 import { MiddleButton, SmallButton, CloseSmall } from '../components/Buttons'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { FixedSizeList } from 'react-window'
 import { Header } from '../components/Header'
+import { Footer } from '../components/Footer'
 
 const textstyle = {
   paddingRight: '200px',
@@ -149,9 +149,7 @@ const Products = () => {
             </Box>
           </Modal>
         </div>
-        <div style={{ margin: '0 auto' }}>
-          <IconTabs />
-        </div>
+        <Footer />
       </div>
     </Box>
   )

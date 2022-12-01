@@ -1,7 +1,5 @@
-import * as React from 'react'
 import { Link } from 'react-router-dom'
 import TextField from '@mui/material/TextField'
-import {} from '../_index.js'
 import IconTabs from '../components/IconTabs.jsx'
 import { MiddleButton, SmallButton, CloseSmall } from '../components/Buttons'
 import { useState } from 'react'
@@ -17,6 +15,7 @@ import ExpandLess from '@mui/icons-material/ExpandLess'
 import ExpandMore from '@mui/icons-material/ExpandMore'
 import AccountBoxIcon from '@mui/icons-material/AccountBox'
 import { create } from '@mui/material/styles/createTransitions.js'
+import { Footer } from '../components/Footer'
 
 const textstyle = {
   paddingRight: '200px',
@@ -250,7 +249,7 @@ const ChildCustomer = () => {
           </Modal>
         </div>
         <div style={{ margin: '0 auto' }}>
-          <IconTabs />
+          <Footer />
         </div>
         <Box sx={{ m: '100px' }}></Box>
       </div>

@@ -1,9 +1,11 @@
-import { Avatar, Box, Button, Modal, TextField, Typography, Link } from '@mui/material'
+import { Avatar, Box, Button, Modal, TextField, Typography } from '@mui/material'
 import { borderRadius } from '@mui/system'
 import React, { useState } from 'react'
 import { Header } from '../components/Header'
 import IconTabs from '../components/IconTabs'
 import { MiddleButton, SmallButton, CloseSmall } from '../components/Buttons'
+import { Link } from 'react-router-dom'
+import { Footer } from '../components/Footer'
 
 const Homepic = () => {
   const handleClose = () => setOpen(false)
@@ -23,7 +25,7 @@ const Homepic = () => {
           gap: 3,
         }}
       >
-        <Avatar sx={{ width: 120, height: 120 }} />
+        <Avatar sx={{ width: 120, height: 120 }} component={Link} to='/mommain' />
         <Avatar sx={{ width: 120, height: 120 }} />
         <Avatar sx={{ width: 120, height: 120 }} />
       </Box>
@@ -58,7 +60,6 @@ const Homepic = () => {
             >
               <TextField id='filled-basic' label='子供のID入力' variant='filled' />
             </Box>
-            　　　　
           </Typography>
 
           <CloseSmall text='追加' handleClose={handleClose}></CloseSmall>
@@ -83,7 +84,7 @@ const Homepic = () => {
       >
         +
       </Button>
-      <IconTabs />
+      <Footer />
     </>
   )
 }
