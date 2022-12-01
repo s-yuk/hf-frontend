@@ -21,7 +21,7 @@ const Login = () => {
           Login
         </Typography>
         <Box component='form' sx={{ mt: 1 }}>
-          <TextField margin='normal' required fullWidth label='ユーザー名' autoFocus />
+          <TextField margin='normal' required fullWidth label='ID又はメールアドレス' autoFocus />
           <TextField
             margin='normal'
             required
@@ -40,7 +40,7 @@ const Login = () => {
               gap: 3,
             }}
           >
-            <BigButton text='ログイン' />
+            <BigButton text='ログイン' to='/child' />
             <Link to='/signup'>
               <Typography component='p'>会員登録がまだの方はこちら</Typography>
             </Link>

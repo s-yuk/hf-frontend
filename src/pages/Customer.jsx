@@ -7,6 +7,16 @@ import { MiddleButton, SmallButton, CloseSmall } from '../components/Buttons'
 import { useState } from 'react'
 import { Header } from '../components/Header'
 import { Modal, Box, Typography, Button } from '@mui/material'
+import List from '@mui/material/List'
+import ListItemButton from '@mui/material/ListItemButton'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemText from '@mui/material/ListItemText'
+import Collapse from '@mui/material/Collapse'
+import InboxIcon from '@mui/icons-material/MoveToInbox'
+import ExpandLess from '@mui/icons-material/ExpandLess'
+import ExpandMore from '@mui/icons-material/ExpandMore'
+import AccountBoxIcon from '@mui/icons-material/AccountBox'
+import { create } from '@mui/material/styles/createTransitions.js'
 
 const textstyle = {
   paddingRight: '200px',
@@ -16,6 +26,7 @@ const textstyle = {
 const ChildCustomer = () => {
   const handleClose = () => setUpdopen(false)
   const dhandleClose = () => setDelopen(false)
+  const accountclose = () => setNewaccount(false)
 
   const [updopen, setUpdopen] = useState(false)
   const handleOpen = () => {
@@ -27,15 +38,25 @@ const ChildCustomer = () => {
   const dhandelopen = () => {
     setDelopen(true)
   }
+  const [acountopen, setAcountopen] = useState(false)
 
+  const handleClick = () => {
+    setAcountopen(!acountopen)
+  }
+
+  const [newaccount, setNewaccount] = useState(false)
+
+  const createaccount = () => {
+    setNewaccount(true)
+  }
   return (
     <Box>
-      <Header title='子供用会員ページ' />
+      <Header title='会員ページ' />
       <div className='background2'>
         <div
           className='customerdata'
           style={{
-            transform: 'translateY(40px)',
+            transform: 'translateY(30px)',
             display: 'grid',
             gap: '20px',
             // margin: '10% 0 0 0'
@@ -100,6 +121,98 @@ const ChildCustomer = () => {
               <CloseSmall text='戻る' handleClose={handleClose}></CloseSmall>
             </Box>
           </Modal>
+
+          {/* アカウント切り替え*/}
+          <List
+            sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+            component='nav'
+            aria-labelledby='nested-list-subheader'
+          >
+            <ListItemButton onClick={handleClick}>
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary='アカウント一覧' />
+              {acountopen ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            <Collapse in={acountopen} timeout='auto' unmountOnExit>
+              <List component='div' disablePadding>
+                <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemIcon>
+                    <AccountBoxIcon />
+                  </ListItemIcon>
+                  <ListItemText primary='Starred' />
+                </ListItemButton>
+
+                <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemIcon>
+                    <AccountBoxIcon />
+                  </ListItemIcon>
+                  <ListItemText primary='Starred' />
+                </ListItemButton>
+                <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemIcon>
+                    <AccountBoxIcon />
+                  </ListItemIcon>
+                  <ListItemText primary='Starred' />
+                </ListItemButton>
+              </List>
+            </Collapse>
+          </List>
+
+          <div style={{ textAlign: 'center' }}>
+            <MiddleButton text='子供用アカウント作成' handleOpen={createaccount} sx={{}} />
+          </div>
+          <Modal
+            open={newaccount}
+            onClose={() => setNewaccount(false)}
+            aria-labelledby='modal-modal-title'
+            aria-describedby='modal-modal-description'
+          >
+            <Box
+              sx={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                width: '80%',
+                height: '50%',
+                bgcolor: 'background.paper',
+                border: '2px solid #000',
+                boxShadow: 24,
+                p: 4,
+                textAlign: 'center',
+              }}
+            >
+              <Typography id='modal-modal-title' variant='h6' component='h2' sx={{ mb: '10px' }}>
+                IDと名前を <br />
+                入力してください。
+              </Typography>
+
+              <TextField
+                id='standard-multiline-flexible'
+                style={{ textstyle }}
+                label='ID'
+                onChange={(e) => handleChange(e)}
+                variant='standard'
+              />
+              <TextField
+                id='standard-multiline-flexible'
+                style={{ textstyle }}
+                label='表示名'
+                onChange={(e) => handleChange(e)}
+                variant='standard'
+              />
+
+              <Box sx={{ mb: '10px', mt: '10px' }}>
+                <SmallButton text='作成' handleOpen={updopen}></SmallButton>
+              </Box>
+              <Box>
+                <CloseSmall text='戻る' handleClose={accountclose}></CloseSmall>
+              </Box>
+            </Box>
+          </Modal>
+
           <div style={{ textAlign: 'center' }}>
             <SmallButton text='アカウント削除' handleOpen={dhandelopen} sx={{}} />
           </div>
@@ -139,6 +252,7 @@ const ChildCustomer = () => {
         <div style={{ margin: '0 auto' }}>
           <IconTabs />
         </div>
+        <Box sx={{ m: '100px' }}></Box>
       </div>
     </Box>
   )

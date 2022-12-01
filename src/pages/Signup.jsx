@@ -2,6 +2,11 @@ import { LockOutlined } from '@mui/icons-material'
 import { Avatar, Box, Container, Grid, TextField, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
 import { BigButton } from '../components/Buttons'
+import Radio from '@mui/material/Radio'
+import RadioGroup from '@mui/material/RadioGroup'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import FormControl from '@mui/material/FormControl'
+import FormLabel from '@mui/material/FormLabel'
 
 const Signup = () => {
   return (
@@ -21,7 +26,7 @@ const Signup = () => {
           Signup
         </Typography>
         <Box component='form' sx={{ mt: 1 }}>
-          <TextField margin='normal' required fullWidth label='ユーザー名' autoFocus />
+          <TextField margin='normal' required fullWidth label='ID又はメールアドレス' autoFocus />
           <TextField
             margin='normal'
             required
@@ -30,6 +35,13 @@ const Signup = () => {
             type='password'
             autoComplete='current-password'
           />
+
+          <FormLabel id='demo-radio-buttons-group-label'>区分</FormLabel>
+          <RadioGroup row aria-labelledby='demo-radio-buttons-group-label' defaultValue='' name='radio-buttons-group'>
+            <FormControlLabel value='mom' control={<Radio />} label='親（おや）' />
+            <FormControlLabel value='child' control={<Radio />} label='子供（こども）' />
+          </RadioGroup>
+
           <Box
             sx={{
               width: '100%',
