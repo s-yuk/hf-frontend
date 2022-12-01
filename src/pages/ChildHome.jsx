@@ -25,12 +25,16 @@ function renderRow(props) {
 
   return (
     <ListItem style={style} key={index} component='div' disablePadding>
-      <ListItemButton>
+      <ListItemButton component='button' onClick={handleOpen}>
         <ListItemText primary={`Item ${index + 1}`} />
       </ListItemButton>
     </ListItem>
   )
 }
+const handleOpen = () => {
+  setOpen(true)
+}
+
 const ChildHome = () => {
   const [open, setOpen] = useState(false)
   const handleOpen = () => {
@@ -103,6 +107,16 @@ const ChildHome = () => {
         <FixedSizeList height={200} width={360} itemSize={46} itemCount={30} overscanCount={5}>
           {renderRow}
         </FixedSizeList>
+
+        <ListItem
+          style={{ height: '200', width: '360', itemSize: '46', itemCount: '30' }}
+          component='div'
+          disablePadding
+        >
+          <ListItemButton component='button' onClick={handleOpen}>
+            <ListItemText primary={`Item ${index + 1}`} />
+          </ListItemButton>
+        </ListItem>
       </Box>
       <Box
         sx={{
@@ -114,7 +128,8 @@ const ChildHome = () => {
           mb: 1,
         }}
       >
-        <BigButton text='交換' handleOpen={handleOpen} />
+        <BigButton handleOpen={handleOpen} text={'交換'} sx={{ mb: '10px' }} />
+
         <Modal
           open={open}
           onClose={() => setOpen(false)}
@@ -127,8 +142,8 @@ const ChildHome = () => {
               top: '50%',
               left: '50%',
               transform: 'translate(-50%, -50%)',
-              width: '65%',
-              height: '30%',
+              width: '80%',
+              height: '35%',
               bgcolor: 'background.paper',
               border: '2px solid #000',
               boxShadow: 24,

@@ -75,21 +75,21 @@ const ChildHistory = () => {
         <nav aria-label='main mailbox folders'>
           <List>
             <ListItem disablePadding>
-              <ListItemText primary='履歴' sx={{ fontSize: 10 }} />
+              <ListItemText primary='履歴' primaryTypographyProps={{ fontWeight: 'bold', fontSize: '1.3rem' }} />
             </ListItem>
           </List>
         </nav>
       </Box>
       <Divider />
 
-      <TableContainer component={Paper} style={{ maxHeight: '350px' }}>
+      <TableContainer component={Paper} style={{ maxHeight: '60vh' }}>
         <Table sx={{ height: 'max-content' }} aria-label='spanning table'>
           <TableHead>
             <TableRow>
               <TableCell>名前</TableCell>
               <TableCell>日付</TableCell>
               <TableCell>個数</TableCell>
-              <TableCell>値段</TableCell>
+              <TableCell>ポイント</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -119,7 +119,7 @@ const ChildHistory = () => {
         sx={{
           display: 'flex',
           justifyContent: 'center',
-          mt: '10%',
+          mt: '5%',
         }}
       >
         <SmallButton text='戻る' to='/child'></SmallButton>
