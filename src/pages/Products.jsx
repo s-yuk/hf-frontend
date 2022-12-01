@@ -36,7 +36,7 @@ const Products = () => {
     setOpen(true)
   }
 
-  const [genre, setGenre] = React.useState('')
+  const [genre, setGenre] = React.useState(1)
 
   const handleChange = (event) => {
     setGenre(event.target.value)
@@ -52,7 +52,12 @@ const Products = () => {
       <div className='background2'>
         <div
           className='customerdata'
-          style={{ transform: 'translateY(40px)', display: 'grid', gap: '20px', margin: '10% 0 0 0' }}
+          style={{
+            transform: 'translateY(40px)',
+            display: 'grid',
+            gap: '20px',
+            // margin: '10% 0 0 0'
+          }}
         >
           <FormControl variant='standard' style={{ textstyle }}>
             <InputLabel id='demo-simple-select-standard-label'>ジャンル</InputLabel>
@@ -87,7 +92,9 @@ const Products = () => {
                 onChange={handlProChange}
                 label='products'
               >
-                <MenuItem value={1}>お菓子１</MenuItem>
+                <MenuItem value={1} selected>
+                  お菓子１
+                </MenuItem>
                 <MenuItem value={2}>お菓子２</MenuItem>
                 <MenuItem value={3}>お菓子３</MenuItem>
               </Select>
@@ -101,9 +108,19 @@ const Products = () => {
             // onChange={(e) => handleChange(e)}
             variant='standard'
           />
-          <div style={{ textAlign: 'center' }}>
-            <MiddleButton text='変更' handleOpen={handleOpen} />
-          </div>
+          {genre === 1 ? (
+            <div style={{ textAlign: 'center' }}>
+              <MiddleButton text='追加' handleOpen={handleOpen} />
+            </div>
+          ) : genre === 2 ? (
+            <div style={{ textAlign: 'center' }}>
+              <MiddleButton text='更新' handleOpen={handleOpen} />
+            </div>
+          ) : (
+            <div style={{ textAlign: 'center' }}>
+              <MiddleButton text='削除' handleOpen={handleOpen} />
+            </div>
+          )}
           <Modal
             open={open}
             onClose={() => setopen(false)}
@@ -128,7 +145,6 @@ const Products = () => {
               <Typography id='modal-modal-title' variant='h6' component='h2' sx={{ mb: '5px' }}>
                 変更完了しました。
               </Typography>
-
               <CloseSmall text='戻る' handleClose={handleClose}></CloseSmall>
             </Box>
           </Modal>

@@ -34,7 +34,12 @@ const ChildCustomer = () => {
       <div className='background2'>
         <div
           className='customerdata'
-          style={{ transform: 'translateY(40px)', display: 'grid', gap: '20px', margin: '10% 0 0 0' }}
+          style={{
+            transform: 'translateY(40px)',
+            display: 'grid',
+            gap: '20px',
+            // margin: '10% 0 0 0'
+          }}
         >
           <TextField
             id='standard-multiline-flexible'

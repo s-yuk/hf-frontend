@@ -5,9 +5,11 @@ import { Link } from 'react-router-dom'
 export const Header = ({ title }) => {
   return (
     <AppBar
-      position='sticky'
+      // position='sticky'
       sx={{
-        position: 'fixed',
+        position: 'sticky',
+        // position: 'fixed',
+        top: '0',
         bgcolor: 'white',
         mb: '10px',
       }}
