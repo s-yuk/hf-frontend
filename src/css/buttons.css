@@ -73,7 +73,6 @@
 
 .TabBottom {
   border-top: black 1px solid;
-  position: sticky;
   bottom: 0;
   display: flex;
   position: fixed;

@@ -8,6 +8,7 @@ import {
   Homepic,
   Customer,
   Products,
+  MomMain
 } from '../_index.js'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
         <Route path={'/child/customer'} element={<ChildCustomer />} />
         <Route path={'/child/history'} element={<ChildHistory />} />
         <Route path={'/child/chart'} element={<ChildChart />} />
+        <Route path={'/mommain'} element={<MomMain />} />
         <Route path={'/homepic'} element={<Homepic />} />
         <Route path={'/customer'} element={<Customer />} />
         <Route path={'/products'} element={<Products />} />
