@@ -67,9 +67,7 @@ const MomMain = () => {
             height: 100,
             mt: 0,
           }}
-        >
-          H
-        </Avatar>
+        ></Avatar>
         <Typography>ユーザー</Typography>
         <Box
           sx={{

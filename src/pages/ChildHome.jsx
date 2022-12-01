@@ -17,6 +17,7 @@ import {
 import { Header } from '../components/Header'
 import { BigButton, MiddleButton, SmallButton } from '../components/Buttons'
 import IconTabs from '../components/IconTabs'
+import IconTabss from '../components/IconTabss'
 import { useState } from 'react'
 import { FixedSizeList } from 'react-window'
 
