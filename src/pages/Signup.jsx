@@ -1,11 +1,10 @@
 import { LockOutlined } from '@mui/icons-material'
-import { Avatar, Box, Container, Grid, TextField, Typography } from '@mui/material'
+import { Avatar, Box, Container, TextField, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
 import { BigButton } from '../components/Buttons'
 import Radio from '@mui/material/Radio'
 import RadioGroup from '@mui/material/RadioGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
-import FormControl from '@mui/material/FormControl'
 import FormLabel from '@mui/material/FormLabel'
 
 const Signup = () => {

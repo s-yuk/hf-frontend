@@ -1,5 +1,5 @@
 import { LockOutlined } from '@mui/icons-material'
-import { Avatar, Box, Container, Grid, TextField, Typography } from '@mui/material'
+import { Avatar, Box, Container, TextField, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
 import { BigButton } from '../components/Buttons'
 
@@ -21,7 +21,7 @@ const Login = () => {
           Login
         </Typography>
         <Box component='form' sx={{ mt: 1 }}>
-          <TextField margin='normal' required fullWidth label='ID又はメールアドレス' autoFocus />
+          <TextField type='text' margin='normal' required fullWidth label='ID又はメールアドレス' autoFocus />
           <TextField
             margin='normal'
             required
