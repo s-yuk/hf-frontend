@@ -4,9 +4,8 @@ import React, { useState } from 'react'
 import { Header } from '../components/Header'
 import IconTabs from '../components/IconTabs'
 import { MiddleButton, SmallButton, CloseSmall } from '../components/Buttons'
-import { Footer } from '../components/Footer'
 import { Link } from 'react-router-dom'
-
+import { Footer } from '../components/Footer'
 const Homepic = () => {
   const handleClose = () => setOpen(false)
 
@@ -60,7 +59,6 @@ const Homepic = () => {
             >
               <TextField id='filled-basic' label='子供のID入力' variant='filled' />
             </Box>
-            　　　　
           </Typography>
 
           <CloseSmall text='追加' handleClose={handleClose}></CloseSmall>

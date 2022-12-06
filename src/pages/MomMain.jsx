@@ -128,7 +128,7 @@ const MomMain = () => {
             }}
           ></TextField>
         </Stack>
-        <MiddleButton text={'更新'} handleOpen={handleOpen}></MiddleButton>
+        <MiddleButton text={'追加'} handleOpen={handleOpen}></MiddleButton>
 
         <Modal
           open={updopen}

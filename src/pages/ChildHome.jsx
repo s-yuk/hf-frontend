@@ -6,7 +6,6 @@ import {
   List,
   ListItem,
   ListItemButton,
-  ListItemIcon,
   ListItemText,
   Typography,
   FormControl,
@@ -15,23 +14,10 @@ import {
   MenuItem,
 } from '@mui/material'
 import { Header } from '../components/Header'
-import { BigButton, MiddleButton, SmallButton } from '../components/Buttons'
+import { MiddleButton, SmallButton } from '../components/Buttons'
 import IconTabs from '../components/IconTabs'
-import IconTabss from '../components/IconTabss'
 import { useState } from 'react'
-import { FixedSizeList } from 'react-window'
 
-function renderRow(props) {
-  const { index, style } = props
-
-  return (
-    <ListItem style={style} key={index} component='div' disablePadding>
-      <ListItemButton component='button' onClick={handleOpen}>
-        <ListItemText primary={`Item ${index + 1}`} />
-      </ListItemButton>
-    </ListItem>
-  )
-}
 const handleOpen = () => {
   setOpen(true)
 }
