@@ -82,7 +82,66 @@ const ChildHome = () => {
           {500}
         </Typography>
       </Box>
-      <nav aria-label='main mailbox folders'>
+
+      <Box
+        sx={{
+          width: '90%',
+          height: 100,
+          bgcolor: 'Yellowgreen',
+          mx: 'auto',
+          color: 'white',
+          borderRadius: '8px',
+          boxShadow: 3,
+          mt: '5px',
+        }}
+      >
+        <Typography
+          variant='h6'
+          component='p'
+          sx={{
+            fontWeight: '600',
+            p: 1,
+          }}
+        >
+          所持株
+        </Typography>
+        <Typography
+          variant='h5'
+          component='p'
+          sx={{
+            fontWeight: '700',
+            textAlign: 'right',
+            p: 2,
+            '&::after': {
+              content: '"株"',
+              // fontSize: '1.5rem',
+            },
+          }}
+        >
+          {30}
+        </Typography>
+      </Box>
+      <List>
+        <ListItem disablePadding>
+          <ListItemButton>
+            <FolderSpecial
+              sx={{
+                mr: 2,
+              }}
+            />
+            <ListItemText primary='交換先一覧' />
+          </ListItemButton>
+        </ListItem>
+      </List>
+      <Divider />
+      <Box
+        sx={{
+          width: '90%',
+          height: 150,
+          mx: 'auto',
+          bgcolor: 'background.paper',
+        }}
+      >
         <List>
           <ListItem disablePadding>
             <ListItemButton>
@@ -95,19 +154,42 @@ const ChildHome = () => {
             </ListItemButton>
           </ListItem>
         </List>
-      </nav>
-      <Divider />
-      <Box
-        sx={{
-          width: '90%',
-          height: 220,
-          mx: 'auto',
-          bgcolor: 'background.paper',
-        }}
-      >
-        <FixedSizeList height={200} width={360} itemSize={46} itemCount={30} overscanCount={5}>
-          {renderRow}
-        </FixedSizeList>
+        <List>
+          <ListItem disablePadding>
+            <ListItemButton>
+              <FolderSpecial
+                sx={{
+                  mr: 2,
+                }}
+              />
+              <ListItemText primary='交換先一覧' />
+            </ListItemButton>
+          </ListItem>
+        </List>
+        <List>
+          <ListItem disablePadding>
+            <ListItemButton>
+              <FolderSpecial
+                sx={{
+                  mr: 2,
+                }}
+              />
+              <ListItemText primary='交換先一覧' />
+            </ListItemButton>
+          </ListItem>
+        </List>
+        <List>
+          <ListItem disablePadding>
+            <ListItemButton>
+              <FolderSpecial
+                sx={{
+                  mr: 2,
+                }}
+              />
+              <ListItemText primary='交換先一覧' />
+            </ListItemButton>
+          </ListItem>
+        </List>
       </Box>
       <Box
         sx={{
@@ -119,7 +201,7 @@ const ChildHome = () => {
           mb: 1,
         }}
       >
-        <BigButton handleOpen={handleOpen} text={'交換'} sx={{ mb: '10px' }} />
+        {/* <BigButton handleOpen={handleOpen} text={'交換'} sx={{ mb: '10px' }} /> */}
 
         <Modal
           open={open}
