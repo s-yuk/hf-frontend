@@ -6,7 +6,6 @@ import IconTabs from '../components/IconTabs'
 import { MiddleButton, SmallButton, CloseSmall } from '../components/Buttons'
 import { Link } from 'react-router-dom'
 import { Footer } from '../components/Footer'
-
 const Homepic = () => {
   const handleClose = () => setOpen(false)
 
@@ -25,9 +24,9 @@ const Homepic = () => {
           gap: 3,
         }}
       >
-        <Avatar sx={{ width: 120, height: 120 }} component={Link} to='/mommain' />
-        <Avatar sx={{ width: 120, height: 120 }} />
-        <Avatar sx={{ width: 120, height: 120 }} />
+        <Avatar component={Link} to='/mommain' sx={{ width: 120, height: 120 }} />
+        <Avatar component={Link} to='/mommain' sx={{ width: 120, height: 120 }} />
+        <Avatar component={Link} to='/mommain' sx={{ width: 120, height: 120 }} />
       </Box>
       <Modal
         open={open}
@@ -71,10 +70,10 @@ const Homepic = () => {
           bgcolor: '#ff00ff',
           width: '70px',
           height: '70px',
-          borderRadius: '100px',
+          borderRadius: '50%',
           position: 'fixed',
           bottom: '10%',
-          right: '0',
+          right: '1%',
           fontSize: '2rem',
           color: 'white',
           '&:hover': {

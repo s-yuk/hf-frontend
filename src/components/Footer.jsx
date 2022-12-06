@@ -21,7 +21,7 @@ export const Footer = () => {
       }}
     >
       <BottomNavigationAction label='home' icon={<HomeIcon />} component={Link} to='/homepic' />
-      <BottomNavigationAction label='point' icon={<Restore />} component={Link} to='/products' />
+      <BottomNavigationAction label='products' icon={<Restore />} component={Link} to='/products' />
       <BottomNavigationAction label='user' icon={<PersonIcon />} component={Link} to='/customer' />
     </BottomNavigation>
   )

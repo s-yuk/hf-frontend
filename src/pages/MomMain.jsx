@@ -67,9 +67,7 @@ const MomMain = () => {
             height: 100,
             mt: 0,
           }}
-        >
-          H
-        </Avatar>
+        ></Avatar>
         <Typography>ユーザー</Typography>
         <Box
           sx={{
@@ -130,7 +128,7 @@ const MomMain = () => {
             }}
           ></TextField>
         </Stack>
-        <MiddleButton text={'更新'} handleOpen={handleOpen}></MiddleButton>
+        <MiddleButton text={'追加'} handleOpen={handleOpen}></MiddleButton>
 
         <Modal
           open={updopen}

@@ -26,53 +26,57 @@ const ChildChart = () => {
             position: 'absolute',
             top: '50%',
             left: '50%',
+            height: '80%',
             transform: 'translate(-50%, -50%)',
-            width: '60%',
-
+            width: '80%',
             bgcolor: 'background.paper',
             border: '2px solid #000',
             boxShadow: 24,
-            p: 4,
             textAlign: 'center',
+            overflow: 'scroll',
+            pt: 4,
           }}
         >
-          <Typography id='modal-modal-title' variant='h6' component='h2'>
-            あああああ 　　　　
+          <Typography id='modal-modal-title' variant='h6' component='h3'>
+            ああああああああああああああああああああああああああああああああああ
+            <br />
+            あああああ
+            <br />
+            あああああ
+            <br />
+            あああああ
+            <br />
+            あああああ
+            <br />
+            あああああ
+            <br />
+            あああああ
+            <br />
+            あああああ
+            <br />
+            あああああ
+            <br />
+            あああああ
+            <br />
+            あああああ
+            <br />
+            あああああ
+            <br />
+            あああああ
+            <br />
+            あああああ
+            <br />
+            あああああ
+            <br />
+            あああああ
+            <br />
+            あああああ
+            <br />
+            <br />
           </Typography>
-          <Typography id='modal-modal-title' variant='h6' component='h2'>
-            あああああ 　　　　
-          </Typography>{' '}
-          <Typography id='modal-modal-title' variant='h6' component='h2'>
-            あああああ 　　　　
-          </Typography>{' '}
-          <Typography id='modal-modal-title' variant='h6' component='h2'>
-            あああああ 　　　　
-          </Typography>{' '}
-          <Typography id='modal-modal-title' variant='h6' component='h2'>
-            あああああ 　　　　
-          </Typography>{' '}
-          <Typography id='modal-modal-title' variant='h6' component='h2'>
-            あああああ 　　　　
-          </Typography>{' '}
-          <Typography id='modal-modal-title' variant='h6' component='h2'>
-            あああああ 　　　　
-          </Typography>{' '}
-          <Typography id='modal-modal-title' variant='h6' component='h2'>
-            あああああ 　　　　
-          </Typography>{' '}
-          <Typography id='modal-modal-title' variant='h6' component='h2'>
-            あああああ 　　　　
-          </Typography>{' '}
-          <Typography id='modal-modal-title' variant='h6' component='h2'>
-            あああああ 　　　　
-          </Typography>{' '}
-          <Typography id='modal-modal-title' variant='h6' component='h2'>
-            あああああ 　　　　
-          </Typography>{' '}
-          <Typography id='modal-modal-title' variant='h6' component='h2'>
-            あああああ 　　　　
-          </Typography>
-          <CloseSmall text='追加' handleClose={handleClose}></CloseSmall>
+          <Button onClick={handleClose} sx={{ position: 'fixed', top: '0', right: '0', fontSize: '1.5rem' }}>
+            ✕
+          </Button>
         </Box>
       </Modal>
       <Header title='チャート' />
@@ -103,10 +107,10 @@ const ChildChart = () => {
           bgcolor: '#ff00ff',
           width: '70px',
           height: '70px',
-          borderRadius: '100px',
+          borderRadius: '50%',
           position: 'fixed',
           bottom: '10%',
-          right: '0',
+          right: '1%',
           fontSize: '2rem',
           color: 'white',
           '&:hover': {
@@ -114,7 +118,7 @@ const ChildChart = () => {
           },
         }}
       >
-        +
+        ?
       </Button>
       <IconTabs />
     </>
