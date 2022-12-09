@@ -15,12 +15,9 @@ import {
 } from '@mui/material'
 import { Header } from '../components/Header'
 import { MiddleButton, SmallButton } from '../components/Buttons'
-import IconTabs from '../components/IconTabs'
+import { ChildFooter } from '../components/Footer.jsx'
 import { useState } from 'react'
-
-const handleOpen = () => {
-  setOpen(true)
-}
+import LocalActivityIcon from '@mui/icons-material/LocalActivity'
 
 const ChildHome = () => {
   const [open, setOpen] = useState(false)
@@ -34,7 +31,7 @@ const ChildHome = () => {
       <Box
         sx={{
           width: '90%',
-          height: 150,
+          height: 130,
           bgcolor: 'green',
           mx: 'auto',
           color: 'white',
@@ -50,7 +47,7 @@ const ChildHome = () => {
             p: 2,
           }}
         >
-          現在のポイント
+          もっているポイント
         </Typography>
         <Typography
           variant='h3'
@@ -58,7 +55,7 @@ const ChildHome = () => {
           sx={{
             fontWeight: '700',
             textAlign: 'right',
-            p: 2,
+            p: 1,
             '&::after': {
               content: '"pt"',
               fontSize: '1.5rem',
@@ -89,8 +86,10 @@ const ChildHome = () => {
             p: 1,
           }}
         >
-          所持株
+          持っている券（けん）
+          <LocalActivityIcon sx={{ fontSize: '30px', p: '2' }} />
         </Typography>
+
         <Typography
           variant='h5'
           component='p'
@@ -126,53 +125,54 @@ const ChildHome = () => {
           height: 150,
           mx: 'auto',
           bgcolor: 'background.paper',
+          overflow: 'scroll',
         }}
       >
         <List>
           <ListItem disablePadding>
-            <ListItemButton>
+            <ListItemButton onClick={handleOpen}>
               <FolderSpecial
                 sx={{
                   mr: 2,
                 }}
               />
-              <ListItemText primary='交換先一覧' />
+              <ListItemText primary='交換先品１' />
             </ListItemButton>
           </ListItem>
         </List>
         <List>
           <ListItem disablePadding>
-            <ListItemButton>
+            <ListItemButton onClick={handleOpen}>
               <FolderSpecial
                 sx={{
                   mr: 2,
                 }}
               />
-              <ListItemText primary='交換先一覧' />
+              <ListItemText primary='交換先品２' />
             </ListItemButton>
           </ListItem>
         </List>
         <List>
           <ListItem disablePadding>
-            <ListItemButton>
+            <ListItemButton onClick={handleOpen}>
               <FolderSpecial
                 sx={{
                   mr: 2,
                 }}
               />
-              <ListItemText primary='交換先一覧' />
+              <ListItemText primary='交換先品３' />
             </ListItemButton>
           </ListItem>
         </List>
         <List>
           <ListItem disablePadding>
-            <ListItemButton>
+            <ListItemButton onClick={handleOpen}>
               <FolderSpecial
                 sx={{
                   mr: 2,
                 }}
               />
-              <ListItemText primary='交換先一覧' />
+              <ListItemText primary='交換先品４' />
             </ListItemButton>
           </ListItem>
         </List>
@@ -187,8 +187,6 @@ const ChildHome = () => {
           mb: 1,
         }}
       >
-        {/* <BigButton handleOpen={handleOpen} text={'交換'} sx={{ mb: '10px' }} /> */}
-
         <Modal
           open={open}
           onClose={() => setOpen(false)}
@@ -245,7 +243,7 @@ const ChildHome = () => {
         </Modal>
         <SmallButton text='履歴' to='/child/history' />
       </Box>
-      <IconTabs />
+      <ChildFooter />
     </>
   )
 }

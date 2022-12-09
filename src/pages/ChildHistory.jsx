@@ -17,7 +17,7 @@ import {
 } from '@mui/material'
 import { Link } from 'react-router-dom'
 import {} from '../_index.js'
-import IconTabs from '../components/IconTabs.jsx'
+import { ChildFooter } from '../components/Footer.jsx'
 import { MiddleButton, SmallButton } from '../components/Buttons'
 import { useState } from 'react'
 import { FixedSizeList } from 'react-window'
@@ -124,7 +124,7 @@ const ChildHistory = () => {
       >
         <SmallButton text='戻る' to='/child'></SmallButton>
       </Box>
-      <IconTabs />
+      <ChildFooter />
     </>
   )
 }
