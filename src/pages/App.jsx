@@ -8,7 +8,7 @@ import {
   Homepic,
   Customer,
   Products,
-  MomMain
+  MomMain,
 } from '../_index.js'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 const App = () => {

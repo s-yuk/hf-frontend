@@ -1,7 +1,7 @@
 import { Box, Button, Modal, Typography } from '@mui/material'
 import { Header } from '../components/Header'
-import IconTabs from '../components/IconTabs'
-import { CloseSmall, SmallButton } from '../components/Buttons'
+import { ChildFooter } from '../components/Footer.jsx'
+import { SmallButton } from '../components/Buttons'
 import { useState } from 'react'
 const ChildChart = () => {
   const handleClose = () => setOpen(false)
@@ -120,7 +120,7 @@ const ChildChart = () => {
       >
         ?
       </Button>
-      <IconTabs />
+      <ChildFooter />
     </>
   )
 }

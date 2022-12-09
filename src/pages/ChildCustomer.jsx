@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Link } from 'react-router-dom'
 import TextField from '@mui/material/TextField'
 import {} from '../_index.js'
-import IconTabs from '../components/IconTabs.jsx'
+import { ChildFooter } from '../components/Footer.jsx'
 import { MiddleButton, SmallButton, CloseSmall } from '../components/Buttons'
 import { useState } from 'react'
 import { Header } from '../components/Header'
@@ -137,7 +137,7 @@ const ChildCustomer = () => {
           </Modal>
         </div>
         <div style={{ margin: '0 auto' }}>
-          <IconTabs />
+          <ChildFooter />
         </div>
       </div>
     </Box>
