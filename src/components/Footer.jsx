@@ -1,10 +1,7 @@
-import { Restore } from '@mui/icons-material'
-import { BottomNavigation, BottomNavigationAction, Box } from '@mui/material'
+import { Home, Person, Restore, SsidChart } from '@mui/icons-material'
+import { BottomNavigation, BottomNavigationAction } from '@mui/material'
 import { useState } from 'react'
-import HomeIcon from '@mui/icons-material/Home'
-import PersonIcon from '@mui/icons-material/Person'
 import { Link } from 'react-router-dom'
-import SsidChartIcon from '@mui/icons-material/SsidChart'
 
 export const Footer = () => {
   const [value, setValue] = useState(0)
@@ -43,9 +40,9 @@ export const ChildFooter = () => {
         setValue(newValue)
       }}
     >
-      <BottomNavigationAction label='ほーむ' icon={<HomeIcon />} component={Link} to='/child' />
-      <BottomNavigationAction label='ぐらふ' icon={<SsidChartIcon />} component={Link} to='/child/chart' />
-      <BottomNavigationAction label='じぶん' icon={<PersonIcon />} component={Link} to='/child/customer' />
+      <BottomNavigationAction label='ほーむ' icon={<Home />} component={Link} to='/child' />
+      <BottomNavigationAction label='ぐらふ' icon={<SsidChart />} component={Link} to='/child/chart' />
+      <BottomNavigationAction label='じぶん' icon={<Person />} component={Link} to='/child/customer' />
     </BottomNavigation>
   )
 }

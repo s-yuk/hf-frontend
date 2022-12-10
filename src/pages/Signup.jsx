@@ -1,13 +1,25 @@
 import { LockOutlined } from '@mui/icons-material'
-import { Avatar, Box, Container, TextField, Typography } from '@mui/material'
+import { Avatar, Box, Container, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, TextField, Typography } from '@mui/material'
+import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { BigButton } from '../components/Buttons'
-import Radio from '@mui/material/Radio'
-import RadioGroup from '@mui/material/RadioGroup'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import FormLabel from '@mui/material/FormLabel'
-
 const Signup = () => {
+  const url = 'http://localhost:8080/api/register'
+  const data = {
+    username: 'alice',
+    password: '12345',
+    email: 'bbb@gmail.com',
+    roles: [
+      {
+        id: 1,
+        name: 'ROLE_USER'
+      }
+    ]
+  }
+  const handleClick = async () => {
+    const res = await axios.post(url, data)
+    console.log(data)
+  }
   return (
     <Container component='main'>
       <Box
@@ -24,13 +36,12 @@ const Signup = () => {
         <Typography component='h1' variant='h5'>
           Signup
         </Typography>
-        <Box component='form' sx={{ mt: 1 }}>
-          <TextField margin='normal' required fullWidth label='ユーザー名' autoFocus />
-          <TextField margin='normal' required fullWidth label='ID又はメールアドレス' autoFocus />
+        <FormControl sx={{ mt: 1 }} fullWidth>
+          <TextField margin='normal' required label='ユーザー名' autoFocus />
+          <TextField margin='normal' required label='ID又はメールアドレス' />
           <TextField
             margin='normal'
             required
-            fullWidth
             label='パスワード'
             type='password'
             autoComplete='current-password'
@@ -38,8 +49,8 @@ const Signup = () => {
 
           <FormLabel id='demo-radio-buttons-group-label'>区分</FormLabel>
           <RadioGroup row aria-labelledby='demo-radio-buttons-group-label' defaultValue='' name='radio-buttons-group'>
-            <FormControlLabel value='mom' control={<Radio />} label='親（おや）' />
-            <FormControlLabel value='child' control={<Radio />} label='子供（こども）' />
+            <FormControlLabel value='mom' control={<Radio />} label='親(おや)' />
+            <FormControlLabel value='child' control={<Radio />} label='子ども(こども)' />
           </RadioGroup>
 
           <Box
@@ -52,12 +63,12 @@ const Signup = () => {
               gap: 3,
             }}
           >
-            <BigButton text='登録' />
+            <BigButton text='登録' onClick={handleClick} />
             <Link to='/'>
               <Typography component='p'>会員登録済の方はこちら</Typography>
             </Link>
           </Box>
-        </Box>
+        </FormControl>
       </Box>
     </Container>
   )

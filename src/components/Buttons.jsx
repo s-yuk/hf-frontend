@@ -1,4 +1,4 @@
-import { Box, Button } from '@mui/material'
+import { Button } from '@mui/material'
 import { Link } from 'react-router-dom'
 
 export const SmallButton = ({ text, to, handleOpen }) => {
@@ -66,11 +66,11 @@ export const MiddleButton = ({ text, handleOpen }) => {
   )
 }
 
-export const BigButton = ({ text, to, handleOpen }) => {
+export const BigButton = ({ text, to, onClick }) => {
   return (
     <>
       <Button
-        onClick={handleOpen}
+        onClick={onClick}
         component={Link}
         to={to}
         sx={{
