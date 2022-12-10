@@ -10,6 +10,7 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate()
 
   // TODO JWT tokenをLocal Storageに保存
+  // TODO user情報を保存する方法を考える
   const signUp = async (data) => {
     try {
       const res = await axios.post(BASE_URL + "/register", data)
