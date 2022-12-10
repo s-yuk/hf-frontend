@@ -6,7 +6,6 @@ import {
   Box,
   FormControl,
   InputAdornment,
-  InputLabel,
   MenuItem,
   Modal,
   Select,

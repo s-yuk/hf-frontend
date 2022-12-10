@@ -1,4 +1,4 @@
-import { Button } from '@mui/material'
+import { Button, styled, } from '@mui/material'
 import { Link } from 'react-router-dom'
 
 export const SmallButton = ({ text, to, handleOpen }) => {
@@ -66,27 +66,14 @@ export const MiddleButton = ({ text, handleOpen }) => {
   )
 }
 
-export const BigButton = ({ text, to, onClick }) => {
-  return (
-    <>
-      <Button
-        onClick={onClick}
-        component={Link}
-        to={to}
-        sx={{
-          width: '80%',
-          bgcolor: 'red',
-          borderRadius: '100px',
-          color: 'white',
-          fontSize: '1.2rem',
-          fontWeight: '600',
-          '&:hover': {
-            bgcolor: 'rgb(228, 0, 0)',
-          },
-        }}
-      >
-        {text}
-      </Button>
-    </>
-  )
-}
+export const BigButton = styled(Button)({
+  width: '80%',
+  backgroundColor: 'red',
+  borderRadius: '100px',
+  color: 'white',
+  fontSize: '1.2rem',
+  fontWeight: '600',
+  '&:hover': {
+    backgroundColor: 'rgb(228, 0, 0)',
+  },
+})
