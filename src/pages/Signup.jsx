@@ -18,7 +18,7 @@ const Signup = () => {
       email: email,
       role: [{
         id: role,
-        name: role === '1' ? "ROLE_ADMIN" : "ROLE_USER"
+        name: role === '1' ? "ROLE_USER" : "ROLE_ADMIN"
       }]
     }
     signUp(user)
@@ -51,8 +51,8 @@ const Signup = () => {
         />
         <FormLabel id='demo-radio-buttons-group-label'>区分</FormLabel>
         <RadioGroup row aria-labelledby='demo-radio-buttons-group-label' defaultValue='' name='radio-buttons-group'>
-          <FormControlLabel value={1} control={<Radio />} label='親(おや)' onChange={(e) => setRole(e.target.value)} />
-          <FormControlLabel value={2} control={<Radio />} label='子ども(こども)' onChange={(e) => setRole(e.target.value)} />
+          <FormControlLabel value={1} control={<Radio />} label='子ども(こども)' onChange={(e) => setRole(e.target.value)} />
+          <FormControlLabel value={2} control={<Radio />} label='親(おや)' onChange={(e) => setRole(e.target.value)} />
         </RadioGroup>
         <Box sx={{
           mt: 5,

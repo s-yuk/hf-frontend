@@ -15,7 +15,8 @@ export const AuthProvider = ({ children }) => {
     try {
       const res = await axios.post(BASE_URL + "/register", data)
       setUser(data)
-      data.role[0].id === '1' ? navigate('/homepic', { replace: true }) : navigate('child', { replace: true })
+      data.role[0].id === '1' ? navigate('/child', { replace: true }) : navigate('/homepic', { replace: true })
+      console.log(res.data)
     } catch (err) {
       console.log(err)
     }
