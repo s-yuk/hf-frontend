@@ -5,14 +5,15 @@ import { CloseSmall } from '../components/Buttons'
 import { Link } from 'react-router-dom'
 import { Footer } from '../components/Footer'
 import axios from 'axios'
+import { useAuth } from '../hooks/useAuth'
 const Homepic = () => {
   const [username, setUsername] = useState("")
   const [children, setChildren] = useState([]);
   const [open, setOpen] = useState(false)
   const url = "http://localhost:8080/api/user"
-  const accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhY2NAZ21haWwuY29tIiwicm9sZXMiOlsiUk9MRV9BRE1JTiJdLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvYXBpL3JlZ2lzdGVyIiwiZXhwIjoxNjcwNjg2MDE1fQ.LHKI2uLYlAG8DMuxNtCneBDz7HEDoibt1nwQyEcUT4c"
+  const { user } = useAuth()
   const headers = {
-    Authorization: `Bearer ${accessToken}`
+    Authorization: `Bearer ${user.access_token}`
   }
   const fetchUserData = async () => {
     const { data } = await axios.get(url, { headers: headers })
@@ -32,7 +33,8 @@ const Homepic = () => {
   }
   return (
     <>
-      <Header />
+      {/* title適当 */}
+      <Header title='子ども一覧' />
       <Box
         sx={{
           display: 'grid',

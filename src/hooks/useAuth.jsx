@@ -11,12 +11,11 @@ export const AuthProvider = ({ children }) => {
 
   // TODO JWT tokenをLocal Storageに保存
   // TODO user情報を保存する方法を考える
-  const signUp = async (data) => {
+  const signUp = async (userInfo) => {
     try {
-      const res = await axios.post(BASE_URL + "/register", data)
+      const { data } = await axios.post(BASE_URL + "/register", userInfo)
+      userInfo.role[0].id === '1' ? navigate('/child', { replace: true }) : navigate('/homepic', { replace: true })
       setUser(data)
-      data.role[0].id === '1' ? navigate('/child', { replace: true }) : navigate('/homepic', { replace: true })
-      console.log(res.data)
     } catch (err) {
       console.log(err)
     }
