@@ -36,26 +36,17 @@ export const SmallButton = ({ text, to, handleOpen }) => {
   )
 }
 
-export const MiddleButton = ({ text, handleOpen }) => {
-  return (
-    <Button
-      onClick={handleOpen}
-      sx={{
-        width: '50%',
-        bgcolor: 'red',
-        borderRadius: '100px',
-        color: 'white',
-        fontSize: '1rem',
-        fontWeight: '600',
-        '&:hover': {
-          bgcolor: 'rgb(228, 0, 0)',
-        },
-      }}
-    >
-      {text}
-    </Button>
-  )
-}
+export const MiddleButton = styled(Button)({
+  width: '50%',
+  backgroundColor: 'red',
+  borderRadius: '100px',
+  color: 'white',
+  fontSize: '1rem',
+  fontWeight: '600',
+  '&:hover': {
+    backgroundColor: 'rgb(228, 0, 0)',
+  },
+})
 
 export const BigButton = styled(Button)({
   width: '80%',
