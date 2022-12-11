@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import { Footer } from '../components/Footer'
 import axios from 'axios'
 import { useAuth } from '../hooks/useAuth'
+
 const Homepic = () => {
   const [username, setUsername] = useState("")
   const [children, setChildren] = useState([]);
@@ -22,9 +23,15 @@ const Homepic = () => {
   useEffect(() => {
     fetchUserData();
   }, [children])
-
   const addMyChild = async () => {
-    await axios.post(url + '/save', { username: username }, { headers: headers })
+    await axios.post(url + '/save',
+      {
+        username: username,
+        role: [{
+          id: '1',
+        }]
+      },
+      { headers: headers })
     await setOpen(false)
   }
 
