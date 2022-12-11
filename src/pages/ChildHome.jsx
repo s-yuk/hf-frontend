@@ -34,12 +34,12 @@ function renderRow(props) {
 const ChildHome = () => {
   const [open, setOpen] = useState(false)
   const handleOpen = () => {
-    setOpen(true)
+    setOpen(true);
   }
 
   return (
     <>
-      <Header title='子ども用メインページ' />
+      <Header title='子ども用メインページ' IconNone="flase" />
       <Box
         sx={{
           width: '90%',
@@ -119,8 +119,7 @@ const ChildHome = () => {
           open={open}
           onClose={() => setOpen(false)}
           aria-labelledby='modal-modal-title'
-          aria-describedby='modal-modal-description'
-        >
+          aria-describedby='modal-modal-description'>
           <Box
             sx={{
               position: 'absolute',

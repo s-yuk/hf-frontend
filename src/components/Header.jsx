@@ -1,38 +1,49 @@
 import { ArrowBackIos } from '@mui/icons-material'
 import { AppBar, Toolbar, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
+import LogoutIcon from '@mui/icons-material/Logout';
 
-export const Header = ({ title }) => {
+
+export const Header = ({ title, IconNone }) => {
+
   return (
-    <AppBar
-      position='sticky'
-      sx={{
-        position: 'fixed',
-        bgcolor: 'white',
-        mb: '10px',
-      }}
-    >
-      <Toolbar
+    <>
+      <AppBar
+        position='sticky'
         sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
+          position: 'fixed',
+          bgcolor: 'white',
+          mb: '10px',
         }}
       >
-        <Link to=''>
-          <ArrowBackIos />
-        </Link>
-        <Typography
+        <Toolbar
           sx={{
-            color: 'black',
-            fontWeight: '600',
+            display: 'flex',
+            justifyContent: 'space-between',
           }}
         >
-          {title}
-        </Typography>
-        <Link to='/'>
-          <Typography>ログアウト</Typography>
-        </Link>
-      </Toolbar>
-    </AppBar>
+          <Link className={`${IconNone ? "DisplayNone" : ""} `}>
+            <ArrowBackIos
+            />
+          </Link>
+          <Typography
+            sx={{
+              color: 'black',
+              fontWeight: '600',
+              m: "auto",
+              fontSize: "18px"
+
+            }}
+          >
+            {title}
+          </Typography>
+          <Link to="/">
+            <LogoutIcon />
+          </Link>
+        </Toolbar>
+      </AppBar>
+
+
+    </>
   )
 }

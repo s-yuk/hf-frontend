@@ -10,6 +10,7 @@ import {
   Products,
 } from '../_index.js'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -24,7 +25,9 @@ const App = () => {
         <Route path={'/home'} element={<Homepic />} />
         <Route path={'/customer'} element={<Customer />} />
         <Route path={'/products'} element={<Products />} />
+
       </Routes>
+
     </BrowserRouter>
   )
 }

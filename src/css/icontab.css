@@ -1,28 +1,16 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900');
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
 
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  /* background: #222327; */
-}
 
 .navigation {
   position: relative;
   width: 100%;
-  height: 60px;
+  height: 600px;
   background: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
+  bottom: 0;
 }
 
 .navigation ul {
@@ -59,7 +47,7 @@ body {
 }
 
 .navigation ul li.active a .icon {
-  transform: translateY(-32px);
+  transform: translateY(-42px);
   color: #2196f3;
 }
 
@@ -75,9 +63,16 @@ body {
   transition: 0.5s;
   opacity: 0;
   transform: translateY(15px);
+  z-index: 100;
 }
 
 .navigation ul li.active a .text {
+  transform: translateY(-4px);
+  opacity: 1;
+  z-index: 3;
+}
+
+.navigation ul li.active a .back-item {
   transform: translateY(-4px);
   opacity: 1;
   z-index: 3;
@@ -109,7 +104,7 @@ body {
   border-radius:50%;
   z-index: 1;
   transform: 0.5s;
-} */
+}  */
 
 /* .indicator::before {
   content: "";
@@ -132,17 +127,29 @@ body {
   right: -28px;
   background: transparent;
   border-radius: 50%;
-  box-shadow: -15px 18px #fff; */
-/* } */
+  box-shadow: -15px 18px #fff; 
+} */
 
-.navigation ul li:nth-child(1).active + .back {
+.navigation ul li:nth-child(1).active+.back {
   display: block;
 }
 
-.navigation ul li:nth-child(2).active ~ .indicator {
-  transform: translateX(calc(33.33% * 1));
+.navigation ul li:nth-child(2).active~.indicator {}
+
+.navigation ul li:nth-child(3).active~.indicator {
+  transform: translateX(calc(33.33% * 2));
 }
 
-.navigation ul li:nth-child(3).active ~ .indicator {
-  transform: translateX(calc(33.33% * 2));
+
+.icon {
+  width: 70px;
+  height: 43px;
+  background-color: white;
+  border-radius: 50%;
+  z-index: 4;
+  position: absolute;
+  border-radius: 75px 75px 0 0;
+  /* 下側を丸める */
+  border-bottom: 0;
+  /* 直線部分を消す */
 }

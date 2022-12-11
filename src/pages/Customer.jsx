@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 import TextField from '@mui/material/TextField'
-import {} from '../_index.js'
+import { } from '../_index.js'
 import IconTabs from '../components/IconTabs.jsx'
 import { MiddleButton, SmallButton, CloseSmall } from '../components/Buttons'
 import { useState } from 'react'
@@ -44,7 +44,7 @@ const ChildCustomer = () => {
 
   return (
     <Box>
-      <Header title='会員ページ' />
+      <Header title='会員ページ' IconNone="flase" />
       <div className='background2'>
         <div
           className='customerdata'

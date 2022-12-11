@@ -41,9 +41,9 @@ const Signup = () => {
             }}
           >
             <BigButton text='登録' />
-            <Link to='/'>
-              <Typography component='p'>会員登録済の方はこちら</Typography>
-            </Link>
+
+            <Typography component='p'>会員登録済の方は<Link to='/'>こちら  </Link></Typography>
+
           </Box>
         </Box>
       </Box>
