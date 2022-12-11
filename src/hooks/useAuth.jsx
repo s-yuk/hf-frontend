@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
   const signUp = async (userInfo) => {
     try {
       const { data } = await axios.post(BASE_URL + "/register", userInfo)
-      userInfo.role[0].id === '1' ? navigate('/child', { replace: true }) : navigate('/homepic', { replace: true })
+      userInfo.roles[0].id === '1' ? navigate('/child', { replace: true }) : navigate('/homepic', { replace: true })
       setUser(data)
     } catch (err) {
       console.log(err)

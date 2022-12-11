@@ -16,7 +16,7 @@ const Signup = () => {
       username: username,
       password: password,
       email: email,
-      role: [{
+      roles: [{
         id: role,
         name: role === '1' ? "ROLE_USER" : "ROLE_ADMIN"
       }]
