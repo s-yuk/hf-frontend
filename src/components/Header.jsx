@@ -1,5 +1,5 @@
 import { ArrowBackIos } from '@mui/icons-material'
-import { AppBar, Toolbar, Typography } from '@mui/material'
+import { AppBar, Button, Toolbar, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 
@@ -38,11 +38,7 @@ export const Header = ({ title }) => {
         >
           {title}
         </Typography>
-        <Typography>
-          <button onClick={handleLogout}>
-            ログアウト
-          </button>
-        </Typography>
+        <Button variant="text" onClick={handleLogout}>ログアウト</Button>
       </Toolbar>
     </AppBar>
   )
