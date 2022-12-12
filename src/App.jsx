@@ -20,7 +20,6 @@ const App = () => {
     <AuthProvider>
       <Routes>
         <Route path='/' element={<Login />} />
-        <Route path='login' element={<Login />} />
         <Route path='signup' element={<Signup />} />
         <Route path='mommain' element={<RequireAuth><MomMain /></RequireAuth>} />
         <Route path='homepic' element={<RequireAuth><Homepic /></RequireAuth>} />

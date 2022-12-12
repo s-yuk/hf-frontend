@@ -1,13 +1,6 @@
-import { FolderSpecial } from '@mui/icons-material'
 import {
   Modal,
   Box,
-  Divider,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
   Typography,
   FormControl,
   InputLabel,
@@ -15,34 +8,24 @@ import {
   MenuItem,
   TextField,
 } from '@mui/material'
-import { Link } from 'react-router-dom'
-import { } from '../_index.js'
-import IconTabs from '../components/IconTabs.jsx'
-import { MiddleButton, SmallButton, CloseSmall } from '../components/Buttons'
-import React, { useState } from 'react'
+import { MiddleButton, CloseSmall } from '../components/Buttons'
+import { useState } from 'react'
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
 
-const textstyle = {
+const textStyle = {
   paddingRight: '200px',
   margin: '0 0 0 10px',
 }
 
 const Products = () => {
-  const handleClose = () => setOpen(false)
   const [open, setOpen] = useState(false)
-  const handleOpen = () => {
-    setOpen(true)
-  }
-
   const [genre, setGenre] = React.useState(1)
-
   const handleChange = (event) => {
     setGenre(event.target.value)
   }
   const [products, setProducts] = React.useState('')
-
-  const handlProChange = (event) => {
+  const handleProChange = (event) => {
     setProducts(event.target.value)
   }
   return (
@@ -55,10 +38,9 @@ const Products = () => {
             transform: 'translateY(40px)',
             display: 'grid',
             gap: '20px',
-            // margin: '10% 0 0 0'
           }}
         >
-          <FormControl variant='standard' style={{ textstyle }}>
+          <FormControl variant='standard' style={{ textStyle }}>
             <InputLabel id='demo-simple-select-standard-label'>ジャンル</InputLabel>
             <Select
               labelId='demo-simple-select-standard-label'
@@ -76,19 +58,18 @@ const Products = () => {
           {genre === 1 ? (
             <TextField
               id='standard-multiline-flexible'
-              style={{ textstyle }}
+              style={{ textStyle }}
               label='商品名'
-              // onChange={(e) => handleChange(e)}
               variant='standard'
             />
           ) : (
-            <FormControl variant='standard' style={{ textstyle }}>
+            <FormControl variant='standard' style={{ textStyle }}>
               <InputLabel id='demo-simple-select-standard-label'>商品名</InputLabel>
               <Select
                 labelId='demo-simple-select-standard-label'
                 id='demo-simple-select-standard'
                 value={products}
-                onChange={handlProChange}
+                onChange={handleProChange}
                 label='products'
               >
                 <MenuItem value={1} selected>
@@ -102,27 +83,26 @@ const Products = () => {
 
           <TextField
             id='standard-multiline-flexible'
-            style={{ textstyle }}
+            style={{ textStyle }}
             label='必要ポイント'
-            // onChange={(e) => handleChange(e)}
             variant='standard'
           />
           {genre === 1 ? (
             <div style={{ textAlign: 'center' }}>
-              <MiddleButton text='追加' handleOpen={handleOpen} />
+              <MiddleButton onClick={() => setOpen(true)}>追加</MiddleButton>
             </div>
           ) : genre === 2 ? (
             <div style={{ textAlign: 'center' }}>
-              <MiddleButton text='更新' handleOpen={handleOpen} />
+              <MiddleButton onClick={() => setOpen(true)}>更新</MiddleButton>
             </div>
           ) : (
             <div style={{ textAlign: 'center' }}>
-              <MiddleButton text='削除' handleOpen={handleOpen} />
+              <MiddleButton onClick={() => setOpen(true)}>削除</MiddleButton>
             </div>
           )}
           <Modal
             open={open}
-            onClose={() => setopen(false)}
+            onClose={() => setOpen(false)}
             aria-labelledby='modal-modal-title'
             aria-describedby='modal-modal-description'
           >
@@ -144,7 +124,7 @@ const Products = () => {
               <Typography id='modal-modal-title' variant='h6' component='h2' sx={{ mb: '5px' }}>
                 変更完了しました。
               </Typography>
-              <CloseSmall text='戻る' handleClose={handleClose}></CloseSmall>
+              <CloseSmall onClick={() => setOpen(false)}>戻る</CloseSmall>
             </Box>
           </Modal>
         </div>

@@ -8,13 +8,15 @@ import axios from 'axios'
 import { useAuth } from '../hooks/useAuth'
 
 const Homepic = () => {
+  const [open, setOpen] = useState(false)
+
+  // TODO react-queryでリファクタ
   const [username, setUsername] = useState("")
   const [children, setChildren] = useState([]);
-  const [open, setOpen] = useState(false)
   const url = "http://localhost:8080/api/user"
-  const { user } = useAuth()
+  const { user, token } = useAuth()
   const headers = {
-    Authorization: `Bearer ${user.access_token}`
+    Authorization: `Bearer ${token.access_token}`
   }
   const fetchUserData = async () => {
     const { data } = await axios.get(url, { headers: headers })
@@ -35,13 +37,10 @@ const Homepic = () => {
     await setOpen(false)
   }
 
-  const handleOpen = () => {
-    setOpen(true)
-  }
   return (
     <>
       {/* title適当 */}
-      <Header title='子ども一覧' />
+      <Header title={`ユーザー名: ${user.username}`} />
       <Box
         sx={{
           display: 'grid',
@@ -57,7 +56,7 @@ const Homepic = () => {
         )}
       </Box>
       <Button
-        onClick={handleOpen}
+        onClick={() => setOpen(true)}
         sx={{
           bgcolor: '#ff00ff',
           width: '70px',

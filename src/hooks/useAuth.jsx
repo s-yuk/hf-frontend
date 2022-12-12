@@ -7,6 +7,7 @@ const BASE_URL = "http://localhost:8080/api"
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState({})
+  const [token, setToken] = useState({})
   const navigate = useNavigate()
 
   // TODO JWT tokenをLocal Storageに保存
@@ -15,7 +16,8 @@ export const AuthProvider = ({ children }) => {
     try {
       const { data } = await axios.post(BASE_URL + "/register", userInfo)
       userInfo.roles[0].id === '1' ? navigate('/child', { replace: true }) : navigate('/homepic', { replace: true })
-      setUser(data)
+      setUser(userInfo)
+      setToken(data)
     } catch (err) {
       console.log(err)
     }
@@ -23,12 +25,14 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     setUser(null)
+    setToken(null)
     navigate('/', { replace: true })
   }
 
   const value = useMemo(
     () => ({
       user,
+      token,
       signUp,
       logout
     }),

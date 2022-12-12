@@ -58,7 +58,6 @@ const ChildCustomer = () => {
             transform: 'translateY(30px)',
             display: 'grid',
             gap: '20px',
-            // margin: '10% 0 0 0'
           }}
         >
           <TextField
