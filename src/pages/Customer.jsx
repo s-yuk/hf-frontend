@@ -1,19 +1,9 @@
-import { Link } from 'react-router-dom'
 import TextField from '@mui/material/TextField'
-import IconTabs from '../components/IconTabs.jsx'
 import { MiddleButton, SmallButton, CloseSmall } from '../components/Buttons'
 import { useState } from 'react'
 import { Header } from '../components/Header'
-import { Modal, Box, Typography, Button } from '@mui/material'
-import List from '@mui/material/List'
-import ListItemButton from '@mui/material/ListItemButton'
-import ListItemIcon from '@mui/material/ListItemIcon'
-import ListItemText from '@mui/material/ListItemText'
-import Collapse from '@mui/material/Collapse'
-import InboxIcon from '@mui/icons-material/MoveToInbox'
-import ExpandLess from '@mui/icons-material/ExpandLess'
-import ExpandMore from '@mui/icons-material/ExpandMore'
-import AccountBoxIcon from '@mui/icons-material/AccountBox'
+import { Modal, Box, Typography, List, ListItemButton, ListItemIcon, ListItemText, Collapse } from '@mui/material'
+import { ExpandLess, ExpandMore, AccountBox, Inbox } from '@mui/icons-material'
 import { create } from '@mui/material/styles/createTransitions.js'
 import { Footer } from '../components/Footer'
 
@@ -89,7 +79,7 @@ const ChildCustomer = () => {
             variant='standard'
           />
           <div style={{ textAlign: 'center' }}>
-            <MiddleButton text='変更' handleOpen={handleOpen} />
+            <MiddleButton onClick={handleOpen}>変更</MiddleButton>
           </div>
           <Modal
             open={updopen}
@@ -116,7 +106,7 @@ const ChildCustomer = () => {
                 変更完了しました。
               </Typography>
 
-              <CloseSmall text='戻る' handleClose={handleClose}></CloseSmall>
+              <CloseSmall onClick={handleClose}>戻る</CloseSmall>
             </Box>
           </Modal>
 
@@ -128,7 +118,7 @@ const ChildCustomer = () => {
           >
             <ListItemButton onClick={handleClick}>
               <ListItemIcon>
-                <InboxIcon />
+                <Inbox />
               </ListItemIcon>
               <ListItemText primary='アカウント一覧' />
               {acountopen ? <ExpandLess /> : <ExpandMore />}
@@ -137,20 +127,20 @@ const ChildCustomer = () => {
               <List component='div' disablePadding>
                 <ListItemButton sx={{ pl: 4 }}>
                   <ListItemIcon>
-                    <AccountBoxIcon />
+                    <AccountBox />
                   </ListItemIcon>
                   <ListItemText primary='Starred' />
                 </ListItemButton>
 
                 <ListItemButton sx={{ pl: 4 }}>
                   <ListItemIcon>
-                    <AccountBoxIcon />
+                    <AccountBox />
                   </ListItemIcon>
                   <ListItemText primary='Starred' />
                 </ListItemButton>
                 <ListItemButton sx={{ pl: 4 }}>
                   <ListItemIcon>
-                    <AccountBoxIcon />
+                    <AccountBox />
                   </ListItemIcon>
                   <ListItemText primary='Starred' />
                 </ListItemButton>
@@ -203,16 +193,16 @@ const ChildCustomer = () => {
               />
 
               <Box sx={{ mb: '10px', mt: '10px' }}>
-                <SmallButton text='作成' handleOpen={updopen}></SmallButton>
+                <SmallButton onClick={updopen}>作成</SmallButton>
               </Box>
               <Box>
-                <CloseSmall text='戻る' handleClose={accountclose}></CloseSmall>
+                <CloseSmall onClick={accountclose}>戻る</CloseSmall>
               </Box>
             </Box>
           </Modal>
 
           <div style={{ textAlign: 'center' }}>
-            <SmallButton text='アカウント削除' handleOpen={dhandelopen} sx={{}} />
+            <SmallButton onClick={dhandelopen}>アカウント削除</SmallButton>
           </div>
           <Modal
             open={delopen}
@@ -239,10 +229,10 @@ const ChildCustomer = () => {
               </Typography>
 
               <Box sx={{ mb: '10px' }}>
-                <SmallButton text='削除' to={'/login'}></SmallButton>
+                <SmallButton>削除</SmallButton>
               </Box>
               <Box>
-                <CloseSmall text='戻る' handleClose={dhandleClose}></CloseSmall>
+                <CloseSmall onClick={dhandleClose}>戻る</CloseSmall>
               </Box>
             </Box>
           </Modal>
@@ -252,7 +242,7 @@ const ChildCustomer = () => {
         </div>
         <Box sx={{ m: '100px' }}></Box>
       </div>
-    </Box>
+    </Box >
   )
 }
 
