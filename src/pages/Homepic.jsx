@@ -5,29 +5,42 @@ import { CloseSmall } from '../components/Buttons'
 import { Link } from 'react-router-dom'
 import { Footer } from '../components/Footer'
 import axios from 'axios'
+import { useAuth } from '../hooks/useAuth'
+
 const Homepic = () => {
-  const [users, setUsers] = useState([]);
+  const [open, setOpen] = useState(false)
+
+  // TODO react-queryでリファクタ
+  const [username, setUsername] = useState("")
+  const [children, setChildren] = useState([]);
   const url = "http://localhost:8080/api/user"
-  const accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhY2NAZ21haWwuY29tIiwicm9sZXMiOlsiUk9MRV9BRE1JTiJdLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvYXBpL3JlZ2lzdGVyIiwiZXhwIjoxNjcwNjg2MDE1fQ.LHKI2uLYlAG8DMuxNtCneBDz7HEDoibt1nwQyEcUT4c"
+  const { user, token } = useAuth()
   const headers = {
-    Authorization: `Bearer ${accessToken}`
+    Authorization: `Bearer ${token.access_token}`
   }
   const fetchUserData = async () => {
     const { data } = await axios.get(url, { headers: headers })
-    console.log(data);
-    setUsers(data)
+    setChildren(data)
   }
   useEffect(() => {
     fetchUserData();
-  }, [])
-
-  const [open, setOpen] = useState(false)
-  const handleOpen = () => {
-    setOpen(true)
+  }, [children])
+  const addMyChild = async () => {
+    await axios.post(url + '/save',
+      {
+        username: username,
+        role: [{
+          id: '1',
+        }]
+      },
+      { headers: headers })
+    await setOpen(false)
   }
+
   return (
     <>
-      <Header />
+      {/* title適当 */}
+      <Header title={`ユーザー名: ${user.username}`} />
       <Box
         sx={{
           display: 'grid',
@@ -36,14 +49,14 @@ const Homepic = () => {
           gap: 3,
         }}
       >
-        {users.map(user =>
+        {children.map(child =>
         (
-          <Avatar key={user.id} component={Link} to='/mommain' sx={{ width: 120, height: 120 }} />
+          <Avatar key={child.id} component={Link} to='/mommain' sx={{ width: 120, height: 120 }} />
         )
         )}
       </Box>
       <Button
-        onClick={handleOpen}
+        onClick={() => setOpen(true)}
         sx={{
           bgcolor: '#ff00ff',
           width: '70px',
@@ -90,10 +103,10 @@ const Homepic = () => {
               noValidate
               autoComplete='off'
             >
-              <TextField id='filled-basic' label='子供のID入力' variant='filled' />
+              <TextField id='filled-basic' label='子供のID入力' variant='filled' onChange={(e) => { setUsername(e.target.value) }} />
             </Box>
           </Typography>
-          <CloseSmall onClick={() => setOpen(false)} sx={{
+          <CloseSmall onClick={addMyChild} sx={{
             mt: 2
           }}>追加</CloseSmall>
         </Box>

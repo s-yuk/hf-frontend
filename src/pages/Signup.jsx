@@ -12,16 +12,16 @@ const Signup = () => {
   const [role, setRole] = useState('')
   const { signUp } = useAuth()
   const handleSignUp = () => {
-    const user = {
+    const userInfo = {
       username: username,
       password: password,
       email: email,
-      role: [{
+      roles: [{
         id: role,
         name: role === '1' ? "ROLE_USER" : "ROLE_ADMIN"
       }]
     }
-    signUp(user)
+    signUp(userInfo)
   }
 
   return (
