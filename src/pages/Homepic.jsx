@@ -1,13 +1,25 @@
 import { Avatar, Box, Button, Modal, TextField, Typography } from '@mui/material'
-import { borderRadius } from '@mui/system'
-import React, { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Header } from '../components/Header'
-import IconTabs from '../components/IconTabs'
-import { MiddleButton, SmallButton, CloseSmall } from '../components/Buttons'
+import { CloseSmall } from '../components/Buttons'
 import { Link } from 'react-router-dom'
 import { Footer } from '../components/Footer'
+import axios from 'axios'
 const Homepic = () => {
-  const handleClose = () => setOpen(false)
+  const [users, setUsers] = useState([]);
+  const url = "http://localhost:8080/api/user"
+  const accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhY2NAZ21haWwuY29tIiwicm9sZXMiOlsiUk9MRV9BRE1JTiJdLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvYXBpL3JlZ2lzdGVyIiwiZXhwIjoxNjcwNjg2MDE1fQ.LHKI2uLYlAG8DMuxNtCneBDz7HEDoibt1nwQyEcUT4c"
+  const headers = {
+    Authorization: `Bearer ${accessToken}`
+  }
+  const fetchUserData = async () => {
+    const { data } = await axios.get(url, { headers: headers })
+    console.log(data);
+    setUsers(data)
+  }
+  useEffect(() => {
+    fetchUserData();
+  }, [])
 
   const [open, setOpen] = useState(false)
   const handleOpen = () => {
@@ -24,10 +36,31 @@ const Homepic = () => {
           gap: 3,
         }}
       >
-        <Avatar component={Link} to='/mommain' sx={{ width: 120, height: 120 }} />
-        <Avatar component={Link} to='/mommain' sx={{ width: 120, height: 120 }} />
-        <Avatar component={Link} to='/mommain' sx={{ width: 120, height: 120 }} />
+        {users.map(user =>
+        (
+          <Avatar key={user.id} component={Link} to='/mommain' sx={{ width: 120, height: 120 }} />
+        )
+        )}
       </Box>
+      <Button
+        onClick={handleOpen}
+        sx={{
+          bgcolor: '#ff00ff',
+          width: '70px',
+          height: '70px',
+          borderRadius: '50%',
+          position: 'fixed',
+          bottom: '10%',
+          right: '1%',
+          fontSize: '2rem',
+          color: 'white',
+          '&:hover': {
+            bgcolor: 'purple',
+          },
+        }}
+      >
+        +
+      </Button>
       <Modal
         open={open}
         onClose={() => setOpen(false)}
@@ -60,29 +93,11 @@ const Homepic = () => {
               <TextField id='filled-basic' label='子供のID入力' variant='filled' />
             </Box>
           </Typography>
-
-          <CloseSmall text='追加' handleClose={handleClose}></CloseSmall>
+          <CloseSmall onClick={() => setOpen(false)} sx={{
+            mt: 2
+          }}>追加</CloseSmall>
         </Box>
       </Modal>
-      <Button
-        onClick={handleOpen}
-        sx={{
-          bgcolor: '#ff00ff',
-          width: '70px',
-          height: '70px',
-          borderRadius: '50%',
-          position: 'fixed',
-          bottom: '10%',
-          right: '1%',
-          fontSize: '2rem',
-          color: 'white',
-          '&:hover': {
-            bgcolor: 'purple',
-          },
-        }}
-      >
-        +
-      </Button>
       <Footer />
     </>
   )
