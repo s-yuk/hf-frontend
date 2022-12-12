@@ -16,11 +16,10 @@ import {
   MenuItem,
 } from '@mui/material'
 import { Link } from 'react-router-dom'
-import {} from '../_index.js'
+import { } from '../_index.js'
 import { ChildFooter } from '../components/Footer.jsx'
 import { MiddleButton, SmallButton } from '../components/Buttons'
 import { useState } from 'react'
-import { FixedSizeList } from 'react-window'
 import { Header } from '../components/Header'
 import { styled } from '@mui/material/styles'
 import Table from '@mui/material/Table'

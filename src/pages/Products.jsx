@@ -16,11 +16,10 @@ import {
   TextField,
 } from '@mui/material'
 import { Link } from 'react-router-dom'
-import {} from '../_index.js'
+import { } from '../_index.js'
 import IconTabs from '../components/IconTabs.jsx'
 import { MiddleButton, SmallButton, CloseSmall } from '../components/Buttons'
 import React, { useState } from 'react'
-import { FixedSizeList } from 'react-window'
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
 

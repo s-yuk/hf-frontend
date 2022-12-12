@@ -1,4 +1,0 @@
-- React
-- React Router v6
-- mui
-- Prettier
