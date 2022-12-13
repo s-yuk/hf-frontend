@@ -15,6 +15,7 @@ import { Routes, Route } from 'react-router-dom'
 import { AuthProvider } from './hooks/useAuth.jsx'
 import { RequireAuth } from './RequireAuth.jsx'
 
+
 /**
  * /mommain 子ども一覧の画面
  * /customer　アカウント情報
@@ -26,12 +27,10 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Login />} />
         <Route path='signup' element={<Signup />} />
-        <Route path='mommain' element={<RequireAuth><MomMain /></RequireAuth>} />
         <Route path='homepic' element={<RequireAuth><Homepic /></RequireAuth>} />
-        <Route path='customer' element={<Customer />} />
-        {/* <Route path='customer' element={<RequireAuth><Customer /></RequireAuth>} /> */}
-        <Route path='products' element={<Products />} />
-        {/* <Route path='products' element={<RequireAuth><Products /></RequireAuth>} /> */}
+        <Route path='mommain/:userId' element={<RequireAuth><MomMain /></RequireAuth>} />
+        <Route path='customer' element={<RequireAuth><Customer /></RequireAuth>} />
+        <Route path='products' element={<RequireAuth><Products /></RequireAuth>} />
         <Route path='child' element={<RequireAuth><ChildHome /></RequireAuth>} />
         <Route path='child/history' element={<RequireAuth><ChildHistory /></RequireAuth>} />
         <Route path='child/chart' element={<RequireAuth><ChildChart /></RequireAuth>} />

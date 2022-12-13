@@ -1,5 +1,4 @@
-import * as React from 'react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { CurrencyYen } from '@mui/icons-material'
 import {
   Avatar,
@@ -12,40 +11,65 @@ import {
   TextField,
   Typography,
   Button,
+  Stack,
 } from '@mui/material'
 import { Footer } from '../components/Footer'
 import { Header } from '../components/Header'
-import { Stack } from '@mui/system'
-import { MiddleButton, SmallButton, CloseSmall } from '../components/Buttons'
+import { MiddleButton, CloseSmall } from '../components/Buttons'
+import axios from 'axios'
+import { useParams } from 'react-router-dom'
+import { useAuth } from '../hooks/useAuth'
 
-// userBox作成
-
-const textstyle = {
+const textStyle = {
   paddingRight: '200px',
   margin: '0 0 0 10px',
 }
 
 const MomMain = () => {
-  const [select, setSelect] = React.useState(1)
-  const handleClose = () => setUpdopen(false)
-  const closeUser = () => setUser(false)
+  const { token } = useAuth()
+  const { userId } = useParams()
+  const [childInfo, setChildInfo] = useState([])
+  const url = `http://localhost:8080/api/user/${userId}`
+  const headers = {
+    Authorization: `Bearer ${token.access_token}`
+  }
+  const fetchUserById = async () => {
+    const { data } = await axios.get(url, { headers: headers })
+    setChildInfo(data)
+  }
 
+  useEffect(() => {
+    fetchUserById()
+  }, [childInfo])
+
+
+  const [point, setPoint] = useState("")
+  const updatePoint = {
+    username: childInfo.username,
+    password: childInfo.password,
+    email: childInfo.email,
+    have_points: point,
+    roles: [
+      {
+        id: 1
+      }
+    ]
+  }
+  const addUserPoint = () => {
+    axios.patch(url, updatePoint, { headers: headers })
+    setUpdateOpen(true)
+  }
+
+  const [select, setSelect] = useState(1)
   const handleChange = (event) => {
     setSelect(event.target.value)
   }
 
-  const [updopen, setUpdopen] = useState(false)
-  const handleOpen = () => {
-    setUpdopen(true)
-  }
-
-  const [user, setUser] = useState(false)
-  const openUser = () => {
-    setUser(true)
-  }
+  const [open, setOpen] = useState(false)
+  const [updateOpen, setUpdateOpen] = useState(false)
   return (
     <>
-      <Header title={'○○さんのポイント'} />
+      <Header title={`${childInfo.username}さんのポイント`} />
       <Box
         component='main'
         sx={{
@@ -57,7 +81,7 @@ const MomMain = () => {
           border: 'solid 1px',
         }}
       >
-        <Button variant='text' onClick={openUser}>
+        <Button variant='text' onClick={() => setOpen(true)}>
           ユーザー管理
         </Button>
         <Avatar
@@ -67,7 +91,6 @@ const MomMain = () => {
             mt: 0,
           }}
         ></Avatar>
-        <Typography>ユーザー</Typography>
         <Box
           sx={{
             display: 'flex',
@@ -88,7 +111,7 @@ const MomMain = () => {
               },
             }}
           >
-            {500}
+            {childInfo.have_points ? childInfo.have_points : 0}
           </Typography>
         </Box>
       </Box>
@@ -117,6 +140,7 @@ const MomMain = () => {
             </Select>
           </FormControl>
           <TextField
+            onChange={(e) => setPoint(e.target.value)}
             sx={{ m: 1, fontSize: '2rem' }}
             InputProps={{
               startAdornment: (
@@ -127,11 +151,11 @@ const MomMain = () => {
             }}
           ></TextField>
         </Stack>
-        <MiddleButton text={'追加'} handleOpen={handleOpen}></MiddleButton>
+        <MiddleButton onClick={addUserPoint}>追加</MiddleButton>
 
         <Modal
-          open={updopen}
-          onClose={() => setUpdopen(false)}
+          open={updateOpen}
+          onClose={() => setUpdateOpen(false)}
           aria-labelledby='modal-modal-title'
           aria-describedby='modal-modal-description'
         >
@@ -154,13 +178,13 @@ const MomMain = () => {
               変更完了しました。
             </Typography>
 
-            <CloseSmall text='戻る' handleClose={handleClose}></CloseSmall>
+            <CloseSmall onClick={() => setUpdateOpen(false)}>戻る</CloseSmall>
           </Box>
         </Modal>
 
         <Modal
-          open={user}
-          onClose={() => setUser(false)}
+          open={open}
+          onClose={() => setOpen(false)}
           aria-labelledby='modal-modal-title'
           aria-describedby='modal-modal-description'
         >
@@ -187,15 +211,16 @@ const MomMain = () => {
 
             <TextField
               id='standard-multiline-flexible'
-              style={{ textstyle }}
+              style={{ textStyle }}
               label='表示名'
+              value={childInfo.username}
               onChange={(e) => handleChange(e)}
               variant='standard'
               sx={{ mb: '10px' }}
             />
 
-            <CloseSmall text='確定' handleClose={closeUser}></CloseSmall>
-            <CloseSmall text='戻る' handleClose={closeUser}></CloseSmall>
+            <CloseSmall onClick={() => setOpen(false)}>確定</CloseSmall>
+            <CloseSmall onClick={() => setOpen(false)}>戻る</CloseSmall>
             <Button
               variant='outlined'
               color='error'

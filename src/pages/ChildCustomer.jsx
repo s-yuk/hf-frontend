@@ -1,32 +1,20 @@
-import * as React from 'react'
-import { Link } from 'react-router-dom'
-import TextField from '@mui/material/TextField'
-import {} from '../_index.js'
 import { ChildFooter } from '../components/Footer.jsx'
 import { MiddleButton, SmallButton, CloseSmall } from '../components/Buttons'
 import { useState } from 'react'
 import { Header } from '../components/Header'
-import { Modal, Box, Typography, Button } from '@mui/material'
+import { Modal, Box, Typography, TextField } from '@mui/material'
+import { useAuth } from '../hooks/useAuth.jsx'
 
-const textstyle = {
+const textStyle = {
   paddingRight: '200px',
   margin: '0 0 0 10px',
 }
 
 const ChildCustomer = () => {
-  const handleClose = () => setUpdopen(false)
-  const dhandleClose = () => setDelopen(false)
+  const { user } = useAuth()
 
-  const [updopen, setUpdopen] = useState(false)
-  const handleOpen = () => {
-    setUpdopen(true)
-  }
-
-  const [delopen, setDelopen] = useState(false)
-
-  const dhandelopen = () => {
-    setDelopen(true)
-  }
+  const [updateOpen, setUpdateOpen] = useState(false)
+  const [deleteOpen, setDeleteOpen] = useState(false)
 
   return (
     <Box>
@@ -38,43 +26,42 @@ const ChildCustomer = () => {
             transform: 'translateY(40px)',
             display: 'grid',
             gap: '20px',
-            // margin: '10% 0 0 0'
           }}
         >
           <TextField
             id='standard-multiline-flexible'
-            style={{ textstyle }}
+            style={{ textStyle }}
             label='名前'
-            onChange={(e) => handleChange(e)}
             variant='standard'
+            value={user.username}
           />
           <TextField
             id='standard-multiline-flexible'
-            style={{ textstyle }}
+            style={{ textStyle }}
+            type='password'
             label='パスワード'
-            onChange={(e) => handleChange(e)}
             variant='standard'
+            value={user.password}
           />
           <TextField
             id='standard-multiline-flexible'
-            style={{ textstyle }}
+            style={{ textStyle }}
             label='新しいパスワード'
-            onChange={(e) => handleChange(e)}
             variant='standard'
           />
           <TextField
             id='standard-multiline-flexible'
-            style={{ textstyle }}
+            style={{ textStyle }}
             label='メールアドレス'
-            onChange={(e) => handleChange(e)}
             variant='standard'
+            value={user.email}
           />
           <div style={{ textAlign: 'center' }}>
-            <MiddleButton text='変更' handleOpen={handleOpen} />
+            <MiddleButton onClick={() => setUpdateOpen(true)}>へんこう</MiddleButton>
           </div>
           <Modal
-            open={updopen}
-            onClose={() => setUpdopen(false)}
+            open={updateOpen}
+            onClose={() => setUpdateOpen(false)}
             aria-labelledby='modal-modal-title'
             aria-describedby='modal-modal-description'
           >
@@ -94,18 +81,18 @@ const ChildCustomer = () => {
               }}
             >
               <Typography id='modal-modal-title' variant='h6' component='h2' sx={{ mb: '5px' }}>
-                変更完了しました。
+                へんこうしました
               </Typography>
 
-              <CloseSmall text='戻る' handleClose={handleClose}></CloseSmall>
+              <CloseSmall onClick={() => setUpdateOpen(false)}>もどる</CloseSmall>
             </Box>
           </Modal>
           <div style={{ textAlign: 'center' }}>
-            <SmallButton text='アカウント削除' handleOpen={dhandelopen} sx={{}} />
+            <SmallButton onClick={() => setDeleteOpen(true)}>あかうんとをけす</SmallButton>
           </div>
           <Modal
-            open={delopen}
-            onClose={() => setDelopen(false)}
+            open={deleteOpen}
+            onClose={() => setDeleteOpen(false)}
             aria-labelledby='modal-modal-title'
             aria-describedby='modal-modal-description'
           >
@@ -124,21 +111,19 @@ const ChildCustomer = () => {
               }}
             >
               <Typography id='modal-modal-title' variant='h6' component='h2' sx={{ mb: '10px' }}>
-                本当に削除しますか？
+                ほんとうにけしますか?
               </Typography>
 
               <Box sx={{ mb: '10px' }}>
-                <SmallButton text='削除' to={'/login'}></SmallButton>
+                <SmallButton>けす</SmallButton>
               </Box>
               <Box>
-                <CloseSmall text='戻る' handleClose={dhandleClose}></CloseSmall>
+                <CloseSmall onClick={() => setDeleteOpen(false)}>もどる</CloseSmall>
               </Box>
             </Box>
           </Modal>
         </div>
-        <div style={{ margin: '0 auto' }}>
-          <ChildFooter />
-        </div>
+        <ChildFooter />
       </div>
     </Box>
   )

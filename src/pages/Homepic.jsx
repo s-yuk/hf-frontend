@@ -8,13 +8,12 @@ import axios from 'axios'
 import { useAuth } from '../hooks/useAuth'
 
 const Homepic = () => {
-  const [open, setOpen] = useState(false)
+  const { user, token } = useAuth()
 
-  // TODO react-queryでリファクタ
+  const [open, setOpen] = useState(false)
   const [username, setUsername] = useState("")
   const [children, setChildren] = useState([]);
   const url = "http://localhost:8080/api/user"
-  const { user, token } = useAuth()
   const headers = {
     Authorization: `Bearer ${token.access_token}`
   }
@@ -40,7 +39,7 @@ const Homepic = () => {
   return (
     <>
       {/* title適当 */}
-      <Header title={`ユーザー名: ${user.username}`} />
+      <Header title={user.username} />
       <Box
         sx={{
           display: 'grid',
@@ -51,7 +50,7 @@ const Homepic = () => {
       >
         {children.map(child =>
         (
-          <Avatar key={child.id} component={Link} to='/mommain' sx={{ width: 120, height: 120 }} />
+          <Avatar key={child.id} component={Link} to={`/mommain/${child.id}`} sx={{ width: 120, height: 120 }} />
         )
         )}
       </Box>
