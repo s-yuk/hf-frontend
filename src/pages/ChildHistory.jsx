@@ -1,63 +1,50 @@
-import * as React from 'react'
-import { FolderSpecial } from '@mui/icons-material'
 import {
-  Modal,
   Box,
   Divider,
   List,
   ListItem,
-  ListItemButton,
-  ListItemIcon,
   ListItemText,
-  Typography,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
 } from '@mui/material'
-import { Link } from 'react-router-dom'
-import { } from '../_index.js'
 import { ChildFooter } from '../components/Footer.jsx'
-import { MiddleButton, SmallButton } from '../components/Buttons'
-import { useState } from 'react'
+import { SmallButton } from '../components/Buttons'
 import { Header } from '../components/Header'
-import { styled } from '@mui/material/styles'
-import Table from '@mui/material/Table'
-import TableBody from '@mui/material/TableBody'
-import TableCell from '@mui/material/TableCell'
-import TableContainer from '@mui/material/TableContainer'
-import TableHead from '@mui/material/TableHead'
-import TableRow from '@mui/material/TableRow'
-import Paper from '@mui/material/Paper'
+import { Link } from 'react-router-dom'
 
-function createRow(name, date, unit, price) {
-  return { name, date, unit, price }
+function createRow(id, name, date, unit, price) {
+  return { id, name, date, unit, price }
 }
 
 function subtotal(items) {
   return items.map(({ price }) => price).reduce((sum, i) => sum + i, 0)
 }
 
-function unittotal(items) {
+function unitTotal(items) {
   return items.map(({ unit }) => unit).reduce((sum, i) => sum + i, 0)
 }
 
 const rows = [
-  createRow('Paperclips (Box)', 'date1', 2, 500),
-  createRow('Paper (Case)', 'date1', 1, 400),
-  createRow('Waste Basket', 'date1', 2, 1000),
-  createRow('Waste Basket', 'date1', 2, 1000),
-  createRow('Waste Basket', 'date1', 2, 1000),
-  createRow('Waste Basket', 'date1', 2, 1000),
-  createRow('Waste Basket', 'date1', 2, 1000),
-  createRow('Waste Basket', 'date1', 2, 1000),
-  createRow('Waste Basket', 'date1', 2, 1000),
-  createRow('Waste Basket', 'date1', 2, 1000),
-  createRow('Waste Basket', 'date1', 2, 1000),
+  createRow(1, 'Paperclips (Box)', 'date1', 2, 500),
+  createRow(2, 'Paper (Case)', 'date1', 1, 400),
+  createRow(3, 'Waste Basket', 'date1', 2, 1000),
+  createRow(4, 'Waste Basket', 'date1', 2, 1000),
+  createRow(5, 'Waste Basket', 'date1', 2, 1000),
+  createRow(6, 'Waste Basket', 'date1', 2, 1000),
+  createRow(7, 'Waste Basket', 'date1', 2, 1000),
+  createRow(8, 'Waste Basket', 'date1', 2, 1000),
+  createRow(9, 'Waste Basket', 'date1', 2, 1000),
+  createRow(10, 'Waste Basket', 'date1', 2, 1000),
+  createRow(11, 'Waste Basket', 'date1', 2, 1000),
 ]
 
-const invoiceunitTotal = unittotal(rows)
 const invoiceTotal = subtotal(rows)
+const invoiceUnitTotal = unitTotal(rows)
 
 const ChildHistory = () => {
   return (
@@ -93,7 +80,7 @@ const ChildHistory = () => {
           </TableHead>
           <TableBody>
             {rows.map((row) => (
-              <TableRow key={row.desc}>
+              <TableRow key={row.id}>
                 <TableCell>{row.name}</TableCell>
                 <TableCell>{row.date}</TableCell>
                 <TableCell>{row.unit}</TableCell>
@@ -107,13 +94,12 @@ const ChildHistory = () => {
             <TableRow></TableRow>
             <TableRow>
               <TableCell>合計</TableCell>
-              <TableCell>{invoiceunitTotal}</TableCell>
+              <TableCell>{invoiceUnitTotal}</TableCell>
               <TableCell>{invoiceTotal}</TableCell>
             </TableRow>
           </TableBody>
         </Table>
       </TableContainer>
-
       <Box
         sx={{
           display: 'flex',
@@ -121,7 +107,7 @@ const ChildHistory = () => {
           mt: '5%',
         }}
       >
-        <SmallButton text='戻る' to='/child'></SmallButton>
+        <SmallButton component={Link} to='/child'>もどる</SmallButton>
       </Box>
       <ChildFooter />
     </>

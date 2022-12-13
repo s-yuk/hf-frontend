@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { Header } from '../components/Header'
 import { Modal, Box, Typography, List, ListItemButton, ListItemIcon, ListItemText, Collapse } from '@mui/material'
 import { ExpandLess, ExpandMore, AccountBox, Inbox } from '@mui/icons-material'
-import { create } from '@mui/material/styles/createTransitions.js'
 import { Footer } from '../components/Footer'
 
 const textstyle = {
@@ -12,7 +11,9 @@ const textstyle = {
   margin: '0 0 0 10px',
 }
 
-const ChildCustomer = () => {
+const Customer = () => {
+
+
   const handleClose = () => setUpdopen(false)
   const dhandleClose = () => setDelopen(false)
   const accountclose = () => setNewaccount(false)
@@ -56,6 +57,7 @@ const ChildCustomer = () => {
             label='名前'
             onChange={(e) => handleChange(e)}
             variant='standard'
+            value={user.uesrname}
           />
           <TextField
             id='standard-multiline-flexible'
@@ -246,4 +248,4 @@ const ChildCustomer = () => {
   )
 }
 
-export default ChildCustomer
+export default Customer
