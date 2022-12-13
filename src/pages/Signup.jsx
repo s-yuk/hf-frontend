@@ -37,6 +37,8 @@ function Signup() {
     }
     signUp(userInfo)
   }
+  // あとで使う
+  // const mail = /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]+.[A-Za-z0-9]+$/
 
   return (
     <Container
@@ -53,7 +55,7 @@ function Signup() {
         <LockOutlined />
       </Avatar>
       <Typography component='h1' variant='h5'>
-        Signup
+        アカウントをつくる
       </Typography>
       <FormControl sx={{ mt: 1 }} fullWidth>
         <TextField margin='normal' required label='なまえ' autoFocus onChange={(e) => setUsername(e.target.value)} />
@@ -85,7 +87,7 @@ function Signup() {
             gap: 3,
           }}
         >
-          <BigButton onClick={() => setOpen(true)}>登録</BigButton>
+          <BigButton onClick={() => setOpen(true)}>とうろく</BigButton>
 
           <Modal
             open={open}
@@ -155,7 +157,7 @@ function Signup() {
                 }}
                 onClick={handleSignUp}
               >
-                登録
+                とうろく
               </MiddleButton>
               <br />
               <br />

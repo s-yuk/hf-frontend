@@ -19,11 +19,11 @@ function Login() {
         <LockOutlined />
       </Avatar>
       <Typography component='h1' variant='h5'>
-        Login
+        ろぐいん
       </Typography>
       <FormControl sx={{ mt: 1 }} fullWidth>
-        <TextField margin='normal' required label='ユーザー名' autoFocus />
-        <TextField margin='normal' required label='パスワード' type='password' autoComplete='current-password' />
+        <TextField margin='normal' required label='なまえ' autoFocus />
+        <TextField margin='normal' required label='ぱすわーど' type='password' autoComplete='current-password' />
         <Box
           sx={{
             mt: 5,
@@ -34,7 +34,7 @@ function Login() {
             gap: 3,
           }}
         >
-          <BigButton>ログイン</BigButton>
+          <BigButton>ろぐいん</BigButton>
           <Link to='/signup'>
             <Typography component='p'>
               会員登録がまだの方は
