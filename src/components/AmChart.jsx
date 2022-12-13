@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
+import { Component } from 'react'
 import * as am4core from '@amcharts/amcharts4/core'
 import * as am4charts from '@amcharts/amcharts4/charts'
 import am4lang_ja_JP from '@amcharts/amcharts4/lang/ja_JP'
+import am4themes_animated from '@amcharts/amcharts4/themes/animated'
 
 am4core.useTheme(am4themes_animated)
 
@@ -58,8 +59,8 @@ function prepareChart() {
 
   chart.dateFormatter.language = new am4core.Language() // 標準の翻訳設定
   chart.dateFormatter.language.locale = am4lang_ja_JP // 標準の翻訳設定
-  chart.language.locale._date_day = 'M/dd'
-  chart.language.locale._date_year = 'yyyy'
+  // chart.language.locale['_date_day'] = 'M/dd'
+  // chart.language.locale['_date_year'] = 'yyyy'
 
   return chart
 }
