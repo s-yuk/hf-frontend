@@ -24,9 +24,9 @@ function App() {
         <Route
           path='homepic'
           element={
-            <RequireAuth>
-              <Homepic />
-            </RequireAuth>
+            // <RequireAuth>
+            <Homepic />
+            // </RequireAuth>
           }
         />
         <Route

@@ -5,7 +5,7 @@ import {
   Container,
   FormControl,
   FormControlLabel,
-  FormLabel,
+  Modal,
   Radio,
   RadioGroup,
   TextField,
@@ -13,10 +13,11 @@ import {
 } from '@mui/material'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { BigButton } from '../components/Buttons'
+import { BigButton, MiddleButton, SmallButton } from '../components/Buttons'
 import { useAuth } from '../hooks/useAuth'
 
 function Signup() {
+  const [open, setOpen] = useState(false)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
@@ -55,23 +56,16 @@ function Signup() {
         Signup
       </Typography>
       <FormControl sx={{ mt: 1 }} fullWidth>
+        <TextField margin='normal' required label='なまえ' autoFocus onChange={(e) => setUsername(e.target.value)} />
+        <TextField margin='normal' required label='めーるあどれす' onChange={(e) => setEmail(e.target.value)} />
         <TextField
           margin='normal'
           required
-          label='ユーザー名'
-          autoFocus
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <TextField margin='normal' required label='ID又はメールアドレス' onChange={(e) => setEmail(e.target.value)} />
-        <TextField
-          margin='normal'
-          required
-          label='パスワード'
+          label='ぱすわーど'
           type='password'
           autoComplete='current-password'
           onChange={(e) => setPassword(e.target.value)}
         />
-        <FormLabel id='demo-radio-buttons-group-label'>区分</FormLabel>
         <RadioGroup row aria-labelledby='demo-radio-buttons-group-label' defaultValue='' name='radio-buttons-group'>
           <FormControlLabel
             value={1}
@@ -91,7 +85,83 @@ function Signup() {
             gap: 3,
           }}
         >
-          <BigButton onClick={handleSignUp}>登録</BigButton>
+          <BigButton onClick={() => setOpen(true)}>登録</BigButton>
+
+          <Modal
+            open={open}
+            onClose={() => setOpen(false)}
+            aria-labelledby='modal-modal-title'
+            aria-describedby='modal-modal-description'
+          >
+            <Box
+              sx={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                width: '80%',
+                height: '60%',
+                bgcolor: 'background.paper',
+                border: '2px solid #000',
+                boxShadow: 24,
+                p: 4,
+                textAlign: 'center',
+              }}
+            >
+              <FormControl fullWidth>
+                <TextField
+                  id='standard-read-only-input'
+                  label='なまえ'
+                  defaultValue='ないよう'
+                  InputProps={{
+                    readOnly: true,
+                  }}
+                  variant='standard'
+                />
+                <TextField
+                  id='standard-read-only-input'
+                  label='めーるあどれす'
+                  defaultValue='ないよう'
+                  InputProps={{
+                    readOnly: true,
+                  }}
+                  variant='standard'
+                  sx={{ mt: 2 }}
+                />
+                <TextField
+                  id='standard-read-only-input'
+                  label='ぱすわーど'
+                  defaultValue='ないよう'
+                  InputProps={{
+                    readOnly: true,
+                  }}
+                  variant='standard'
+                  sx={{ mt: 2 }}
+                />
+                <TextField
+                  id='standard-read-only-input'
+                  label='おかあさん？こども？'
+                  defaultValue='こどもぉ'
+                  InputProps={{
+                    readOnly: true,
+                  }}
+                  variant='standard'
+                  sx={{ mt: 2 }}
+                />
+              </FormControl>
+              <MiddleButton
+                sx={{
+                  mt: '10px',
+                }}
+                onClick={handleSignUp}
+              >
+                登録
+              </MiddleButton>
+              <br />
+              <br />
+              <SmallButton onClick={() => setOpen(false)}>もどる</SmallButton>
+            </Box>
+          </Modal>
           <Link to='/'>
             <Typography component='p'>
               会員登録済の方は<Link to='/'>こちら </Link>
