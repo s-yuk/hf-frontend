@@ -114,7 +114,7 @@ const ChildHome = () => {
                 mr: 2,
               }}
             />
-            <ListItemText primary='交換先一覧' />
+            <ListItemText primary='しょうひん' />
           </ListItemButton>
         </ListItem>
       </List>

@@ -1,15 +1,6 @@
-import {
-  Modal,
-  Box,
-  Typography,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  TextField,
-} from '@mui/material'
+import { Modal, Box, Typography, FormControl, InputLabel, Select, MenuItem, TextField } from '@mui/material'
 import { MiddleButton, CloseSmall } from '../components/Buttons'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
 
@@ -20,7 +11,7 @@ const textStyle = {
 
 const Products = () => {
   const [open, setOpen] = useState(false)
-  const [genre, setGenre] = React.useState(1)
+  const [genre, setGenre] = useState(1)
   const handleChange = (event) => {
     setGenre(event.target.value)
   }
@@ -56,12 +47,7 @@ const Products = () => {
           </FormControl>
 
           {genre === 1 ? (
-            <TextField
-              id='standard-multiline-flexible'
-              style={{ textStyle }}
-              label='商品名'
-              variant='standard'
-            />
+            <TextField id='standard-multiline-flexible' style={{ textStyle }} label='商品名' variant='standard' />
           ) : (
             <FormControl variant='standard' style={{ textStyle }}>
               <InputLabel id='demo-simple-select-standard-label'>商品名</InputLabel>
@@ -81,12 +67,7 @@ const Products = () => {
             </FormControl>
           )}
 
-          <TextField
-            id='standard-multiline-flexible'
-            style={{ textStyle }}
-            label='必要ポイント'
-            variant='standard'
-          />
+          <TextField id='standard-multiline-flexible' style={{ textStyle }} label='必要ポイント' variant='standard' />
           {genre === 1 ? (
             <div style={{ textAlign: 'center' }}>
               <MiddleButton onClick={() => setOpen(true)}>追加</MiddleButton>

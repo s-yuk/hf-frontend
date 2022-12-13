@@ -149,7 +149,9 @@ const ChildCustomer = () => {
           </List>
 
           <div style={{ textAlign: 'center' }}>
-            <MiddleButton text='子供用アカウント作成' handleOpen={createaccount} sx={{}} />
+            <MiddleButton onClick={createaccount} sx={{}}>
+              アカウント削除
+            </MiddleButton>
           </div>
           <Modal
             open={newaccount}
@@ -242,7 +244,7 @@ const ChildCustomer = () => {
         </div>
         <Box sx={{ m: '100px' }}></Box>
       </div>
-    </Box >
+    </Box>
   )
 }
 
