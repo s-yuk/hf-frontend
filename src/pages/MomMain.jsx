@@ -13,11 +13,11 @@ import {
   Button,
   Stack,
 } from '@mui/material'
+import axios from 'axios'
+import { useParams } from 'react-router-dom'
 import { Footer } from '../components/Footer'
 import { Header } from '../components/Header'
 import { MiddleButton, CloseSmall } from '../components/Buttons'
-import axios from 'axios'
-import { useParams } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 
 const textStyle = {
@@ -25,16 +25,16 @@ const textStyle = {
   margin: '0 0 0 10px',
 }
 
-const MomMain = () => {
+function MomMain() {
   const { token } = useAuth()
   const { userId } = useParams()
   const [childInfo, setChildInfo] = useState([])
   const url = `http://localhost:8080/api/user/${userId}`
   const headers = {
-    Authorization: `Bearer ${token.access_token}`
+    Authorization: `Bearer ${token.access_token}`,
   }
   const fetchUserById = async () => {
-    const { data } = await axios.get(url, { headers: headers })
+    const { data } = await axios.get(url, { headers })
     setChildInfo(data)
   }
 
@@ -42,8 +42,7 @@ const MomMain = () => {
     fetchUserById()
   }, [childInfo])
 
-
-  const [point, setPoint] = useState("")
+  const [point, setPoint] = useState('')
   const updatePoint = {
     username: childInfo.username,
     password: childInfo.password,
@@ -51,12 +50,12 @@ const MomMain = () => {
     have_points: point,
     roles: [
       {
-        id: 1
-      }
-    ]
+        id: 1,
+      },
+    ],
   }
   const addUserPoint = () => {
-    axios.patch(url, updatePoint, { headers: headers })
+    axios.patch(url, updatePoint, { headers })
     setUpdateOpen(true)
   }
 
@@ -90,7 +89,7 @@ const MomMain = () => {
             height: 100,
             mt: 0,
           }}
-        ></Avatar>
+        />
         <Box
           sx={{
             display: 'flex',
@@ -149,7 +148,7 @@ const MomMain = () => {
                 </InputAdornment>
               ),
             }}
-          ></TextField>
+          />
         </Stack>
         <MiddleButton onClick={addUserPoint}>追加</MiddleButton>
 
@@ -224,7 +223,13 @@ const MomMain = () => {
             <Button
               variant='outlined'
               color='error'
-              sx={{ fontSize: '0.5rem', position: 'absolute', bottom: '0', left: '50%', transform: 'translateX(-50%)' }}
+              sx={{
+                fontSize: '0.5rem',
+                position: 'absolute',
+                bottom: '0',
+                left: '50%',
+                transform: 'translateX(-50%)',
+              }}
             >
               アカウント削除
             </Button>

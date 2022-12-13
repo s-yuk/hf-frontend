@@ -1,9 +1,10 @@
 import { Box, Button, Modal, Typography } from '@mui/material'
-import { Header } from '../components/Header'
-import { ChildFooter } from '../components/Footer.jsx'
-import { SmallButton } from '../components/Buttons'
 import { useState } from 'react'
-const ChildChart = () => {
+import { Header } from '../components/Header'
+import { ChildFooter } from '../components/Footer'
+import { SmallButton } from '../components/Buttons'
+
+function ChildChart() {
   const handleClose = () => setOpen(false)
 
   const [open, setOpen] = useState(false)
@@ -74,7 +75,15 @@ const ChildChart = () => {
             <br />
             <br />
           </Typography>
-          <Button onClick={handleClose} sx={{ position: 'fixed', top: '0', right: '0', fontSize: '1.5rem' }}>
+          <Button
+            onClick={handleClose}
+            sx={{
+              position: 'fixed',
+              top: '0',
+              right: '0',
+              fontSize: '1.5rem',
+            }}
+          >
             ✕
           </Button>
         </Box>
@@ -87,7 +96,7 @@ const ChildChart = () => {
           bgcolor: 'black',
           mx: 'auto',
         }}
-      ></Box>
+      />
 
       <Box
         sx={{

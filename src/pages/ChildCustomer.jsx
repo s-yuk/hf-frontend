@@ -1,16 +1,16 @@
-import { ChildFooter } from '../components/Footer.jsx'
-import { MiddleButton, SmallButton, CloseSmall } from '../components/Buttons'
 import { useState } from 'react'
-import { Header } from '../components/Header'
 import { Modal, Box, Typography, TextField } from '@mui/material'
-import { useAuth } from '../hooks/useAuth.jsx'
+import { ChildFooter } from '../components/Footer'
+import { MiddleButton, SmallButton, CloseSmall } from '../components/Buttons'
+import { Header } from '../components/Header'
+import { useAuth } from '../hooks/useAuth'
 
 const textStyle = {
   paddingRight: '200px',
   margin: '0 0 0 10px',
 }
 
-const ChildCustomer = () => {
+function ChildCustomer() {
   const { user } = useAuth()
 
   const [updateOpen, setUpdateOpen] = useState(false)

@@ -12,13 +12,19 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material'
-import { ChildFooter } from '../components/Footer.jsx'
+import { Link } from 'react-router-dom'
+import { ChildFooter } from '../components/Footer'
 import { SmallButton } from '../components/Buttons'
 import { Header } from '../components/Header'
-import { Link } from 'react-router-dom'
 
 function createRow(id, name, date, unit, price) {
-  return { id, name, date, unit, price }
+  return {
+    id,
+    name,
+    date,
+    unit,
+    price,
+  }
 }
 
 function subtotal(items) {
@@ -46,7 +52,7 @@ const rows = [
 const invoiceTotal = subtotal(rows)
 const invoiceUnitTotal = unitTotal(rows)
 
-const ChildHistory = () => {
+function ChildHistory() {
   return (
     <>
       <Header title='子供用会員ページ' />
@@ -91,7 +97,7 @@ const ChildHistory = () => {
             <TableRow>
               <TableCell rowSpan={3} />
             </TableRow>
-            <TableRow></TableRow>
+            <TableRow />
             <TableRow>
               <TableCell>合計</TableCell>
               <TableCell>{invoiceUnitTotal}</TableCell>
@@ -107,7 +113,9 @@ const ChildHistory = () => {
           mt: '5%',
         }}
       >
-        <SmallButton component={Link} to='/child'>もどる</SmallButton>
+        <SmallButton component={Link} to='/child'>
+          もどる
+        </SmallButton>
       </Box>
       <ChildFooter />
     </>
