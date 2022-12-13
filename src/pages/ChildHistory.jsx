@@ -52,74 +52,72 @@ const rows = [
 const invoiceTotal = subtotal(rows)
 const invoiceUnitTotal = unitTotal(rows)
 
-function ChildHistory() {
-  return (
-    <>
-      <Header title='子供用会員ページ' />
-      <Box
-        sx={{
-          width: '100%',
-          display: 'grid',
-          justifyItems: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <nav aria-label='main mailbox folders'>
-          <List>
-            <ListItem disablePadding>
-              <ListItemText primary='履歴' primaryTypographyProps={{ fontWeight: 'bold', fontSize: '1.3rem' }} />
-            </ListItem>
-          </List>
-        </nav>
-      </Box>
-      <Divider />
+const ChildHistory = () => (
+  <>
+    <Header title='子供用会員ページ' />
+    <Box
+      sx={{
+        width: '100%',
+        display: 'grid',
+        justifyItems: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <nav aria-label='main mailbox folders'>
+        <List>
+          <ListItem disablePadding>
+            <ListItemText primary='履歴' primaryTypographyProps={{ fontWeight: 'bold', fontSize: '1.3rem' }} />
+          </ListItem>
+        </List>
+      </nav>
+    </Box>
+    <Divider />
 
-      <TableContainer component={Paper} style={{ maxHeight: '60vh' }}>
-        <Table sx={{ height: 'max-content' }} aria-label='spanning table'>
-          <TableHead>
-            <TableRow>
-              <TableCell>名前</TableCell>
-              <TableCell>日付</TableCell>
-              <TableCell>個数</TableCell>
-              <TableCell>ポイント</TableCell>
+    <TableContainer component={Paper} style={{ maxHeight: '60vh' }}>
+      <Table sx={{ height: 'max-content' }} aria-label='spanning table'>
+        <TableHead>
+          <TableRow>
+            <TableCell>名前</TableCell>
+            <TableCell>日付</TableCell>
+            <TableCell>個数</TableCell>
+            <TableCell>ポイント</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow key={row.id}>
+              <TableCell>{row.name}</TableCell>
+              <TableCell>{row.date}</TableCell>
+              <TableCell>{row.unit}</TableCell>
+              <TableCell>{row.price}</TableCell>
             </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row) => (
-              <TableRow key={row.id}>
-                <TableCell>{row.name}</TableCell>
-                <TableCell>{row.date}</TableCell>
-                <TableCell>{row.unit}</TableCell>
-                <TableCell>{row.price}</TableCell>
-              </TableRow>
-            ))}
+          ))}
 
-            <TableRow>
-              <TableCell rowSpan={3} />
-            </TableRow>
-            <TableRow />
-            <TableRow>
-              <TableCell>合計</TableCell>
-              <TableCell>{invoiceUnitTotal}</TableCell>
-              <TableCell>{invoiceTotal}</TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          mt: '5%',
-        }}
-      >
-        <SmallButton component={Link} to='/child'>
-          もどる
-        </SmallButton>
-      </Box>
-      <ChildFooter />
-    </>
-  )
-}
+          <TableRow>
+            <TableCell rowSpan={3} />
+          </TableRow>
+          <TableRow />
+          <TableRow>
+            <TableCell>合計</TableCell>
+            <TableCell>{invoiceUnitTotal}</TableCell>
+            <TableCell>{invoiceTotal}</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </TableContainer>
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        mt: '5%',
+      }}
+    >
+      <SmallButton component={Link} to='/child'>
+        もどる
+      </SmallButton>
+    </Box>
+    <ChildFooter />
+  </>
+)
 
 export default ChildHistory

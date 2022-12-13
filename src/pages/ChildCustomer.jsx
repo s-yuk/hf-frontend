@@ -11,7 +11,7 @@ const textStyle = {
   margin: '0 0 0 10px',
 }
 
-function ChildCustomer() {
+const ChildCustomer = () => {
   const { user } = useAuth()
 
   const [updateOpen, setUpdateOpen] = useState(false)

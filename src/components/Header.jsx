@@ -1,42 +1,33 @@
-import { ArrowBackIos } from '@mui/icons-material'
-import { AppBar, Button, Toolbar, Typography } from '@mui/material'
-import LogoutIcon from '@mui/icons-material/Logout'
-import { bgcolor } from '@mui/system'
-import { useAuth } from '../hooks/useAuth'
+import { ArrowBackIos, Logout } from '@mui/icons-material'
+import { AppBar, Toolbar, Typography } from '@mui/material'
 
-export function Header({ title, IconNone }) {
-  return (
-    <AppBar
-      position='sticky'
+export const Header = ({ title, IconNone }) => (
+  <AppBar
+    position='sticky'
+    sx={{
+      display: 'fixed',
+      bgcolor: 'white',
+      mb: '10px',
+    }}
+  >
+    <Toolbar
       sx={{
-        display: 'fixed',
-        bgcolor: 'white',
-        mb: '10px',
+        display: 'flex',
+        justifyContent: 'space-between',
       }}
     >
-      <Toolbar
+      <ArrowBackIos className={`${IconNone ? 'DisplayNone' : ''} `} />
+      <Typography
         sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
+          color: 'black',
+          fontWeight: '600',
+          m: 'auto',
+          fontSize: '18px',
         }}
       >
-        <Link className={`${IconNone ? 'DisplayNone' : ''} `}>
-          <ArrowBackIos />
-        </Link>
-        <Typography
-          sx={{
-            color: 'black',
-            fontWeight: '600',
-            m: 'auto',
-            fontSize: '18px',
-          }}
-        >
-          {title}
-        </Typography>
-        <Link to='/'>
-          <LogoutIcon />
-        </Link>
-      </Toolbar>
-    </AppBar>
-  )
-}
+        {title}
+      </Typography>
+      <Logout />
+    </Toolbar>
+  </AppBar>
+)

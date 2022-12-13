@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 const AuthContext = createContext(null)
 const BASE_URL = 'http://localhost:8080/api'
 
-export function AuthProvider({ children }) {
+export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState({})
   const [token, setToken] = useState({})
   const navigate = useNavigate()

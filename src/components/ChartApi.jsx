@@ -3,17 +3,14 @@ import AmChart from './AmChart'
 import axios from 'axios'
 import '../css/chart.css'
 import '../css/modal.css'
-import Button from '@mui/material/Button'
-import * as React from 'react'
-import Box from '@mui/material/Box'
-import Slider from '@mui/material/Slider'
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
+import { Box, Button, Slider } from '@mui/material'
+import { ArrowBackIos } from '@mui/icons-material'
 
-function ChartApi(props) {
-  const [stockData, setStockData] = useState({})
+const ChartApi = () => {
+  const [stockData, setStockData] = useState([])
   const [stockPrice, setStockPrice] = useState({})
-  const [value, setValue] = React.useState(30)
-  const [goukei, setGoukei] = React.useState(value)
+  const [value, setValue] = useState(30)
+  const [goukei, setGoukei] = useState(value)
   const [Anime, setAnime] = useState(false)
   const [BackAnime, setBackAnime] = useState(false)
 
@@ -33,7 +30,7 @@ function ChartApi(props) {
     setBackAnime(false)
   }
 
-  const OrderClick = () => {}
+  const OrderClick = () => { }
 
   const URL = 'http://api.marketstack.com/v1/eod'
   const API_KEY = 'ab689840193aa0a2037cbf0c70d3e4c6'
@@ -44,12 +41,20 @@ function ChartApi(props) {
   const open = []
   const high = []
 
-  useEffect(() => {
-    axios.get(`${URL}?access_key=${API_KEY}&symbols=${symbols}`).then((response) => {
-      setStockData(response.data.data)
+  // useEffect(() => {
+  //   axios.get(`${URL}?access_key=${API_KEY}&symbols=${symbols}`).then((response) => {
+  //     setStockData(response.data.data)
 
-      console.log(stockData)
-    })
+  //     console.log(stockData)
+  //   })
+  // }, [])
+
+  const fetchStockData = async () => {
+    const { data } = await axios.get(`${URL}?access_key=${API_KEY}&symbols=${symbols}`)
+    console.log(data)
+  }
+  useEffect(() => {
+    fetchStockData()
   }, [])
 
   const chart = [
@@ -84,7 +89,7 @@ function ChartApi(props) {
 
   const lastprice = aryResult.slice(-1)[0]
 
-  function Modal({ show, setshow }) {
+  const Modal = ({ show, setshow }) => {
     const closeModal = () => {
       setshow(false)
       setAnime(false)
@@ -126,7 +131,7 @@ function ChartApi(props) {
           `}
           >
             <a onClick={(e) => closeModal(e)}>
-              <ArrowBackIosIcon color='inherit' sx={{ mr: 100 }} onClick={(e) => BackSlideAnimation(e)} />
+              <ArrowBackIos color='inherit' sx={{ mr: 100 }} onClick={(e) => BackSlideAnimation(e)} />
             </a>
             <p className='sell-nuber-modal'>{goukei}</p>
             <p className=''>これをかいますか</p>

@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "fix": "yarn format && yarn lint:fix",
-    "format": "prettier --write 'src/**/*.{js,jsx}'",
+    "format": "prettier --write 'src/**/*.jsx'",
     "lint:fix": "eslint --fix 'src/**/*.jsx'"
   },
   "dependencies": {

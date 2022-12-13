@@ -25,7 +25,7 @@ const textStyle = {
   margin: '0 0 0 10px',
 }
 
-function MomMain() {
+const MomMain = () => {
   const { token } = useAuth()
   const { userId } = useParams()
   const [childInfo, setChildInfo] = useState([])
