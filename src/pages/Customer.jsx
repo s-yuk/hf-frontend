@@ -1,9 +1,9 @@
 import TextField from '@mui/material/TextField'
-import { MiddleButton, SmallButton, CloseSmall } from '../components/Buttons'
 import { useState } from 'react'
-import { Header } from '../components/Header'
 import { Modal, Box, Typography, List, ListItemButton, ListItemIcon, ListItemText, Collapse } from '@mui/material'
 import { ExpandLess, ExpandMore, AccountBox, Inbox } from '@mui/icons-material'
+import { Header } from '../components/Header'
+import { MiddleButton, SmallButton, CloseSmall } from '../components/Buttons'
 import { Footer } from '../components/Footer'
 
 const textstyle = {
@@ -11,9 +11,7 @@ const textstyle = {
   margin: '0 0 0 10px',
 }
 
-const Customer = () => {
-
-
+function Customer() {
   const handleClose = () => setUpdopen(false)
   const dhandleClose = () => setDelopen(false)
   const accountclose = () => setNewaccount(false)
@@ -112,7 +110,7 @@ const Customer = () => {
             </Box>
           </Modal>
 
-          {/* アカウント切り替え*/}
+          {/* アカウント切り替え */}
           <List
             sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
             component='nav'
@@ -242,9 +240,9 @@ const Customer = () => {
         <div style={{ margin: '0 auto' }}>
           <Footer />
         </div>
-        <Box sx={{ m: '100px' }}></Box>
+        <Box sx={{ m: '100px' }} />
       </div>
-    </Box >
+    </Box>
   )
 }
 

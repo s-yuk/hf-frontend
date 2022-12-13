@@ -13,27 +13,27 @@ import {
   Select,
   MenuItem,
 } from '@mui/material'
-import { Header } from '../components/Header'
-import { MiddleButton, SmallButton } from '../components/Buttons'
-import { ChildFooter } from '../components/Footer.jsx'
 import { useEffect, useState } from 'react'
 import LocalActivityIcon from '@mui/icons-material/LocalActivity'
-import { useAuth } from '../hooks/useAuth'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { Header } from '../components/Header'
+import { MiddleButton, SmallButton } from '../components/Buttons'
+import { ChildFooter } from '../components/Footer'
+import { useAuth } from '../hooks/useAuth'
 
-const ChildHome = () => {
+function ChildHome() {
   const { token } = useAuth()
   const [childInfo, setChildInfo] = useState([])
   const [products, setProducts] = useState([])
 
-  const BASE_URL = "http://localhost:8080/api"
+  const BASE_URL = 'http://localhost:8080/api'
   const headers = {
-    Authorization: `Bearer ${token.access_token}`
+    Authorization: `Bearer ${token.access_token}`,
   }
 
   const fetchProducts = async () => {
-    const { data } = await axios.get(`${BASE_URL}/product`, { headers: headers })
+    const { data } = await axios.get(`${BASE_URL}/product`, { headers })
     setProducts(data)
   }
   useEffect(() => {
@@ -42,18 +42,22 @@ const ChildHome = () => {
   }, [childInfo, products])
 
   const fetchUser = async () => {
-    const { data } = await axios.get(`${BASE_URL}/user/2`, { headers: headers })
+    const { data } = await axios.get(`${BASE_URL}/user/2`, { headers })
     setChildInfo(data)
   }
 
   const buyProducts = async (necessary_points) => {
-    await axios.patch(`${BASE_URL}/user/2`, {
-      id: 2,
-      username: childInfo.username,
-      email: childInfo.email,
-      password: childInfo.password,
-      have_points: childInfo.have_points - necessary_points,
-    }, { headers: headers })
+    await axios.patch(
+      `${BASE_URL}/user/2`,
+      {
+        id: 2,
+        username: childInfo.username,
+        email: childInfo.email,
+        password: childInfo.password,
+        have_points: childInfo.have_points - necessary_points,
+      },
+      { headers }
+    )
     setOpen(false)
   }
 
@@ -162,7 +166,7 @@ const ChildHome = () => {
           overflow: 'scroll',
         }}
       >
-        {products.map(product => (
+        {products.map((product) => (
           <div key={product.id}>
             <List>
               <ListItem disablePadding>
@@ -243,7 +247,9 @@ const ChildHome = () => {
           mb: 1,
         }}
       >
-        <SmallButton component={Link} to='/child/history'>履歴</SmallButton>
+        <SmallButton component={Link} to='/child/history'>
+          履歴
+        </SmallButton>
       </Box>
       <ChildFooter />
     </>

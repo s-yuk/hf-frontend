@@ -7,13 +7,13 @@ export default function IconTabs() {
   return (
     <div className='TabBottom'>
       <Tabs style={{ margin: 'auto', width: '100%' }}>
-        <Link to={'/child'} style={{ fontSize: '30px' }}>
+        <Link to='/child' style={{ fontSize: '30px' }}>
           <Tab icon={<Home sx={{ fontSize: 40 }} />} aria-label='phone' />
         </Link>
-        <Link to={'/child/chart'}>
+        <Link to='/child/chart'>
           <Tab icon={<SsidChart sx={{ fontSize: 40 }} />} aria-label='chart' />
         </Link>
-        <Link to={'/child/customer'}>
+        <Link to='/child/customer'>
           <Tab icon={<Man sx={{ fontSize: 40 }} />} aria-label='person' />
         </Link>
       </Tabs>

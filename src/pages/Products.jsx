@@ -1,47 +1,36 @@
-import {
-  Modal,
-  Box,
-  Typography,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  TextField,
-} from '@mui/material'
-import { MiddleButton, CloseSmall } from '../components/Buttons'
+import { Modal, Box, Typography, FormControl, InputLabel, Select, MenuItem, TextField } from '@mui/material'
 import { useState } from 'react'
+import axios from 'axios'
+import { MiddleButton, CloseSmall } from '../components/Buttons'
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
 import { useAuth } from '../hooks/useAuth'
-import axios from 'axios'
 
 const textStyle = {
   paddingRight: '200px',
   margin: '0 0 0 10px',
 }
 
-const Products = () => {
+function Products() {
   const { token } = useAuth()
   const [name, setName] = useState('')
   const [point, setPoint] = useState('')
-  const url = "http://localhost:8080/api/product/save"
+  const url = 'http://localhost:8080/api/product/save'
   const headers = {
-    Authorization: `Bearer ${token.access_token}`
+    Authorization: `Bearer ${token.access_token}`,
   }
   const data = {
     product_name: name,
     necessary_points: point,
     user: {
-      id: 1
-    }
+      id: 1,
+    },
   }
 
   const handleClick = async () => {
-    await axios.post(url, data, { headers: headers })
+    await axios.post(url, data, { headers })
     setOpen(false)
   }
-
-
 
   const [open, setOpen] = useState(false)
   const [genre, setGenre] = useState(1)
@@ -85,7 +74,9 @@ const Products = () => {
               style={{ textStyle }}
               label='商品名'
               variant='standard'
-              onChange={(e) => { setName(e.target.value) }}
+              onChange={(e) => {
+                setName(e.target.value)
+              }}
             />
           ) : (
             <FormControl variant='standard' style={{ textStyle }}>

@@ -1,38 +1,42 @@
 import { Avatar, Box, Button, Modal, TextField, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import axios from 'axios'
 import { Header } from '../components/Header'
 import { CloseSmall } from '../components/Buttons'
-import { Link } from 'react-router-dom'
 import { Footer } from '../components/Footer'
-import axios from 'axios'
 import { useAuth } from '../hooks/useAuth'
 
-const Homepic = () => {
+function Homepic() {
   const { user, token } = useAuth()
 
   const [open, setOpen] = useState(false)
-  const [username, setUsername] = useState("")
-  const [children, setChildren] = useState([]);
-  const url = "http://localhost:8080/api/user"
+  const [username, setUsername] = useState('')
+  const [children, setChildren] = useState([])
+  const url = 'http://localhost:8080/api/user'
   const headers = {
-    Authorization: `Bearer ${token.access_token}`
+    Authorization: `Bearer ${token.access_token}`,
   }
   const fetchUserData = async () => {
-    const { data } = await axios.get(url, { headers: headers })
+    const { data } = await axios.get(url, { headers })
     setChildren(data)
   }
   useEffect(() => {
-    fetchUserData();
+    fetchUserData()
   }, [children])
   const addMyChild = async () => {
-    await axios.post(url + '/save',
+    await axios.post(
+      `${url}/save`,
       {
-        username: username,
-        role: [{
-          id: '1',
-        }]
+        username,
+        role: [
+          {
+            id: '1',
+          },
+        ],
       },
-      { headers: headers })
+      { headers }
+    )
     await setOpen(false)
   }
 
@@ -48,11 +52,9 @@ const Homepic = () => {
           gap: 3,
         }}
       >
-        {children.map(child =>
-        (
+        {children.map((child) => (
           <Avatar key={child.id} component={Link} to={`/mommain/${child.id}`} sx={{ width: 120, height: 120 }} />
-        )
-        )}
+        ))}
       </Box>
       <Button
         onClick={() => setOpen(true)}
@@ -102,12 +104,24 @@ const Homepic = () => {
               noValidate
               autoComplete='off'
             >
-              <TextField id='filled-basic' label='子供のID入力' variant='filled' onChange={(e) => { setUsername(e.target.value) }} />
+              <TextField
+                id='filled-basic'
+                label='子供のID入力'
+                variant='filled'
+                onChange={(e) => {
+                  setUsername(e.target.value)
+                }}
+              />
             </Box>
           </Typography>
-          <CloseSmall onClick={addMyChild} sx={{
-            mt: 2
-          }}>追加</CloseSmall>
+          <CloseSmall
+            onClick={addMyChild}
+            sx={{
+              mt: 2,
+            }}
+          >
+            追加
+          </CloseSmall>
         </Box>
       </Modal>
       <Footer />

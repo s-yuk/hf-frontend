@@ -1,11 +1,11 @@
-import axios from "axios"
-import { createContext, useContext, useMemo, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import axios from 'axios'
+import { createContext, useContext, useMemo, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const AuthContext = createContext(null)
-const BASE_URL = "http://localhost:8080/api"
+const BASE_URL = 'http://localhost:8080/api'
 
-export const AuthProvider = ({ children }) => {
+export function AuthProvider({ children }) {
   const [user, setUser] = useState({})
   const [token, setToken] = useState({})
   const navigate = useNavigate()
@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
   // TODO user情報を保存する方法を考える
   const signUp = async (userInfo) => {
     try {
-      const { data } = await axios.post(BASE_URL + "/register", userInfo)
+      const { data } = await axios.post(`${BASE_URL}/register`, userInfo)
       userInfo.roles[0].id === '1' ? navigate('/child', { replace: true }) : navigate('/homepic', { replace: true })
       setUser(userInfo)
       setToken(data)
@@ -34,13 +34,11 @@ export const AuthProvider = ({ children }) => {
       user,
       token,
       signUp,
-      logout
+      logout,
     }),
     [user]
   )
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
 
-export const useAuth = () => {
-  return useContext(AuthContext)
-}
+export const useAuth = () => useContext(AuthContext)

@@ -1,4 +1,4 @@
-import { Button, styled, } from '@mui/material'
+import { Button, styled } from '@mui/material'
 
 export const CloseSmall = styled(Button)({
   width: '30%',
@@ -9,9 +9,8 @@ export const CloseSmall = styled(Button)({
   fontWeight: '600',
   '&:hover': {
     backgroundColor: 'rgb(228, 0, 0)',
-  }
+  },
 })
-
 
 export const SmallButton = styled(Button)({
   width: '30%',
