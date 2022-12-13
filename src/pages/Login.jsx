@@ -36,7 +36,10 @@ function Login() {
         >
           <BigButton>ログイン</BigButton>
           <Link to='/signup'>
-            <Typography component='p'>会員登録がまだの方はこちら</Typography>
+            <Typography component='p'>
+              会員登録がまだの方は
+              <Link to='/signup'> こちら </Link>
+            </Typography>
           </Link>
         </Box>
       </FormControl>

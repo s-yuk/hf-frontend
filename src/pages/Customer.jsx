@@ -39,7 +39,7 @@ function Customer() {
   }
   return (
     <Box>
-      <Header title='会員ページ' />
+      <Header title='会員ページ' IconNone='flase' />
       <div className='background2'>
         <div
           className='customerdata'
@@ -49,35 +49,15 @@ function Customer() {
             gap: '20px',
           }}
         >
-          <TextField
-            id='standard-multiline-flexible'
-            style={{ textstyle }}
-            label='名前'
-            onChange={(e) => handleChange(e)}
-            variant='standard'
-            value={user.uesrname}
-          />
-          <TextField
-            id='standard-multiline-flexible'
-            style={{ textstyle }}
-            label='パスワード'
-            onChange={(e) => handleChange(e)}
-            variant='standard'
-          />
+          <TextField id='standard-multiline-flexible' style={{ textstyle }} label='名前' variant='standard' />
+          <TextField id='standard-multiline-flexible' style={{ textstyle }} label='パスワード' variant='standard' />
           <TextField
             id='standard-multiline-flexible'
             style={{ textstyle }}
             label='新しいパスワード'
-            onChange={(e) => handleChange(e)}
             variant='standard'
           />
-          <TextField
-            id='standard-multiline-flexible'
-            style={{ textstyle }}
-            label='メールアドレス'
-            onChange={(e) => handleChange(e)}
-            variant='standard'
-          />
+          <TextField id='standard-multiline-flexible' style={{ textstyle }} label='メールアドレス' variant='standard' />
           <div style={{ textAlign: 'center' }}>
             <MiddleButton onClick={handleOpen}>変更</MiddleButton>
           </div>
@@ -177,20 +157,8 @@ function Customer() {
                 入力してください。
               </Typography>
 
-              <TextField
-                id='standard-multiline-flexible'
-                style={{ textstyle }}
-                label='ID'
-                onChange={(e) => handleChange(e)}
-                variant='standard'
-              />
-              <TextField
-                id='standard-multiline-flexible'
-                style={{ textstyle }}
-                label='表示名'
-                onChange={(e) => handleChange(e)}
-                variant='standard'
-              />
+              <TextField id='standard-multiline-flexible' style={{ textstyle }} label='ID' variant='standard' />
+              <TextField id='standard-multiline-flexible' style={{ textstyle }} label='表示名' variant='standard' />
 
               <Box sx={{ mb: '10px', mt: '10px' }}>
                 <SmallButton onClick={updopen}>作成</SmallButton>

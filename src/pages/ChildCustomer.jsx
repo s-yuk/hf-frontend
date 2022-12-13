@@ -4,6 +4,7 @@ import { ChildFooter } from '../components/Footer'
 import { MiddleButton, SmallButton, CloseSmall } from '../components/Buttons'
 import { Header } from '../components/Header'
 import { useAuth } from '../hooks/useAuth'
+import '../css/mui.css'
 
 const textStyle = {
   paddingRight: '200px',
@@ -18,7 +19,7 @@ function ChildCustomer() {
 
   return (
     <Box>
-      <Header title='子供用会員ページ' />
+      <Header title='子供用会員ページ' IconNone='flase' />
       <div className='background2'>
         <div
           className='customerdata'

@@ -1,8 +1,8 @@
 import { Box, Button, Modal, Typography } from '@mui/material'
 import { useState } from 'react'
 import { Header } from '../components/Header'
+import ChartApi from '../components/ChartApi'
 import { ChildFooter } from '../components/Footer'
-import { SmallButton } from '../components/Buttons'
 
 function ChildChart() {
   const handleClose = () => setOpen(false)
@@ -88,28 +88,9 @@ function ChildChart() {
           </Button>
         </Box>
       </Modal>
-      <Header title='チャート' />
-      <Box
-        sx={{
-          width: '90%',
-          height: 300,
-          bgcolor: 'black',
-          mx: 'auto',
-        }}
-      />
+      <Header title='チャート' IconNone='flase' />
 
-      <Box
-        sx={{
-          width: '90%',
-          mx: 'auto',
-          display: 'flex',
-          justifyContent: 'space-around',
-          mt: 1,
-        }}
-      >
-        <SmallButton text='かう' />
-        <SmallButton text='うる' />
-      </Box>
+      <ChartApi />
       <Button
         onClick={handleOpen}
         sx={{

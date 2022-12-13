@@ -93,7 +93,9 @@ function Signup() {
         >
           <BigButton onClick={handleSignUp}>登録</BigButton>
           <Link to='/'>
-            <Typography component='p'>会員登録済の方はこちら</Typography>
+            <Typography component='p'>
+              会員登録済の方は<Link to='/'>こちら </Link>
+            </Typography>
           </Link>
         </Box>
       </FormControl>
