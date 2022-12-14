@@ -10,7 +10,9 @@ import Slider from '@mui/material/Slider'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
 import ReplayIcon from '@mui/icons-material/Replay'
 import AmChart from './AmChart'
-const ChartApi = () => {
+import { useAuth } from '../hooks/useAuth'
+
+const ChartApi = ({ child }) => {
   const [stockData, setStockData] = useState({})
   const [value, setValue] = React.useState(`keisan`)
   const [goukei, setGoukei] = React.useState(value)
@@ -22,7 +24,7 @@ const ChartApi = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue)
     // console.log(value);
-    var keisan = Math.ceil(value * lastprice)
+    const keisan = Math.ceil(value * lastprice)
     setGoukei(keisan)
   }
 
@@ -35,14 +37,13 @@ const ChartApi = () => {
     setBackAnime(false)
   }
 
-  const OrderClick = () => {}
+  const OrderClick = () => { }
 
   const UpdateClick = () => {
-    setUpdate = setUpdate + 1
-    console.log(update)
+    setUpdate += 1
   }
 
-  const URL = 'http://api.marketstack.com/v1/eod'
+  const URL = 'http://a1pi.marketstack.com/v1/eod'
   const API_KEY = '5936a8284593b39c6c2616291887488b'
   const symbols = 'AAPL'
 
@@ -50,13 +51,49 @@ const ChartApi = () => {
     axios.get(`${URL}?access_key=${API_KEY}&symbols=${symbols}`).then((response) => {
       setStockData(response.data.data)
       setLastprice(response.data.data[0].open)
-      console.log(response.data.data[0].open)
-      console.log(stockData)
-      console.log(data.data[0].open)
     })
   }, [count])
 
-  function Modal({ show, setshow }) {
+  const { token } = useAuth()
+  const url = 'http://localhost:8080/api/user/2'
+  const buyStock = {
+    username: child.username,
+    password: child.password,
+    email: child.email,
+    have_points: child.have_points - (lastprice * value),
+    have_stock: child.have_stock + value,
+    roles: [
+      {
+        id: 1,
+      },
+    ],
+  }
+
+  const sellStock = {
+    username: child.username,
+    password: child.password,
+    email: child.email,
+    have_points: child.have_points + (lastprice * value),
+    have_stock: child.have_stock - value,
+    roles: [
+      {
+        id: 1,
+      },
+    ],
+  }
+  const headers = {
+    Authorization: `Bearer ${token.access_token}`,
+  }
+
+  const addMyStock = async () => {
+    await axios.patch(url, buyStock, { headers: headers })
+  }
+
+  const sellMyStock = async () => {
+    await axios.patch(url, sellStock, { headers: headers })
+  }
+
+  const Modal = ({ show, setshow }) => {
     const closeModal = () => {
       setshow(false)
       setAnime(false)
@@ -110,7 +147,7 @@ const ChartApi = () => {
               <Button
                 variant='outlined'
                 sx={{ p: ' 7px 0 ', mt: 3, width: '100%' }}
-                onClick={() => OrderClick()}
+                onClick={addMyStock}
                 color='inherit'
               >
                 ちゅうもんしてもいいですか
@@ -119,20 +156,20 @@ const ChartApi = () => {
           </div>
         </div>
       )
-    } else {
-      return null
     }
+    return null
+
   }
 
   const [show, setshow] = useState(false)
 
-  //チャート代入
+  // チャート代入
   const name = stockData
 
   return (
     <>
       <div className='Chart-box' id='chart'>
-        <h1></h1>
+        <h1 />
         <h2>{lastprice}</h2>
         <AmChart name={name} />
 
@@ -141,15 +178,15 @@ const ChartApi = () => {
             <a onClick={() => setshow(true)}>
               <p className='sell'>うる</p>
               <p className='sellnuber'>{lastprice}</p>
-              <div className='line'></div>
+              <div className='line' />
             </a>
           </div>
-          <div className='center-box'></div>
+          <div className='center-box' />
           <div className='low-box'>
             <a onClick={() => setshow(true)}>
               <p className='sell'>かう</p>
               <p className='sellnuber'>{lastprice}</p>
-              <div className='line1'></div>
+              <div className='line1' />
             </a>
           </div>
         </div>

@@ -1,11 +1,28 @@
 import { Box, Button, Modal, Typography } from '@mui/material'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Header } from '../components/Header'
 import ChartApi from '../components/ChartApi'
 import { ChildFooter } from '../components/Footer'
+import { useAuth } from '../hooks/useAuth'
+import axios from 'axios'
 
 const ChildChart = () => {
   const [open, setOpen] = useState(false)
+  const { token } = useAuth()
+  const [child, setChild] = useState([])
+  const url = 'http://localhost:8080/api/user/2'
+  const headers = {
+    Authorization: `Bearer ${token.access_token}`,
+  }
+
+  const fetchUserById = async () => {
+    const { data } = await axios.get(url, { headers: headers })
+    setChild(data)
+  }
+
+  useEffect(() => {
+    fetchUserById()
+  }, [])
   return (
     <>
       <Modal
@@ -83,9 +100,9 @@ const ChildChart = () => {
           </Button>
         </Box>
       </Modal>
-      <Header title='チャート' IconNone='flase' />
+      <Header title={child.username} IconNone='flase' />
 
-      <ChartApi />
+      <ChartApi child={child} />
       <Button
         onClick={() => setOpen(true)}
         sx={{
