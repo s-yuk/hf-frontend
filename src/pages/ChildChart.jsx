@@ -84,13 +84,14 @@ const ChildChart = () => {
         </Box>
       </Modal>
       <Header title='チャート' IconNone='flase' />
+
       <ChartApi />
       <Button
         onClick={() => setOpen(true)}
         sx={{
           bgcolor: '#ff00ff',
-          width: '70px',
-          height: '70px',
+          width: '50px',
+          height: '63px',
           borderRadius: '50%',
           position: 'fixed',
           bottom: '10%',

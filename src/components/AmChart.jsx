@@ -10,6 +10,7 @@ class AmChart extends Component {
   constructor(props) {
     super(props)
     this.name = this.props
+    console.log()
   }
 
   componentDidMount() {

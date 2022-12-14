@@ -1,23 +1,28 @@
 import { useEffect, useState } from 'react'
-import AmChart from './AmChart'
 import axios from 'axios'
 import '../css/chart.css'
 import '../css/modal.css'
-import { Box, Button, Slider } from '@mui/material'
-import { ArrowBackIos } from '@mui/icons-material'
-
+import CloseIcon from '@mui/icons-material/Close'
+import Button from '@mui/material/Button'
+import * as React from 'react'
+import Box from '@mui/material/Box'
+import Slider from '@mui/material/Slider'
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
+import ReplayIcon from '@mui/icons-material/Replay'
+import AmChart from './AmChart'
 const ChartApi = () => {
-  const [stockData, setStockData] = useState([])
-  const [stockPrice, setStockPrice] = useState({})
-  const [value, setValue] = useState(30)
-  const [goukei, setGoukei] = useState(value)
+  const [stockData, setStockData] = useState({})
+  const [value, setValue] = React.useState(`keisan`)
+  const [goukei, setGoukei] = React.useState(value)
   const [Anime, setAnime] = useState(false)
   const [BackAnime, setBackAnime] = useState(false)
+  const [count, setCount] = useState(0)
+  const [lastprice, setLastprice] = useState('')
 
   const handleChange = (event, newValue) => {
     setValue(newValue)
     // console.log(value);
-    const keisan = Math.ceil(value * lastprice)
+    var keisan = Math.ceil(value * lastprice)
     setGoukei(keisan)
   }
 
@@ -30,66 +35,28 @@ const ChartApi = () => {
     setBackAnime(false)
   }
 
-  const OrderClick = () => { }
+  const OrderClick = () => {}
+
+  const UpdateClick = () => {
+    setUpdate = setUpdate + 1
+    console.log(update)
+  }
 
   const URL = 'http://api.marketstack.com/v1/eod'
-  const API_KEY = 'ab689840193aa0a2037cbf0c70d3e4c6'
+  const API_KEY = '5936a8284593b39c6c2616291887488b'
   const symbols = 'AAPL'
-  const close = []
-  const low = []
-  const date = []
-  const open = []
-  const high = []
 
-  // useEffect(() => {
-  //   axios.get(`${URL}?access_key=${API_KEY}&symbols=${symbols}`).then((response) => {
-  //     setStockData(response.data.data)
-
-  //     console.log(stockData)
-  //   })
-  // }, [])
-
-  const fetchStockData = async () => {
-    const { data } = await axios.get(`${URL}?access_key=${API_KEY}&symbols=${symbols}`)
-    console.log(data)
-  }
   useEffect(() => {
-    fetchStockData()
-  }, [])
+    axios.get(`${URL}?access_key=${API_KEY}&symbols=${symbols}`).then((response) => {
+      setStockData(response.data.data)
+      setLastprice(response.data.data[0].open)
+      console.log(response.data.data[0].open)
+      console.log(stockData)
+      console.log(data.data[0].open)
+    })
+  }, [count])
 
-  const chart = [
-    {
-      date: stockPrice.date,
-      open: stockPrice.open,
-      high: stockPrice.high,
-      low: stockPrice.low,
-      close: stockPrice.close,
-    },
-    {
-      date: '2022-08-01',
-      open: stockPrice.open,
-      high: stockPrice.high,
-      low: stockPrice.low,
-      close: stockPrice.close,
-    },
-  ]
-  const newchart = chart
-
-  const candleData = [
-    {
-      date: '2018-08-01',
-      open: '136.65',
-      high: '136.96',
-      low: '134.15',
-      close: '136.49',
-    },
-  ]
-
-  const aryResult = stockData.map((value) => value.open)
-
-  const lastprice = aryResult.slice(-1)[0]
-
-  const Modal = ({ show, setshow }) => {
+  function Modal({ show, setshow }) {
     const closeModal = () => {
       setshow(false)
       setAnime(false)
@@ -131,10 +98,14 @@ const ChartApi = () => {
           `}
           >
             <a onClick={(e) => closeModal(e)}>
-              <ArrowBackIos color='inherit' sx={{ mr: 100 }} onClick={(e) => BackSlideAnimation(e)} />
+              <ArrowBackIosIcon color='inherit' sx={{ mr: 100 }} onClick={(e) => BackSlideAnimation(e)} />
             </a>
             <p className='sell-nuber-modal'>{goukei}</p>
-            <p className=''>これをかいますか</p>
+            <p className=''>
+              げんざいのもってるおかね
+              <br />
+              これを{value}こかうと、このねだんです
+            </p>
             <Box sx={{ width: 300, m: 'auto' }}>
               <Button
                 variant='outlined'
@@ -148,19 +119,20 @@ const ChartApi = () => {
           </div>
         </div>
       )
+    } else {
+      return null
     }
-    return null
   }
 
   const [show, setshow] = useState(false)
 
-  // チャート代入
+  //チャート代入
   const name = stockData
 
   return (
     <>
       <div className='Chart-box' id='chart'>
-        <h1 />
+        <h1></h1>
         <h2>{lastprice}</h2>
         <AmChart name={name} />
 
@@ -169,18 +141,22 @@ const ChartApi = () => {
             <a onClick={() => setshow(true)}>
               <p className='sell'>うる</p>
               <p className='sellnuber'>{lastprice}</p>
-              <div className='line' />
+              <div className='line'></div>
             </a>
           </div>
-          <div className='center-box' />
+          <div className='center-box'></div>
           <div className='low-box'>
             <a onClick={() => setshow(true)}>
               <p className='sell'>かう</p>
               <p className='sellnuber'>{lastprice}</p>
-              <div className='line1' />
+              <div className='line1'></div>
             </a>
           </div>
         </div>
+
+        <Button onClick={() => setCount(count + 1)}>
+          <ReplayIcon />
+        </Button>
       </div>{' '}
       <Modal show={show} setshow={setshow} />
     </>
