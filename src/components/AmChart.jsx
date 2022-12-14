@@ -9,9 +9,6 @@ import am4lang_ja_JP from "@amcharts/amcharts4/lang/ja_JP";
 am4core.useTheme(am4themes_animated);
 
 
-
-
-
 class AmChart extends Component {
   constructor(props) {
     super(props);
@@ -95,9 +92,6 @@ function prepareChart() {
   // chart.language.locale["_date_day"] = "M月dd日"; 
   return chart;
 }
-
-
-
 
 
 

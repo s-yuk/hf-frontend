@@ -11,17 +11,19 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ReplayIcon from '@mui/icons-material/Replay';
 function ChartApi(props) {
 
 
 
   const [stockData, setStockData] = useState({})
-  const [stockPrice, setStockPrice] = useState({});
-  const [value, setValue] = React.useState(30);
+  const [stockData1, setStockData1] = useState({})
+  const [value, setValue] = React.useState(`keisan`);
   const [goukei, setGoukei] = React.useState(value);
   const [Anime, setAnime] = useState(false);
   const [BackAnime, setBackAnime] = useState(false);
-
+  const [count, setCount] = useState(0);
+  const [lastprice, setLastprice] = useState("");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -45,97 +47,56 @@ function ChartApi(props) {
 
   }
 
+  const UpdateClick = () => {
+    setUpdate = setUpdate + 1;
+    console.log(update)
+
+  }
+
   const URL = "http://api.marketstack.com/v1/eod";
-  const API_KEY = "ab689840193aa0a2037cbf0c70d3e4c6";
+  const API_KEY = "0d27e27b7b6fd2364eb823335a242145";
   const symbols = "AAPL";
-  let close = [];
-  let low = [];
-  let date = [];
-  let open = [];
-  let high = [];
+
+
+  // useEffect(async () => {
+
+  //   const { data } = await axios.get(`${URL}?access_key=${API_KEY}&symbols=${symbols}`)
+
+  //   // setStockData(response.data.data);
+  //   // setLastprice(response.data.data[0].open);
+  //   // console.log(response.data.data[0].open);
+  //   // console.log(stockData);
+  //   console.log(data.data[0].open);
+
+
+  // }, [count]);
 
   useEffect(() => {
 
     axios.get(`${URL}?access_key=${API_KEY}&symbols=${symbols}`)
       .then(response => {
+
+
         setStockData(response.data.data);
-
-        // for (let stock of response.data.data) {
-        //   date = stock.date;
-        //   open = stock.open;
-        //   high = stock.high;
-        //   low = stock.low;
-        //   close = stock.close;
-
-        //   setStockData = (`date: ${date} open: ${open}, high: ${high}, low: ${low} close: ${close}`)
-
-        // }
+        setLastprice(response.data.data[0].open);
+        console.log(response.data.data[0].open);
         console.log(stockData);
+        console.log(data.data[0].open);
       });
 
 
-
-  }, []);
-
-
-  const chart =
-    [{
-      date: stockPrice.date,
-      open: stockPrice.open,
-      high: stockPrice.high,
-      low: stockPrice.low,
-      close: stockPrice.close
-    },
-    {
-      date: "2022-08-01",
-      open: stockPrice.open,
-      high: stockPrice.high,
-      low: stockPrice.low,
-      close: stockPrice.close
-    }
-    ]
-  const newchart = chart;
-
-  const candleData = [{
-    "date": "2018-08-01",
-    "open": "136.65",
-    "high": "136.96",
-    "low": "134.15",
-    "close": "136.49"
-  }];
+  }, [count]);
 
 
 
 
-  const aryResult = stockData.map(value => {
-    return value.open;
-  });
-
-  const lastprice = aryResult.slice(-1)[0];
-
-
-
-
-  // const aryResult = candleData.map(value => {
-  //     return value.high; 
+  // const aryResult = stockData[99].map(value => {
+  //   return value.open;
   // });
 
-  // const lastprice = Math.max.apply(null, aryResult);
+  // const lastprice = aryResult.slice(-1)[0];
+  // const lastprice = "stockData[99].open";
 
-  // console.log(lastprice);
-
-
-  // const aryResult = candleData.map(chart => {
-  //   return chart.high; 
-  //   if(chart.high >= highchartbox){
-  //     highchartbox = chart.high;
-  //   }
-  //   else if(highchartbox > chart.high){
-  //     return chart.high; 
-  //   }
-  // });
-
-  // console.log(aryResult);
 
   function Modal({ show, setshow }) {
 
@@ -187,7 +148,10 @@ function ChartApi(props) {
               />
             </a>
             <p className="sell-nuber-modal">{goukei}</p>
-            <p className="">これをかいますか</p>
+            <p className="">
+              げんざいのもってるおかね
+              <br />
+              これを{value}こかうと、このねだんです</p>
             <Box sx={{ width: 300, m: "auto" }}>
 
 
@@ -208,7 +172,6 @@ function ChartApi(props) {
       return null;
     }
   }
-
 
 
 
@@ -237,7 +200,9 @@ function ChartApi(props) {
               <div className="line"></div>
             </a>
           </div>
-          <div className="center-box"></div>
+          <div className="center-box">
+
+          </div>
           <div className="low-box">
             <a onClick={() => setshow(true)} >
               <p className="sell">かう</p>
@@ -247,6 +212,9 @@ function ChartApi(props) {
           </div>
         </div>
 
+        <Button
+          onClick={() => setCount(count + 1)}
+        ><ReplayIcon /></Button>
       </div>  <Modal show={show} setshow={setshow} />
     </>
 
