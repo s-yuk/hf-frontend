@@ -11,7 +11,7 @@ const textStyle = {
   margin: '0 0 0 10px',
 }
 
-function Products() {
+const Products = () => {
   const { token } = useAuth()
   const [name, setName] = useState('')
   const [point, setPoint] = useState('')

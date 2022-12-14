@@ -11,7 +11,7 @@ const textstyle = {
   margin: '0 0 0 10px',
 }
 
-function Customer() {
+const Customer = () => {
   const handleClose = () => setUpdopen(false)
   const dhandleClose = () => setDelopen(false)
   const accountclose = () => setNewaccount(false)

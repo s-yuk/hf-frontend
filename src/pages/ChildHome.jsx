@@ -22,7 +22,7 @@ import { MiddleButton, SmallButton } from '../components/Buttons'
 import { ChildFooter } from '../components/Footer'
 import { useAuth } from '../hooks/useAuth'
 
-function ChildHome() {
+const ChildHome = () => {
   const { token } = useAuth()
   const [childInfo, setChildInfo] = useState([])
   const [products, setProducts] = useState([])

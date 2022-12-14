@@ -3,7 +3,7 @@ import { BottomNavigation, BottomNavigationAction } from '@mui/material'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-export function Footer() {
+export const Footer = () => {
   const [value, setValue] = useState(0)
   return (
     <BottomNavigation
@@ -25,7 +25,7 @@ export function Footer() {
   )
 }
 
-export function ChildFooter() {
+export const ChildFooter = () => {
   const [value, setValue] = useState(0)
   return (
     <BottomNavigation

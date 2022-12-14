@@ -7,7 +7,7 @@ import { CloseSmall } from '../components/Buttons'
 import { Footer } from '../components/Footer'
 import { useAuth } from '../hooks/useAuth'
 
-function Homepic() {
+const Homepic = () => {
   const { user, token } = useAuth()
 
   const [open, setOpen] = useState(false)

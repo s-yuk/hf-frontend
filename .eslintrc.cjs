@@ -18,6 +18,10 @@ module.exports = {
     'react',
   ],
   rules: {
+    'react/function-component-definition': [
+      2,
+      { 'namedComponents': 'arrow-function' }
+    ],
     'camelcase': 'off',
     'react/prop-types': 'off',
     'import/prefer-default-export': 'off',

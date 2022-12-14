@@ -10,7 +10,6 @@ class AmChart extends Component {
   constructor(props) {
     super(props)
     this.name = this.props
-    // console.log(this.name);
   }
 
   componentDidMount() {
@@ -20,10 +19,7 @@ class AmChart extends Component {
   }
 
   render() {
-    return (
-      // チャートの大きさ
-      <div id='chartdiv' style={{ width: '100%', height: '95%' }} />
-    )
+    return <div id='chartdiv' style={{ width: '100%', height: '95%' }} />
   }
 }
 
@@ -57,11 +53,8 @@ function prepareChart() {
   const scrollbarX = new am4charts.XYChartScrollbar()
   scrollbarX.series.push(series)
 
-  chart.dateFormatter.language = new am4core.Language() // 標準の翻訳設定
-  chart.dateFormatter.language.locale = am4lang_ja_JP // 標準の翻訳設定
-  // chart.language.locale['_date_day'] = 'M/dd'
-  // chart.language.locale['_date_year'] = 'yyyy'
-
+  chart.dateFormatter.language = new am4core.Language()
+  chart.dateFormatter.language.locale = am4lang_ja_JP
   return chart
 }
 

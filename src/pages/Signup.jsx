@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom'
 import { BigButton, MiddleButton, SmallButton } from '../components/Buttons'
 import { useAuth } from '../hooks/useAuth'
 
-function Signup() {
+const Signup = () => {
   const [open, setOpen] = useState(false)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -164,11 +164,9 @@ function Signup() {
               <SmallButton onClick={() => setOpen(false)}>もどる</SmallButton>
             </Box>
           </Modal>
-          <Link to='/'>
-            <Typography component='p'>
-              会員登録済の方は<Link to='/'>こちら </Link>
-            </Typography>
-          </Link>
+          <Typography component='p'>
+            会員登録済の方は<Link to='/'>こちら </Link>
+          </Typography>
         </Box>
       </FormControl>
     </Container>

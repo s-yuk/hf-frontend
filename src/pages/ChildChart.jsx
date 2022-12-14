@@ -4,13 +4,8 @@ import { Header } from '../components/Header'
 import ChartApi from '../components/ChartApi'
 import { ChildFooter } from '../components/Footer'
 
-function ChildChart() {
-  const handleClose = () => setOpen(false)
-
+const ChildChart = () => {
   const [open, setOpen] = useState(false)
-  const handleOpen = () => {
-    setOpen(true)
-  }
   return (
     <>
       <Modal
@@ -76,7 +71,7 @@ function ChildChart() {
             <br />
           </Typography>
           <Button
-            onClick={handleClose}
+            onClick={() => setOpen(false)}
             sx={{
               position: 'fixed',
               top: '0',
@@ -89,10 +84,9 @@ function ChildChart() {
         </Box>
       </Modal>
       <Header title='チャート' IconNone='flase' />
-
       <ChartApi />
       <Button
-        onClick={handleOpen}
+        onClick={() => setOpen(true)}
         sx={{
           bgcolor: '#ff00ff',
           width: '70px',
