@@ -19,6 +19,9 @@ import { Footer } from '../components/Footer'
 import { Header } from '../components/Header'
 import { MiddleButton, CloseSmall } from '../components/Buttons'
 import { useAuth } from '../hooks/useAuth'
+import useNotification from '../components/Toast'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const textStyle = {
   paddingRight: '200px',
@@ -26,6 +29,7 @@ const textStyle = {
 }
 
 const MomMain = () => {
+  const { updated } = useNotification()
   const { token } = useAuth()
   const { userId } = useParams()
   const [childInfo, setChildInfo] = useState([])
@@ -56,7 +60,7 @@ const MomMain = () => {
   }
   const addUserPoint = () => {
     axios.patch(url, updatePoint, { headers })
-    setUpdateOpen(true)
+    updated()
   }
 
   const [select, setSelect] = useState(1)
@@ -150,7 +154,7 @@ const MomMain = () => {
             }}
           />
         </Stack>
-        <MiddleButton onClick={addUserPoint}>追加</MiddleButton>
+        <MiddleButton onClick={addUserPoint}>更新</MiddleButton>
 
         <Modal
           open={updateOpen}
@@ -237,6 +241,7 @@ const MomMain = () => {
         </Modal>
       </Box>
       <Footer />
+      <ToastContainer />
     </>
   )
 }

@@ -1,3 +1,4 @@
+import { color, or } from '@amcharts/amcharts4/core'
 import { LockOutlined } from '@mui/icons-material'
 import {
   Avatar,
@@ -17,6 +18,41 @@ import { BigButton, MiddleButton, SmallButton } from '../components/Buttons'
 import { useAuth } from '../hooks/useAuth'
 
 const Signup = () => {
+  const [Error, setError] = useState(true)
+  const [mailError, setMailError] = useState('')
+  const [nameError, setNameError] = useState('')
+  const [passError, setPassError] = useState('')
+  const handleBlur = (e) => {
+    const email = e.target.value
+    if (!email) {
+      setMailError('未入力です。')
+    } else if (email.indexOf('@') === -1) {
+      setMailError('不正なメールアドレスです。')
+    } else {
+      setMailError()
+    }
+  }
+  const handleBlur2 = (e) => {
+    const username = e.target.value
+    if (!username) {
+      setNameError('未入力です。')
+    } else {
+      setNameError()
+    }
+  }
+  const handleBlur3 = (e) => {
+    const username = e.target.value
+    if (!username) {
+      setPassError('未入力です。')
+    } else {
+      setPassError()
+    }
+  }
+  // if (!mailError && !nameError && !passError) {
+  //   setError()
+  // } else {
+  //   setError('登録だめ')
+  // }
   const [open, setOpen] = useState(false)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -28,6 +64,7 @@ const Signup = () => {
       username,
       password,
       email,
+      have_stocks: 0,
       roles: [
         {
           id: role,
@@ -37,8 +74,6 @@ const Signup = () => {
     }
     signUp(userInfo)
   }
-  // あとで使う
-  // const mail = /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]+.[A-Za-z0-9]+$/
 
   return (
     <Container
@@ -58,8 +93,23 @@ const Signup = () => {
         アカウントをつくる
       </Typography>
       <FormControl sx={{ mt: 1 }} fullWidth>
-        <TextField margin='normal' required label='なまえ' autoFocus onChange={(e) => setUsername(e.target.value)} />
-        <TextField margin='normal' required label='めーるあどれす' onChange={(e) => setEmail(e.target.value)} />
+        <TextField
+          margin='normal'
+          required
+          label='なまえ'
+          autoFocus
+          onChange={(e) => setUsername(e.target.value)}
+          onBlur={handleBlur2}
+        />
+        {nameError && <p style={{ color: 'red' }}>{nameError}</p>}
+        <TextField
+          margin='normal'
+          required
+          label='めーるあどれす'
+          onChange={(e) => setEmail(e.target.value)}
+          onBlur={handleBlur}
+        />
+        {mailError && <p style={{ color: 'red' }}>{mailError}</p>}
         <TextField
           margin='normal'
           required
@@ -67,7 +117,9 @@ const Signup = () => {
           type='password'
           autoComplete='current-password'
           onChange={(e) => setPassword(e.target.value)}
+          onBlur={handleBlur3}
         />
+        {passError && <p style={{ color: 'red' }}>{passError}</p>}
         <RadioGroup row aria-labelledby='demo-radio-buttons-group-label' defaultValue='' name='radio-buttons-group'>
           <FormControlLabel
             value={1}
@@ -165,7 +217,7 @@ const Signup = () => {
             </Box>
           </Modal>
           <Typography component='p'>
-            会員登録済の方は<Link to='/'>こちら </Link>
+            ろぐいんは<Link to='/'>こちら </Link>
           </Typography>
         </Box>
       </FormControl>

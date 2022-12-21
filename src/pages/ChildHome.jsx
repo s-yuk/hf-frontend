@@ -33,32 +33,30 @@ const ChildHome = () => {
   }
 
   const fetchProducts = async () => {
-    const { data } = await axios.get(`${BASE_URL}/product`, { headers })
-    setProducts(data)
-  }
-  useEffect(() => {
-    fetchProducts()
-    fetchUser()
-  }, [childInfo, products])
-
-  const fetchUser = async () => {
-    const { data } = await axios.get(`${BASE_URL}/user/2`, { headers })
-    setChildInfo(data)
-  }
-
-  const buyProducts = async (necessary_points) => {
-    await axios.patch(
-      `${BASE_URL}/user/2`,
-      {
-        id: 2,
-        username: childInfo.username,
-        email: childInfo.email,
-        password: childInfo.password,
-        have_points: childInfo.have_points - necessary_points,
-      },
-      { headers }
-    )
-    setOpen(false)
+    //   const { data } = await axios.get(`${BASE_URL}/product`, { headers })
+    //   setProducts(data)
+    // }
+    // useEffect(() => {
+    //   fetchProducts()
+    //   fetchUser()
+    // }, [childInfo, products])
+    // const fetchUser = async () => {
+    //   const { data } = await axios.get(`${BASE_URL}/user/2`, { headers })
+    //   setChildInfo(data)
+    // }
+    // const buyProducts = async (necessary_points) => {
+    //   await axios.patch(
+    //     `${BASE_URL}/user/2`,
+    //     {
+    //       id: 2,
+    //       username: childInfo.username,
+    //       email: childInfo.email,
+    //       password: childInfo.password,
+    //       have_points: childInfo.have_points - necessary_points,
+    //     },
+    //     { headers }
+    //   )
+    //   setOpen(false)
   }
 
   const [open, setOpen] = useState(false)
@@ -140,7 +138,7 @@ const ChildHome = () => {
             },
           }}
         >
-          {30}
+          {childInfo.have_stocks}
         </Typography>
       </Box>
       <List>

@@ -6,6 +6,7 @@ import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
 import { useAuth } from '../hooks/useAuth'
 import React, { Component } from 'react'
+import useNotification from '../components/Toast'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -15,6 +16,7 @@ const textStyle = {
 }
 
 const Products = () => {
+  const { saved, updated, deleted } = useNotification()
   const { token } = useAuth()
   const [name, setName] = useState('')
   const [point, setPoint] = useState('')
@@ -31,8 +33,9 @@ const Products = () => {
   }
 
   const handleClick = async () => {
-    await axios.post(url, data, { headers })
-    setOpen(false)
+    // await axios.post(url, data, { headers })
+    // setOpen(false)
+    saved()
   }
 
   const [open, setOpen] = useState(false)
@@ -113,41 +116,15 @@ const Products = () => {
             </div>
           ) : genre === 2 ? (
             <div style={{ textAlign: 'center' }}>
-              <MiddleButton onClick={() => setOpen(true)}>更新</MiddleButton>
+              <MiddleButton onClick={updated}>更新</MiddleButton>
             </div>
           ) : (
             <div style={{ textAlign: 'center' }}>
-              <MiddleButton onClick={() => setOpen(true)}>削除</MiddleButton>
+              <MiddleButton onClick={deleted}>削除</MiddleButton>
             </div>
           )}
-          <Modal
-            open={open}
-            onClose={() => setOpen(false)}
-            aria-labelledby='modal-modal-title'
-            aria-describedby='modal-modal-description'
-          >
-            <Box
-              sx={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                width: '80%',
-                height: '30%',
-                bgcolor: 'background.paper',
-                border: '2px solid #000',
-                boxShadow: 24,
-                p: 4,
-                textAlign: 'center',
-              }}
-            >
-              <Typography id='modal-modal-title' variant='h6' component='h2' sx={{ mb: '5px' }}>
-                変更完了しました。
-              </Typography>
-              <CloseSmall onClick={() => setOpen(false)}>戻る</CloseSmall>
-            </Box>
-          </Modal>
         </div>
+        <ToastContainer />
         <Footer />
       </div>
     </Box>

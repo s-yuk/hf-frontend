@@ -35,7 +35,7 @@ const Login = () => (
       >
         <BigButton>ろぐいん</BigButton>
         <Typography component='p'>
-          会員登録がまだの方は
+          ろうとくのかたは
           <Link to='/signup'> こちら </Link>
         </Typography>
       </Box>

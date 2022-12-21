@@ -47,9 +47,9 @@ const App = () => (
       <Route
         path='products'
         element={
-          <RequireAuth>
-            <Products />
-          </RequireAuth>
+          // <RequireAuth>
+          <Products />
+          // </RequireAuth>
         }
       />
       <Route

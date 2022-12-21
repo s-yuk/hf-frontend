@@ -60,9 +60,9 @@
   transition: 6s;
 }
 
-.content-HF21 .sell-nuber-modal,
-.content-HF211 .sell-nuber-modal,
-.content-HF21-anime .sell-nuber-modal {
+.content-HF21 .p-sell-nuber-modal,
+.content-HF211 .p-sell-nuber-modal,
+.content-HF21-anime .p-sell-nuber-modal {
   font-size: 65px;
   color: #fff;
   font-weight: 600;
@@ -82,4 +82,28 @@
   transition: 3s;
   /*    
   transform: translateX(100%); */
+}
+
+.red {
+  background-color: rgb(250, 125, 125);
+}
+.content-HF21 .p-sell-nuber1 {
+  margin-top: 5px;
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
+  font-size: 80%;
+  margin-bottom: 4px;
+}
+
+.content-HF21 .a-sell-nuber1 {
+  margin-top: 5px;
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
+  font-size: 140%;
+}
+
+.p-sell-nuber-modal {
+  line-height: 1rem;
 }

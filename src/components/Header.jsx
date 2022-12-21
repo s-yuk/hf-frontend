@@ -21,8 +21,8 @@ export const Header = ({ title, IconNone }) => (
         sx={{
           color: 'black',
           fontWeight: '600',
-          m: 'auto',
           fontSize: '18px',
+          textAlign: 'center',
         }}
       >
         {title}
