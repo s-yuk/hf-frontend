@@ -4,10 +4,8 @@ import '../css/chart.css'
 import '../css/modal.css'
 import CloseIcon from '@mui/icons-material/Close'
 import Button from '@mui/material/Button'
-import * as React from 'react'
 import Box from '@mui/material/Box'
 import Slider from '@mui/material/Slider'
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
 import ReplayIcon from '@mui/icons-material/Replay'
 import AmChart from './AmChart'
 import { useAuth } from '../hooks/useAuth'
@@ -227,8 +225,8 @@ const ChartApi = ({ child }) => {
   ]
 
   const [stockData, setStockData] = useState({})
-  const [value, setValue] = React.useState(1)
-  const [goukei, setGoukei] = React.useState(value)
+  const [value, setValue] = useState(1)
+  const [goukei, setGoukei] = useState(value)
   const [Anime, setAnime] = useState(false)
   const [BackAnime, setBackAnime] = useState(false)
   const [count, setCount] = useState(0)
@@ -241,19 +239,13 @@ const ChartApi = ({ child }) => {
     setGoukei(keisan)
   }
 
-  const SlideAnimation = (e) => {
+  const SlideAnimation = () => {
     setAnime(true)
   }
 
-  const BackSlideAnimation = (e) => {
+  const BackSlideAnimation = () => {
     setAnime(true)
     setBackAnime(false)
-  }
-
-  const OrderClick = () => {}
-
-  const UpdateClick = () => {
-    setUpdate += 1
   }
 
   const URL = 'http://a1pi.marketstack.com/v1/eod'
@@ -300,12 +292,12 @@ const ChartApi = ({ child }) => {
   }
 
   const addMyStock = async () => {
-    await axios.patch(url, buyStock, { headers: headers })
+    await axios.patch(url, buyStock, { headers })
     setAnime(true)
   }
 
   const sellMyStock = async () => {
-    await axios.patch(url, sellStock, { headers: headers })
+    await axios.patch(url, sellStock, { headers })
     setAnime(true)
   }
 
@@ -323,8 +315,8 @@ const ChartApi = ({ child }) => {
                 ${BackAnime ? 'DisplayNone' : ''}
           `}
           >
-            <a onClick={(e) => closeModal(e)}>
-              <CloseIcon color='inherit' sx={{ mr: 100 }} onClick={(e) => closeModal(e)} />
+            <a onClick={() => closeModal()}>
+              <CloseIcon color='inherit' sx={{ mr: 100 }} onClick={() => closeModal()} />
             </a>
             <p className='p-sell-nuber-modal'>{148 * value}</p>
             <Box sx={{ width: 300, m: 'auto' }}>
@@ -341,7 +333,7 @@ const ChartApi = ({ child }) => {
               <Button
                 variant='outlined'
                 sx={{ p: ' 7px 0 ', mt: 3, width: '100%' }}
-                onClick={(e) => SlideAnimation(e)}
+                onClick={() => SlideAnimation()}
                 color='inherit'
               >
                 ちゅうもんしていいですか？
@@ -353,15 +345,15 @@ const ChartApi = ({ child }) => {
           ${BackAnime ? 'DisplayNone' : ''}
           `}
           >
-            <a onClick={(e) => closeModal(e)}>
-              <CloseIcon color='inherit' sx={{ mr: 100 }} onClick={(e) => BackSlideAnimation(e)} />
+            <a onClick={() => closeModal()}>
+              <CloseIcon color='inherit' sx={{ mr: 100 }} onClick={() => BackSlideAnimation()} />
             </a>
             <p className='p-sell-nuber-modal'>{148 * value}</p>
             <p className='p-sell-nuber1'>
               これを<a className='a-sell-nuber1'>{value}</a>こかうとこのねだんです
             </p>
             <Box sx={{ width: 300, m: 'auto' }}>
-              <a onClick={(e) => closeModal(e)}>
+              <a onClick={() => closeModal()}>
                 <Button
                   variant='outlined'
                   sx={{ p: ' 7px 0 ', mt: 3, width: '100%' }}
@@ -375,12 +367,11 @@ const ChartApi = ({ child }) => {
           </div>
         </div>
       )
-    } else {
-      return null
     }
+    return null
   }
 
-  function Modal1({ show1, setshow1 }) {
+  const Modal1 = ({ show1, setshow1 }) => {
     const closeModal1 = () => {
       setshow1(false)
       setAnime(false)
@@ -394,8 +385,8 @@ const ChartApi = ({ child }) => {
                 ${BackAnime ? 'DisplayNone' : ''}
           `}
           >
-            <a onClick={(e) => closeModal1(e)}>
-              <CloseIcon color='inherit' sx={{ mr: 100 }} onClick={(e) => closeModal1(e)} />
+            <a onClick={() => closeModal1()}>
+              <CloseIcon color='inherit' sx={{ mr: 100 }} onClick={() => closeModal1()} />
             </a>
             <p className='p-sell-nuber-modal'>{148 * value}</p>
             <Box sx={{ width: 300, m: 'auto' }}>
@@ -424,7 +415,7 @@ const ChartApi = ({ child }) => {
           ${BackAnime ? 'DisplayNone' : ''}
           `}
           >
-            <a onClick={(e) => closeModal1(e)}>
+            <a onClick={() => closeModal1()}>
               <CloseIcon color='inherit' sx={{ mr: 100 }} />
             </a>
             <p className='p-sell-nuber-modal'>{148 * value}</p>
@@ -444,9 +435,8 @@ const ChartApi = ({ child }) => {
           </div>
         </div>
       )
-    } else {
-      return null
     }
+    return null
   }
 
   const [show, setshow] = useState(false)

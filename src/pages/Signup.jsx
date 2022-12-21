@@ -1,4 +1,3 @@
-import { color, or } from '@amcharts/amcharts4/core'
 import { LockOutlined } from '@mui/icons-material'
 import {
   Avatar,
@@ -18,7 +17,6 @@ import { BigButton, MiddleButton, SmallButton } from '../components/Buttons'
 import { useAuth } from '../hooks/useAuth'
 
 const Signup = () => {
-  const [Error, setError] = useState(true)
   const [mailError, setMailError] = useState('')
   const [nameError, setNameError] = useState('')
   const [passError, setPassError] = useState('')

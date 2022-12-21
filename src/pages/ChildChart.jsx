@@ -1,10 +1,10 @@
 import { Box, Button, Modal, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
+import axios from 'axios'
 import { Header } from '../components/Header'
 import ChartApi from '../components/ChartApi'
 import { ChildFooter } from '../components/Footer'
 import { useAuth } from '../hooks/useAuth'
-import axios from 'axios'
 
 const ChildChart = () => {
   const [open, setOpen] = useState(false)
@@ -16,7 +16,7 @@ const ChildChart = () => {
   }
 
   const fetchUserById = async () => {
-    const { data } = await axios.get(url, { headers: headers })
+    const { data } = await axios.get(url, { headers })
     setChild(data)
   }
 
