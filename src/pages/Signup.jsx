@@ -162,18 +162,16 @@ const Signup = () => {
             >
               <FormControl fullWidth>
                 <TextField
-                  id='standard-read-only-input'
                   label='なまえ'
-                  defaultValue='ないよう'
+                  value={username}
                   InputProps={{
                     readOnly: true,
                   }}
                   variant='standard'
                 />
                 <TextField
-                  id='standard-read-only-input'
                   label='めーるあどれす'
-                  defaultValue='ないよう'
+                  value={email}
                   InputProps={{
                     readOnly: true,
                   }}
@@ -181,9 +179,8 @@ const Signup = () => {
                   sx={{ mt: 2 }}
                 />
                 <TextField
-                  id='standard-read-only-input'
                   label='ぱすわーど'
-                  defaultValue='ないよう'
+                  value={password}
                   InputProps={{
                     readOnly: true,
                   }}
@@ -191,9 +188,8 @@ const Signup = () => {
                   sx={{ mt: 2 }}
                 />
                 <TextField
-                  id='standard-read-only-input'
                   label='おかあさん？こども？'
-                  defaultValue='こどもぉ'
+                  value={role === '1' ? 'こども' : 'おかあさん'}
                   InputProps={{
                     readOnly: true,
                   }}
