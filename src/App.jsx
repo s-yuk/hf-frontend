@@ -13,11 +13,11 @@ import {
   NotFound,
 } from './_index'
 import { AuthProvider } from './hooks/useAuth'
-import { RequireAuth } from './RequireAuth'
 
 const App = () => (
   <AuthProvider>
-    <Routes>
+    {/* 認証必要 */}
+    {/* <Routes>
       <Route path='/' element={<Login />} />
       <Route path='signup' element={<Signup />} />
       <Route
@@ -84,6 +84,21 @@ const App = () => (
           </RequireAuth>
         }
       />
+      <Route path='*' element={<NotFound />} />
+    </Routes> */}
+
+    {/* 認証不要 */}
+    <Routes>
+      <Route path='/' element={<Login />} />
+      <Route path='signup' element={<Signup />} />
+      <Route path='homepic' element={<Homepic />} />
+      <Route path='mommain/:userId' element={<MomMain />} />
+      <Route path='customer' element={<Customer />} />
+      <Route path='products' element={<Products />} />
+      <Route path='child' element={<ChildHome />} />
+      <Route path='child/history' element={<ChildHistory />} />
+      <Route path='child/chart' element={<ChildChart />} />
+      <Route path='child/customer' element={<ChildCustomer />} />
       <Route path='*' element={<NotFound />} />
     </Routes>
   </AuthProvider>
