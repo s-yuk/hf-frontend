@@ -5,6 +5,7 @@
 .DisplayNone {
   display: none;
 }
+
 div .MuiBox-root,
 div .css-1hdnp4o {
   /* width: 90%; */
@@ -12,4 +13,9 @@ div .css-1hdnp4o {
 
 div .css-1hdnp4o .css-sfn5k3-MuiButtonBase-root-MuiButton-root {
   margin-top: 6px;
+}
+
+
+.css-2fhim9-MuiButtonBase-root-MuiButton-root {
+  z-index: 100;
 }

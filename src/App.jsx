@@ -71,9 +71,9 @@ const App = () => (
       <Route
         path='child/chart'
         element={
-          <RequireAuth>
-            <ChildChart />
-          </RequireAuth>
+          // <RequireAuth>
+          <ChildChart />
+          // </RequireAuth>
         }
       />
       <Route

@@ -34,7 +34,7 @@
   position: absolute;
   z-index: 100;
   height: 35%;
-  width: 60%;
+  width: 75%;
   padding: 0.6em;
   background-color: rgb(146, 125, 250);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -49,7 +49,7 @@
   position: absolute;
   z-index: 100;
   height: 35%;
-  width: 60%;
+  width: 75%;
   padding: 0.6em;
   background-color: rgb(211, 203, 255);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -60,9 +60,9 @@
   transition: 6s;
 }
 
-.content-HF21 .p-sell-nuber-modal,
-.content-HF211 .p-sell-nuber-modal,
-.content-HF21-anime .p-sell-nuber-modal {
+.content-HF21 .p-sell-number-modal,
+.content-HF211 .p-sell-number-modal,
+.content-HF21-anime .p-sell-number-modal {
   font-size: 65px;
   color: #fff;
   font-weight: 600;
@@ -87,7 +87,8 @@
 .red {
   background-color: rgb(250, 125, 125);
 }
-.content-HF21 .p-sell-nuber1 {
+
+.content-HF21 .p-sell-number1 {
   margin-top: 5px;
   color: #fff;
   font-weight: 600;
@@ -96,7 +97,7 @@
   margin-bottom: 4px;
 }
 
-.content-HF21 .a-sell-nuber1 {
+.content-HF21 .a-sell-number1 {
   margin-top: 5px;
   color: #fff;
   font-weight: 600;
@@ -104,6 +105,6 @@
   font-size: 140%;
 }
 
-.p-sell-nuber-modal {
+.p-sell-number-modal {
   line-height: 1rem;
 }
