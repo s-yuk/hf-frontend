@@ -129,7 +129,7 @@ const Customer = () => {
           </List>
 
           <div style={{ textAlign: 'center' }}>
-            <MiddleButton text='子供用アカウント作成' handleOpen={createaccount} sx={{}} />
+            <MiddleButton onClick={createaccount}>子供用アカウント作成</MiddleButton>
           </div>
           <Modal
             open={newaccount}

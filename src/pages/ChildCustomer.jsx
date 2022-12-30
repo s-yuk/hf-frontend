@@ -30,14 +30,12 @@ const ChildCustomer = () => {
           }}
         >
           <TextField
-            id='standard-multiline-flexible'
             style={{ textStyle }}
             label='名前'
             variant='standard'
             value={user.username}
           />
           <TextField
-            id='standard-multiline-flexible'
             style={{ textStyle }}
             type='password'
             label='パスワード'
@@ -45,13 +43,11 @@ const ChildCustomer = () => {
             value={user.password}
           />
           <TextField
-            id='standard-multiline-flexible'
             style={{ textStyle }}
             label='新しいパスワード'
             variant='standard'
           />
           <TextField
-            id='standard-multiline-flexible'
             style={{ textStyle }}
             label='メールアドレス'
             variant='standard'

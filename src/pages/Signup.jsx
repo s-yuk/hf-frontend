@@ -1,4 +1,3 @@
-import { color, or } from '@amcharts/amcharts4/core'
 import { LockOutlined } from '@mui/icons-material'
 import {
   Avatar,
@@ -18,7 +17,6 @@ import { BigButton, MiddleButton, SmallButton } from '../components/Buttons'
 import { useAuth } from '../hooks/useAuth'
 
 const Signup = () => {
-  const [Error, setError] = useState(true)
   const [mailError, setMailError] = useState('')
   const [nameError, setNameError] = useState('')
   const [passError, setPassError] = useState('')
@@ -164,18 +162,16 @@ const Signup = () => {
             >
               <FormControl fullWidth>
                 <TextField
-                  id='standard-read-only-input'
                   label='なまえ'
-                  defaultValue='ないよう'
+                  value={username}
                   InputProps={{
                     readOnly: true,
                   }}
                   variant='standard'
                 />
                 <TextField
-                  id='standard-read-only-input'
                   label='めーるあどれす'
-                  defaultValue='ないよう'
+                  value={email}
                   InputProps={{
                     readOnly: true,
                   }}
@@ -183,9 +179,8 @@ const Signup = () => {
                   sx={{ mt: 2 }}
                 />
                 <TextField
-                  id='standard-read-only-input'
                   label='ぱすわーど'
-                  defaultValue='ないよう'
+                  value={password}
                   InputProps={{
                     readOnly: true,
                   }}
@@ -193,9 +188,8 @@ const Signup = () => {
                   sx={{ mt: 2 }}
                 />
                 <TextField
-                  id='standard-read-only-input'
                   label='おかあさん？こども？'
-                  defaultValue='こどもぉ'
+                  value={role === '1' ? 'こども' : 'おかあさん'}
                   InputProps={{
                     readOnly: true,
                   }}

@@ -15,12 +15,12 @@ import {
 } from '@mui/material'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 import { Footer } from '../components/Footer'
 import { Header } from '../components/Header'
 import { MiddleButton, CloseSmall } from '../components/Buttons'
 import { useAuth } from '../hooks/useAuth'
 import useNotification from '../components/Toast'
-import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 const textStyle = {
