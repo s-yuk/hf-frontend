@@ -17,11 +17,7 @@ import * as am4charts from '@amcharts/amcharts4/charts'
 import am4lang_ja_JP from '@amcharts/amcharts4/lang/ja_JP'
 import am4themes_animated from '@amcharts/amcharts4/themes/animated'
 
-
-
-
 const ChartApi = ({ child }) => {
-
   const [stockData, setStockData] = useState({})
   const [value, setValue] = React.useState(1)
   const [goukei, setGoukei] = React.useState(value)
@@ -46,20 +42,18 @@ const ChartApi = ({ child }) => {
     setBackAnime(false)
   }
 
-
-
-  const API_URL = "http://api.marketstack.com/v1/eod";
-  const API_KEY = "f6284c3d1d5787a0f087f6c610dfd850";
-  const symbols = "AAPL";
+  const API_URL = 'http://api.marketstack.com/v1/eod'
+  const API_KEY = '0279402a08ae7485fef9bb6f0960422d'
+  const symbols = 'AAPL'
 
   useEffect(() => {
-    axios.get(`${API_URL}?access_key=${API_KEY}&symbols=${symbols}`)
-      .then(response => {
-        setStockData(response.data);
-        setLastprice(response.data.data[0].open);
-        console.log(response.data.data[0].open);
-        console.log(response.data);
-
+    axios
+      .get(`${API_URL}?access_key=${API_KEY}&symbols=${symbols}`)
+      .then((response) => {
+        setStockData(response.data)
+        setLastprice(response.data.data[0].open)
+        console.log(response.data.data[0].open)
+        console.log(response.data)
 
         const chart = am4core.create('chartdiv', am4charts.XYChart)
         chart.dateFormatter.inputDateFormat = 'yyyy-MM-dd'
@@ -94,11 +88,9 @@ const ChartApi = ({ child }) => {
 
         chart.dateFormatter.language = new am4core.Language()
         chart.dateFormatter.language.locale = am4lang_ja_JP
-
       })
-      .catch(err => console.error(err));
-
-  }, [count]);
+      .catch((err) => console.error(err))
+  }, [count])
 
   const { token } = useAuth()
   const url = 'http://localhost:8080/api/user/2'
@@ -286,7 +278,6 @@ const ChartApi = ({ child }) => {
 
   // チャート代入
   const name = stockData
-
 
   return (
     <>
