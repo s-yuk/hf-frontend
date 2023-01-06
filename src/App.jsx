@@ -13,11 +13,12 @@ import {
   NotFound,
 } from './_index'
 import { AuthProvider } from './hooks/useAuth'
+import { RequireAuth } from './RequireAuth'
 
 const App = () => (
   <AuthProvider>
     {/* 認証必要 */}
-    {/* <Routes>
+    <Routes>
       <Route path='/' element={<Login />} />
       <Route path='signup' element={<Signup />} />
       <Route
@@ -29,7 +30,7 @@ const App = () => (
         }
       />
       <Route
-        path='mommain/:userId'
+        path='mommain/:id'
         element={
           <RequireAuth>
             <MomMain />
@@ -47,9 +48,9 @@ const App = () => (
       <Route
         path='products'
         element={
-          // <RequireAuth>
-          <Products />
-          // </RequireAuth>
+          <RequireAuth>
+            <Products />
+          </RequireAuth>
         }
       />
       <Route
@@ -71,9 +72,9 @@ const App = () => (
       <Route
         path='child/chart'
         element={
-          // <RequireAuth>
-          <ChildChart />
-          // </RequireAuth>
+          <RequireAuth>
+            <ChildChart />
+          </RequireAuth>
         }
       />
       <Route
@@ -85,10 +86,10 @@ const App = () => (
         }
       />
       <Route path='*' element={<NotFound />} />
-    </Routes> */}
+    </Routes>
 
     {/* 認証不要 */}
-    <Routes>
+    {/* <Routes>
       <Route path='/' element={<Login />} />
       <Route path='signup' element={<Signup />} />
       <Route path='homepic' element={<Homepic />} />
@@ -100,7 +101,7 @@ const App = () => (
       <Route path='child/chart' element={<ChildChart />} />
       <Route path='child/customer' element={<ChildCustomer />} />
       <Route path='*' element={<NotFound />} />
-    </Routes>
+    </Routes> */}
   </AuthProvider>
 )
 

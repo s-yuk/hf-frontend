@@ -1,9 +1,10 @@
+import { useCookies } from 'react-cookie';
 import { Navigate } from 'react-router-dom'
-import { useAuth } from './hooks/useAuth'
 
 export const RequireAuth = ({ children }) => {
-  const { user, token } = useAuth()
-  if (!Object.keys(user).length && !Object.keys(token).length) {
+  const [cookies, setCookie, removeCookie] = useCookies("[token]");
+
+  if (cookies.token === undefined) {
     return <Navigate to='/' />
   }
   return children

@@ -1,11 +1,13 @@
 import { Box, FormControl, InputLabel, Select, MenuItem, TextField } from '@mui/material'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ToastContainer } from 'react-toastify'
 import { MiddleButton } from '../components/Buttons'
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
 import useNotification from '../components/Toast'
 import 'react-toastify/dist/ReactToastify.css'
+import axios from 'axios'
+import { useCookies } from 'react-cookie'
 
 const textStyle = {
   paddingRight: '200px',
@@ -13,11 +15,30 @@ const textStyle = {
 }
 
 const Products = () => {
+  const [cookies, setCookie, removeCookie] = useCookies("[token]");
+  const [products, setProducts] = useState([])
+  const fetchProducts = async () => {
+    const {data} = await axios.get('http://localhost:8080/api/product', { headers: { Authorization: cookies.token } })
+    setProducts(data)
+    console.log(products.users[0])
+  }
+  useEffect(() => {
+    fetchProducts()
+  }, [])
+  const addProduct = async () => {
+    axios.post('http://localhost:8080/api/product', {
+      name: name,
+      usePoint: usePoint,
+      users: [
+        {id: products.users["id"]}
+      ]
+    })
+  }
+
+
   const { saved, updated, deleted } = useNotification()
 
   const handleClick = async () => {
-    // await axios.post(url, data, { headers })
-    // setOpen(false)
     saved()
   }
 
@@ -25,7 +46,6 @@ const Products = () => {
   const handleChange = (event) => {
     setGenre(event.target.value)
   }
-  const [products, setProducts] = useState('')
   const handleProChange = (event) => {
     setProducts(event.target.value)
   }
@@ -68,11 +88,14 @@ const Products = () => {
                 onChange={handleProChange}
                 label='products'
               >
-                <MenuItem value={1} selected>
-                  お菓子１
-                </MenuItem>
-                <MenuItem value={2}>お菓子２</MenuItem>
-                <MenuItem value={3}>お菓子３</MenuItem>
+                {products.map((product) => {
+                  return (
+                    <MenuItem key={product.id} value={product.id} selected>
+                      {product.name}
+                    </MenuItem>
+                    )
+                  })
+                }
               </Select>
             </FormControl>
           )}

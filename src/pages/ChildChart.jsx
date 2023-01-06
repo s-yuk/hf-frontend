@@ -8,21 +8,6 @@ import { useAuth } from '../hooks/useAuth'
 
 const ChildChart = () => {
   const [open, setOpen] = useState(false)
-  const { token } = useAuth()
-  const [child, setChild] = useState([])
-  const url = 'http://localhost:8080/api/user/2'
-  const headers = {
-    Authorization: `Bearer ${token.access_token}`,
-  }
-
-  const fetchUserById = async () => {
-    const { data } = await axios.get(url, { headers })
-    setChild(data)
-  }
-
-  useEffect(() => {
-    fetchUserById()
-  }, [])
   return (
     <>
       <Modal
@@ -100,9 +85,9 @@ const ChildChart = () => {
           </Button>
         </Box>
       </Modal>
-      <Header title={child.username} IconNone='flase' />
+      <Header title="" IconNone='flase' />
 
-      <ChartApi child={child} />
+      <ChartApi />
       <Button
         onClick={() => setOpen(true)}
         sx={{

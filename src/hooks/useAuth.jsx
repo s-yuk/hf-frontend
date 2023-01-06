@@ -1,42 +1,27 @@
 import axios from 'axios'
-import { createContext, useContext, useMemo, useState } from 'react'
+import { createContext, useContext, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const AuthContext = createContext(null)
-const BASE_URL = 'http://localhost:8080/api'
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState({})
-  const [token, setToken] = useState({})
   const navigate = useNavigate()
 
-  // TODO JWT tokenをLocal Storageに保存
-  // TODO user情報を保存する方法を考える
-  const signUp = async (userInfo) => {
+  const signUp = async ({ url, body }) => {
     try {
-      const { data } = await axios.post(`${BASE_URL}/register`, userInfo)
-      userInfo.roles[0].id === '1' ? navigate('/child', { replace: true }) : navigate('/homepic', { replace: true })
-      setUser(userInfo)
-      setToken(data)
+      const { data } = await axios.post(url, body, { withCredentials: true })
+      console.log(data, body.role)
+      body.role === '1' ? navigate('/child', { replace: true }) : navigate('/homepic', { replace: true })
     } catch (err) {
+      console.log("email登録済")
       console.log(err)
     }
   }
-
-  const logout = () => {
-    setUser(null)
-    setToken(null)
-    navigate('/', { replace: true })
-  }
-
   const value = useMemo(
     () => ({
-      user,
-      token,
-      signUp,
-      logout,
+      signUp
     }),
-    [user]
+    []
   )
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

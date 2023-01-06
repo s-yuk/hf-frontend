@@ -13,6 +13,7 @@ import {
 } from '@mui/material'
 import axios from 'axios'
 import { useState } from 'react'
+import { useCookies } from 'react-cookie'
 import { Link, useNavigate } from 'react-router-dom'
 import { BigButton, MiddleButton, SmallButton } from '../components/Buttons'
 
@@ -51,6 +52,7 @@ const Signup = () => {
   // } else {
   //   setError('登録だめ')
   // }
+
   const [open, setOpen] = useState(false)
 
   const [username, setUsername] = useState('')
@@ -58,28 +60,27 @@ const Signup = () => {
   const [email, setEmail] = useState('')
   const [role, setRole] = useState('')
   const navigate = useNavigate()
+  const [cookies, setCookie] = useCookies(["token"]);
 
-  const url = "http://localhost:8080/api/register"
-  const body = {
-    username: username,
-    email: email,
-    password: password,
-    role: role === '1' ? 'CHILD' : 'PARENT'
-  }
 
   // signup apiを叩く関数
-  const handleSignup = async () => {
+  const signUp = async () => {
     try {
-      await axios.post(url, body, { withCredentials: true })
-      if(role === '1') {
-        navigate('/child', { replace: true })
-      } else if(role === '2') {
-        navigate('/homepic', { replace: true })
-      }
-    } catch (err) {
+      const { data } = await axios.post('http://localhost:8080/api/register', {
+        username: username,
+        email: email,
+        password: password,
+        role: role === '1' ? 'CHILD' : 'PARENT'
+      }, { withCredentials: true })
+
+      setCookie("token", data, { maxAge: 60 * 60 * 24 * 300 });
+
+      role === '1' ? navigate('/child', { replace: true }) : navigate('/homepic', { replace: true })
+    } catch (error) {
       console.log("email登録済")
-      console.log(err)
+      console.log(error)
     }
+
   }
 
   return (
@@ -215,7 +216,7 @@ const Signup = () => {
                 sx={{
                   mt: '10px',
                 }}
-                onClick={handleSignup}
+                onClick={signUp}
               >
                 とうろく
               </MiddleButton>
