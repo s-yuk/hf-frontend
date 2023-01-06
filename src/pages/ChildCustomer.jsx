@@ -1,10 +1,12 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Modal, Box, Typography, TextField } from '@mui/material'
 import { ChildFooter } from '../components/Footer'
 import { MiddleButton, SmallButton, CloseSmall } from '../components/Buttons'
 import { Header } from '../components/Header'
-import { useAuth } from '../hooks/useAuth'
 import '../css/mui.css'
+import { useCookies } from 'react-cookie'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const textStyle = {
   paddingRight: '200px',
@@ -12,7 +14,38 @@ const textStyle = {
 }
 
 const ChildCustomer = () => {
-  const { user } = useAuth()
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [newPassword, setNewPassword] = useState('')
+  const [cookies, setCookie, removeCookie] = useCookies("[token]");
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const { data } = await axios.get('http://localhost:8080/api/user', { headers: { Authorization: cookies.token } })
+
+      setUsername(data.username)
+      setEmail(data.email)
+    }
+    fetchUser()
+  }, [])
+
+  const updateUser = async () => {
+    await axios.put('http://localhost:8080/api/user', {
+      username: username,
+      email: email,
+      password: password,
+      newPassword: newPassword
+    }, { headers: { Authorization: cookies.token } })
+    setUpdateOpen(true)
+  }
+
+  const deleteUser = async () => {
+    await axios.delete('http://localhost:8080/api/user', { headers: { Authorization: cookies.token } })
+    removeCookie("token")
+    navigate("/")
+  }
 
   const [updateOpen, setUpdateOpen] = useState(false)
   const [deleteOpen, setDeleteOpen] = useState(false)
@@ -29,32 +62,18 @@ const ChildCustomer = () => {
             gap: '20px',
           }}
         >
-          <TextField
-            style={{ textStyle }}
-            label='名前'
-            variant='standard'
-            value={user.username}
-          />
+          <TextField style={{ textStyle }} label='名前' variant='standard' value={username} onChange={(e) => setUsername(e.target.value)} />
           <TextField
             style={{ textStyle }}
             type='password'
             label='パスワード'
             variant='standard'
-            value={user.password}
+            onChange={(e) => setPassword(e.target.value)}
           />
-          <TextField
-            style={{ textStyle }}
-            label='新しいパスワード'
-            variant='standard'
-          />
-          <TextField
-            style={{ textStyle }}
-            label='メールアドレス'
-            variant='standard'
-            value={user.email}
-          />
+          <TextField style={{ textStyle }} type='password' label='新しいパスワード' variant='standard' onChange={(e) => setNewPassword(e.target.value)} />
+          <TextField style={{ textStyle }} label='メールアドレス' variant='standard' value={email} onChange={(e) => setEmail(e.target.value)} />
           <div style={{ textAlign: 'center' }}>
-            <MiddleButton onClick={() => setUpdateOpen(true)}>へんこう</MiddleButton>
+            <MiddleButton onClick={updateUser}>へんこう</MiddleButton>
           </div>
           <Modal
             open={updateOpen}
@@ -112,7 +131,7 @@ const ChildCustomer = () => {
               </Typography>
 
               <Box sx={{ mb: '10px' }}>
-                <SmallButton>けす</SmallButton>
+                <SmallButton onClick={deleteUser}>けす</SmallButton>
               </Box>
               <Box>
                 <CloseSmall onClick={() => setDeleteOpen(false)}>もどる</CloseSmall>
@@ -121,8 +140,8 @@ const ChildCustomer = () => {
           </Modal>
         </div>
         <ChildFooter />
-      </div>
-    </Box>
+      </div >
+    </Box >
   )
 }
 

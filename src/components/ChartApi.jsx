@@ -10,14 +10,15 @@ import Box from '@mui/material/Box'
 import Slider from '@mui/material/Slider'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
 import ReplayIcon from '@mui/icons-material/Replay'
-import AmChart from './AmChart'
-import { useAuth } from '../hooks/useAuth'
 import * as am4core from '@amcharts/amcharts4/core'
 import * as am4charts from '@amcharts/amcharts4/charts'
 import am4lang_ja_JP from '@amcharts/amcharts4/lang/ja_JP'
 import am4themes_animated from '@amcharts/amcharts4/themes/animated'
+import AmChart from './AmChart'
+import { useCookies } from 'react-cookie'
 
-const ChartApi = ({ child }) => {
+const ChartApi = () => {
+  const [cookies, setCookie, removeCookie] = useCookies("[token]");
   const [stockData, setStockData] = useState({})
   const [value, setValue] = React.useState(1)
   const [goukei, setGoukei] = React.useState(value)
@@ -25,6 +26,17 @@ const ChartApi = ({ child }) => {
   const [BackAnime, setBackAnime] = useState(false)
   const [count, setCount] = useState(0)
   const [lastprice, setLastprice] = useState('')
+  const [user, setUser] = useState([])
+
+  const fetchUser = async () => {
+    const { data } = await axios.get('http://localhost:8080/api/user', { headers: { Authorization: cookies.token } })
+    setUser(data)
+  }
+
+  useEffect(() => {
+    fetchUser()
+  }, [])
+
 
   const handleChange = (event, newValue) => {
     setValue(newValue)
@@ -47,6 +59,7 @@ const ChartApi = ({ child }) => {
   const symbols = 'AAPL'
 
   useEffect(() => {
+
     axios
       .get(`${API_URL}?access_key=${API_KEY}&symbols=${symbols}`)
       .then((response) => {
@@ -92,48 +105,16 @@ const ChartApi = ({ child }) => {
       .catch((err) => console.error(err))
   }, [count])
 
-  const { token } = useAuth()
-  const url = 'http://localhost:8080/api/user/2'
-  const buyStock = {
-    username: child.username,
-    password: child.password,
-    email: child.email,
-    have_points: child.have_points - lastprice * value,
-    have_stocks: child.have_stocks + value,
-    roles: [
-      {
-        id: 1,
-      },
-    ],
-  }
-
-  const sellStock = {
-    username: child.username,
-    password: child.password,
-    email: child.email,
-    have_points: child.have_points + lastprice * value,
-    have_stocks: child.have_stocks - value,
-    roles: [
-      {
-        id: 1,
-      },
-    ],
-  }
-  const headers = {
-    Authorization: `Bearer ${token.access_token}`,
-  }
-
-  const addMyStock = async () => {
-    await axios.patch(url, buyStock, { headers: headers })
-    setAnime(true)
-  }
-
-  const sellMyStock = async () => {
-    await axios.patch(url, sellStock, { headers: headers })
-    setAnime(true)
-  }
 
   const Modal = ({ show, setshow }) => {
+
+    const addStock = async () => {
+      await axios.put('http://localhost:8080/api/user/stock', {
+        havePoint: parseInt(user.havePoint, 10) - parseInt(148 * value, 10),
+        haveStock: parseInt(user.haveStock, 10) + parseInt(value, 10)
+      }, { headers: { Authorization: cookies.token } })
+    }
+
     const closeModal = () => {
       setshow(false)
       setAnime(false)
@@ -189,7 +170,7 @@ const ChartApi = ({ child }) => {
                 <Button
                   variant='outlined'
                   sx={{ p: ' 7px 0 ', mt: 3, width: '100%' }}
-                  onClick={addMyStock}
+                  onClick={addStock}
                   color='inherit'
                 >
                   ちゅうもん
@@ -199,12 +180,12 @@ const ChartApi = ({ child }) => {
           </div>
         </div>
       )
-    } else {
-      return null
     }
+    return null
+
   }
 
-  function Modal1({ show1, setshow1 }) {
+  const Modal1 = ({ show1, setshow1 }) => {
     const closeModal1 = () => {
       setshow1(false)
       setAnime(false)
@@ -268,9 +249,9 @@ const ChartApi = ({ child }) => {
           </div>
         </div>
       )
-    } else {
-      return null
     }
+    return null
+
   }
 
   const [show, setshow] = useState(false)

@@ -19,7 +19,6 @@ import { ToastContainer } from 'react-toastify'
 import { Footer } from '../components/Footer'
 import { Header } from '../components/Header'
 import { MiddleButton, CloseSmall } from '../components/Buttons'
-import { useAuth } from '../hooks/useAuth'
 import useNotification from '../components/Toast'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -29,50 +28,39 @@ const textStyle = {
 }
 
 const MomMain = () => {
-  const { updated } = useNotification()
-  const { token } = useAuth()
-  const { userId } = useParams()
-  const [childInfo, setChildInfo] = useState([])
-  const url = `http://localhost:8080/api/user/${userId}`
-  const headers = {
-    Authorization: `Bearer ${token.access_token}`,
-  }
+  const [open, setOpen] = useState(false)
+  const [updateOpen, setUpdateOpen] = useState(false)
+  const { id } = useParams()
+  const [user, setUser] = useState([])
+  const [point, setPoint] = useState('')
+  const [select, setSelect] = useState(1)
   const fetchUserById = async () => {
-    const { data } = await axios.get(url, { headers })
-    setChildInfo(data)
+    const {data} = await axios.get(`http://localhost:8080/api/user/${id}`)
+    setUser(data)
+    console.log(data);
   }
-
   useEffect(() => {
     fetchUserById()
-  }, [childInfo])
+  }, [updateOpen])
 
-  const [point, setPoint] = useState('')
-  const updatePoint = {
-    username: childInfo.username,
-    password: childInfo.password,
-    email: childInfo.email,
-    have_points: point,
-    roles: [
-      {
-        id: 1,
-      },
-    ],
-  }
-  const addUserPoint = () => {
-    axios.patch(url, updatePoint, { headers })
-    updated()
+  const addPoint = async () => {
+    console.log(select)
+    await axios.put(`http://localhost:8080/api/user/${id}/point`, {
+      havePoint: parseInt(user.havePoint, 10) + parseInt(point, 10)
+    })
+    setUpdateOpen(true)
+    setPoint('')
   }
 
-  const [select, setSelect] = useState(1)
+  const { updated } = useNotification()
+
   const handleChange = (event) => {
     setSelect(event.target.value)
   }
 
-  const [open, setOpen] = useState(false)
-  const [updateOpen, setUpdateOpen] = useState(false)
   return (
     <>
-      <Header title={`${childInfo.username}さんのポイント`} />
+      <Header title={`${user.username}さんのポイント`} />
       <Box
         component='main'
         sx={{
@@ -104,7 +92,6 @@ const MomMain = () => {
           <Typography
             variant='h3'
             component='p'
-            icon
             sx={{
               fontWeight: '700',
               p: 2,
@@ -114,7 +101,7 @@ const MomMain = () => {
               },
             }}
           >
-            {childInfo.have_points ? childInfo.have_points : 0}
+            {user.havePoint}
           </Typography>
         </Box>
       </Box>
@@ -143,6 +130,8 @@ const MomMain = () => {
             </Select>
           </FormControl>
           <TextField
+            value={point}
+            type='number'
             onChange={(e) => setPoint(e.target.value)}
             sx={{ m: 1, fontSize: '2rem' }}
             InputProps={{
@@ -154,7 +143,7 @@ const MomMain = () => {
             }}
           />
         </Stack>
-        <MiddleButton onClick={addUserPoint}>更新</MiddleButton>
+        <MiddleButton onClick={addPoint}>更新</MiddleButton>
 
         <Modal
           open={updateOpen}
@@ -216,7 +205,6 @@ const MomMain = () => {
               id='standard-multiline-flexible'
               style={{ textStyle }}
               label='表示名'
-              value={childInfo.username}
               onChange={(e) => handleChange(e)}
               variant='standard'
               sx={{ mb: '10px' }}

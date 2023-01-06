@@ -11,10 +11,11 @@ import {
   TextField,
   Typography,
 } from '@mui/material'
+import axios from 'axios'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useCookies } from 'react-cookie'
+import { Link, useNavigate } from 'react-router-dom'
 import { BigButton, MiddleButton, SmallButton } from '../components/Buttons'
-import { useAuth } from '../hooks/useAuth'
 
 const Signup = () => {
   const [mailError, setMailError] = useState('')
@@ -51,26 +52,35 @@ const Signup = () => {
   // } else {
   //   setError('登録だめ')
   // }
+
   const [open, setOpen] = useState(false)
+
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
   const [role, setRole] = useState('')
-  const { signUp } = useAuth()
-  const handleSignUp = () => {
-    const userInfo = {
-      username,
-      password,
-      email,
-      have_stocks: 0,
-      roles: [
-        {
-          id: role,
-          name: role === '1' ? 'ROLE_USER' : 'ROLE_ADMIN',
-        },
-      ],
+  const navigate = useNavigate()
+  const [cookies, setCookie] = useCookies(["token"]);
+
+
+  // signup apiを叩く関数
+  const signUp = async () => {
+    try {
+      const { data } = await axios.post('http://localhost:8080/api/register', {
+        username: username,
+        email: email,
+        password: password,
+        role: role === '1' ? 'CHILD' : 'PARENT'
+      }, { withCredentials: true })
+
+      setCookie("token", data, { maxAge: 60 * 60 * 24 * 300 });
+
+      role === '1' ? navigate('/child', { replace: true }) : navigate('/homepic', { replace: true })
+    } catch (error) {
+      console.log("email登録済")
+      console.log(error)
     }
-    signUp(userInfo)
+
   }
 
   return (
@@ -125,7 +135,12 @@ const Signup = () => {
             label='子ども(こども)'
             onChange={(e) => setRole(e.target.value)}
           />
-          <FormControlLabel value={2} control={<Radio />} label='親(おや)' onChange={(e) => setRole(e.target.value)} />
+          <FormControlLabel
+            value={2}
+            control={<Radio />}
+            label='親(おや)'
+            onChange={(e) => setRole(e.target.value)}
+          />
         </RadioGroup>
         <Box
           sx={{
@@ -201,7 +216,7 @@ const Signup = () => {
                 sx={{
                   mt: '10px',
                 }}
-                onClick={handleSignUp}
+                onClick={signUp}
               >
                 とうろく
               </MiddleButton>

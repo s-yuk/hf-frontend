@@ -1,10 +1,13 @@
 import TextField from '@mui/material/TextField'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Modal, Box, Typography, List, ListItemButton, ListItemIcon, ListItemText, Collapse } from '@mui/material'
 import { ExpandLess, ExpandMore, AccountBox, Inbox } from '@mui/icons-material'
 import { Header } from '../components/Header'
 import { MiddleButton, SmallButton, CloseSmall } from '../components/Buttons'
 import { Footer } from '../components/Footer'
+import axios from 'axios'
+import { useCookies } from 'react-cookie'
+import { useNavigate } from 'react-router-dom'
 
 const textstyle = {
   paddingRight: '200px',
@@ -12,6 +15,40 @@ const textstyle = {
 }
 
 const Customer = () => {
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [newPassword, setNewPassword] = useState('')
+  const [cookies, setCookie, removeCookie] = useCookies("[token]")
+  const navigate = useNavigate()
+
+  const fetchUser = async () => {
+    const { data } = await axios.get('http://localhost:8080/api/user', { headers: { Authorization: cookies.token } })
+
+    setUsername(data.username)
+    setEmail(data.email)
+  }
+
+  useEffect(() => {
+    fetchUser()
+  }, [])
+
+  const updateUser = async () => {
+    await axios.put('http://localhost:8080/api/user', {
+      username: username,
+      email: email,
+      password: password,
+      newPassword: newPassword
+    }, { headers: { Authorization: cookies.token } })
+    handleOpen()
+  }
+
+  const deleteUser = async () => {
+    await axios.delete('http://localhost:8080/api/user', { headers: { Authorization: cookies.token } })
+    removeCookie("token")
+    navigate("/")
+  }
+
   const handleClose = () => setUpdopen(false)
   const dhandleClose = () => setDelopen(false)
   const accountclose = () => setNewaccount(false)
@@ -49,17 +86,18 @@ const Customer = () => {
             gap: '20px',
           }}
         >
-          <TextField id='standard-multiline-flexible' style={{ textstyle }} label='名前' variant='standard' />
-          <TextField id='standard-multiline-flexible' style={{ textstyle }} label='パスワード' variant='standard' />
+          <TextField style={{ textstyle }} label='名前' value={username} variant='standard' onChange={(e) => setUsername(e.target.value)} />
+          <TextField style={{ textstyle }} type="password" label='パスワード' variant='standard' onChange={(e) => setPassword(e.target.value)} />
           <TextField
-            id='standard-multiline-flexible'
             style={{ textstyle }}
+            type="password"
+            onChange={(e) => setNewPassword(e.target.value)}
             label='新しいパスワード'
             variant='standard'
           />
-          <TextField id='standard-multiline-flexible' style={{ textstyle }} label='メールアドレス' variant='standard' />
+          <TextField style={{ textstyle }} label='メールアドレス' variant='standard' value={email} onChange={(e) => setEmail(e.target.value)} />
           <div style={{ textAlign: 'center' }}>
-            <MiddleButton onClick={handleOpen}>変更</MiddleButton>
+            <MiddleButton onClick={updateUser}>変更</MiddleButton>
           </div>
           <Modal
             open={updopen}
@@ -157,8 +195,8 @@ const Customer = () => {
                 入力してください。
               </Typography>
 
-              <TextField id='standard-multiline-flexible' style={{ textstyle }} label='ID' variant='standard' />
-              <TextField id='standard-multiline-flexible' style={{ textstyle }} label='表示名' variant='standard' />
+              <TextField style={{ textstyle }} label='ID' variant='standard' />
+              <TextField style={{ textstyle }} label='表示名' variant='standard' />
 
               <Box sx={{ mb: '10px', mt: '10px' }}>
                 <SmallButton onClick={updopen}>作成</SmallButton>
@@ -197,7 +235,7 @@ const Customer = () => {
               </Typography>
 
               <Box sx={{ mb: '10px' }}>
-                <SmallButton>削除</SmallButton>
+                <SmallButton onClick={deleteUser}>削除</SmallButton>
               </Box>
               <Box>
                 <CloseSmall onClick={dhandleClose}>戻る</CloseSmall>

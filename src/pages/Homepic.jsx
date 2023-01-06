@@ -5,44 +5,36 @@ import axios from 'axios'
 import { Header } from '../components/Header'
 import { CloseSmall } from '../components/Buttons'
 import { Footer } from '../components/Footer'
-import { useAuth } from '../hooks/useAuth'
+import { useCookies } from 'react-cookie'
 
 const Homepic = () => {
-  const { user, token } = useAuth()
-
-  const [open, setOpen] = useState(false)
-  const [username, setUsername] = useState('')
   const [children, setChildren] = useState([])
-  const url = 'http://localhost:8080/api/user'
-  const headers = {
-    Authorization: `Bearer ${token.access_token}`,
-  }
-  const fetchUserData = async () => {
-    const { data } = await axios.get(url, { headers })
+  const [open, setOpen] = useState(false)
+  const [user, setUser] = useState([])
+  const [email, setEmail] = useState('')
+  const [cookies, setCookie, removeCookie] = useCookies("[token]");
+
+
+  const fetchChildren = async () => {
+    const { data } = await axios.get('http://localhost:8080/api/user/group', { headers: { Authorization: cookies.token } })
     setChildren(data)
   }
+  const fetchUser = async () => {
+    const { data } = await axios.get('http://localhost:8080/api/user', { headers: { Authorization: cookies.token } })
+    setUser(data)
+  }
   useEffect(() => {
-    fetchUserData()
-  }, [children])
-  const addMyChild = async () => {
-    await axios.post(
-      `${url}/save`,
-      {
-        username,
-        role: [
-          {
-            id: '1',
-          },
-        ],
-      },
-      { headers }
-    )
-    await setOpen(false)
+    fetchUser()
+    fetchChildren()
+  }, [open])
+
+  const addGroup = async () => {
+    await axios.put('http://localhost:8080/api/user/group', {email: email}, { headers: { Authorization: cookies.token } })
+    setOpen(false)
   }
 
   return (
     <>
-      {/* title適当 */}
       <Header title={user.username} />
       <Box
         sx={{
@@ -53,7 +45,7 @@ const Homepic = () => {
         }}
       >
         {children.map((child) => (
-          <Avatar key={child.id} component={Link} to={`/mommain/${child.id}`} sx={{ width: 120, height: 120 }} />
+          <Avatar key={child.id} component={Link} to={`/mommain/${child.id}`} sx={{ width: 120, height: 120, color: "black", textDecoration: 'none' }}>{child.username}</Avatar>
         ))}
       </Box>
       <Button
@@ -104,21 +96,22 @@ const Homepic = () => {
               noValidate
               autoComplete='off'
             >
+              {/* 子どもをグループに追加 */}
               <TextField
                 id='filled-basic'
-                label='子供のID入力'
+                label='子供のEmail入力'
                 variant='filled'
                 onChange={(e) => {
-                  setUsername(e.target.value)
+                  setEmail(e.target.value)
                 }}
               />
             </Box>
           </Typography>
           <CloseSmall
-            onClick={addMyChild}
             sx={{
               mt: 2,
             }}
+            onClick={addGroup}
           >
             追加
           </CloseSmall>

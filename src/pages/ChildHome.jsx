@@ -13,19 +13,32 @@ import {
   Select,
   MenuItem,
 } from '@mui/material'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import LocalActivityIcon from '@mui/icons-material/LocalActivity'
 import { Link } from 'react-router-dom'
 import { Header } from '../components/Header'
 import { MiddleButton, SmallButton } from '../components/Buttons'
 import { ChildFooter } from '../components/Footer'
+import axios from 'axios'
+import { useCookies } from 'react-cookie'
 
 const ChildHome = () => {
+  const [user, setUser] = useState([])
   const [open, setOpen] = useState(false)
+  const [cookies, setCookie, removeCookie] = useCookies("[token]");
+
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const { data } = await axios.get('http://localhost:8080/api/user', { headers: { Authorization: cookies.token } })
+      setUser(data)
+    }
+    fetchUser()
+  }, [])
 
   return (
     <>
-      <Header title='ユーザーの名前入れる' />
+      <Header title={user.username} />
       <Box
         sx={{
           width: '90%',
@@ -60,7 +73,7 @@ const ChildHome = () => {
             },
           }}
         >
-          {0}
+          {user.havePoint}
         </Typography>
       </Box>
 
@@ -100,7 +113,7 @@ const ChildHome = () => {
             },
           }}
         >
-          {0}
+          {user.haveStock}
         </Typography>
       </Box>
       <List>
