@@ -29,12 +29,7 @@ const ChildCustomer = () => {
             gap: '20px',
           }}
         >
-          <TextField
-            style={{ textStyle }}
-            label='名前'
-            variant='standard'
-            value={user.username}
-          />
+          <TextField style={{ textStyle }} label='名前' variant='standard' value={user.username} />
           <TextField
             style={{ textStyle }}
             type='password'
@@ -42,17 +37,8 @@ const ChildCustomer = () => {
             variant='standard'
             value={user.password}
           />
-          <TextField
-            style={{ textStyle }}
-            label='新しいパスワード'
-            variant='standard'
-          />
-          <TextField
-            style={{ textStyle }}
-            label='メールアドレス'
-            variant='standard'
-            value={user.email}
-          />
+          <TextField style={{ textStyle }} label='新しいパスワード' variant='standard' />
+          <TextField style={{ textStyle }} label='メールアドレス' variant='standard' value={user.email} />
           <div style={{ textAlign: 'center' }}>
             <MiddleButton onClick={() => setUpdateOpen(true)}>へんこう</MiddleButton>
           </div>

@@ -11,10 +11,10 @@ import {
   TextField,
   Typography,
 } from '@mui/material'
+import axios from 'axios'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { BigButton, MiddleButton, SmallButton } from '../components/Buttons'
-import { useAuth } from '../hooks/useAuth'
 
 const Signup = () => {
   const [mailError, setMailError] = useState('')
@@ -52,25 +52,34 @@ const Signup = () => {
   //   setError('登録だめ')
   // }
   const [open, setOpen] = useState(false)
+
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
   const [role, setRole] = useState('')
-  const { signUp } = useAuth()
-  const handleSignUp = () => {
-    const userInfo = {
-      username,
-      password,
-      email,
-      have_stocks: 0,
-      roles: [
-        {
-          id: role,
-          name: role === '1' ? 'ROLE_USER' : 'ROLE_ADMIN',
-        },
-      ],
+  const navigate = useNavigate()
+
+  const url = "http://localhost:8080/api/register"
+  const body = {
+    username: username,
+    email: email,
+    password: password,
+    role: role === '1' ? 'CHILD' : 'PARENT'
+  }
+
+  // signup apiを叩く関数
+  const handleSignup = async () => {
+    try {
+      await axios.post(url, body, { withCredentials: true })
+      if(role === '1') {
+        navigate('/child', { replace: true })
+      } else if(role === '2') {
+        navigate('/homepic', { replace: true })
+      }
+    } catch (err) {
+      console.log("email登録済")
+      console.log(err)
     }
-    signUp(userInfo)
   }
 
   return (
@@ -125,7 +134,12 @@ const Signup = () => {
             label='子ども(こども)'
             onChange={(e) => setRole(e.target.value)}
           />
-          <FormControlLabel value={2} control={<Radio />} label='親(おや)' onChange={(e) => setRole(e.target.value)} />
+          <FormControlLabel
+            value={2}
+            control={<Radio />}
+            label='親(おや)'
+            onChange={(e) => setRole(e.target.value)}
+          />
         </RadioGroup>
         <Box
           sx={{
@@ -201,7 +215,7 @@ const Signup = () => {
                 sx={{
                   mt: '10px',
                 }}
-                onClick={handleSignUp}
+                onClick={handleSignup}
               >
                 とうろく
               </MiddleButton>

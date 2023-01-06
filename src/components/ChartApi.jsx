@@ -10,12 +10,12 @@ import Box from '@mui/material/Box'
 import Slider from '@mui/material/Slider'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
 import ReplayIcon from '@mui/icons-material/Replay'
-import AmChart from './AmChart'
-import { useAuth } from '../hooks/useAuth'
 import * as am4core from '@amcharts/amcharts4/core'
 import * as am4charts from '@amcharts/amcharts4/charts'
 import am4lang_ja_JP from '@amcharts/amcharts4/lang/ja_JP'
 import am4themes_animated from '@amcharts/amcharts4/themes/animated'
+import { useAuth } from '../hooks/useAuth'
+import AmChart from './AmChart'
 
 const ChartApi = ({ child }) => {
   const [stockData, setStockData] = useState({})
@@ -124,12 +124,12 @@ const ChartApi = ({ child }) => {
   }
 
   const addMyStock = async () => {
-    await axios.patch(url, buyStock, { headers: headers })
+    await axios.patch(url, buyStock, { headers })
     setAnime(true)
   }
 
   const sellMyStock = async () => {
-    await axios.patch(url, sellStock, { headers: headers })
+    await axios.patch(url, sellStock, { headers })
     setAnime(true)
   }
 
@@ -199,12 +199,12 @@ const ChartApi = ({ child }) => {
           </div>
         </div>
       )
-    } else {
+    } 
       return null
-    }
+    
   }
 
-  function Modal1({ show1, setshow1 }) {
+  const Modal1 = ({ show1, setshow1 }) => {
     const closeModal1 = () => {
       setshow1(false)
       setAnime(false)
@@ -268,9 +268,9 @@ const ChartApi = ({ child }) => {
           </div>
         </div>
       )
-    } else {
+    } 
       return null
-    }
+    
   }
 
   const [show, setshow] = useState(false)
