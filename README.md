@@ -18,7 +18,7 @@
 ## 使用技術
 - React
 - Axios
-- Amchart
+- Amcharts
 - ESLint/Prettier
 
 # 使用手順
