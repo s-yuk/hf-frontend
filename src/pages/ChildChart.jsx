@@ -100,7 +100,7 @@ const ChildChart = () => {
           </Button>
         </Box>
       </Modal>
-      <Header title={child.username} IconNone='flase' />
+      <Header title='チャート' IconNone='flase' />
 
       <ChartApi child={child} />
       <Button

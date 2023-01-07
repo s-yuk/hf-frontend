@@ -42,25 +42,31 @@ const Customer = () => {
       <Header title='会員ページ' IconNone='flase' />
       <div className='background2'>
         <div
-          className='customerdata'
+
           style={{
             transform: 'translateY(30px)',
             display: 'grid',
             gap: '20px',
           }}
         >
-          <TextField id='standard-multiline-flexible' style={{ textstyle }} label='名前' variant='standard' />
-          <TextField id='standard-multiline-flexible' style={{ textstyle }} label='パスワード' variant='standard' />
-          <TextField
-            id='standard-multiline-flexible'
-            style={{ textstyle }}
-            label='新しいパスワード'
-            variant='standard'
-          />
-          <TextField id='standard-multiline-flexible' style={{ textstyle }} label='メールアドレス' variant='standard' />
-          <div style={{ textAlign: 'center' }}>
-            <MiddleButton onClick={handleOpen}>変更</MiddleButton>
-          </div>
+
+          <Box sx={{
+
+          }}>
+            <TextField id='standard-multiline-flexible' style={{ textstyle }} label='名前' variant='standard' />
+            <TextField id='standard-multiline-flexible' style={{ textstyle }} label='パスワード' variant='standard' />
+            <TextField
+              id='standard-multiline-flexible'
+              style={{ textstyle }}
+              label='新しいパスワード'
+              variant='standard'
+            />
+            <TextField id='standard-multiline-flexible' style={{ textstyle }} label='メールアドレス' variant='standard' />
+            <div style={{ textAlign: 'center' }}>
+              <MiddleButton onClick={handleOpen}>変更</MiddleButton>
+            </div>
+
+          </Box>
           <Modal
             open={updopen}
             onClose={() => setUpdopen(false)}

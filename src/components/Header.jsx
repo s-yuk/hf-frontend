@@ -8,6 +8,7 @@ export const Header = ({ title, IconNone }) => (
       display: 'fixed',
       bgcolor: 'white',
       mb: '10px',
+      zindex: 100
     }}
   >
     <Toolbar

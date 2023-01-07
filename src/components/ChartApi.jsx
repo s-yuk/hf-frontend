@@ -10,23 +10,22 @@ import Box from '@mui/material/Box'
 import Slider from '@mui/material/Slider'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
 import ReplayIcon from '@mui/icons-material/Replay'
-import AmChart from './AmChart'
 import { useAuth } from '../hooks/useAuth'
 import * as am4core from '@amcharts/amcharts4/core'
 import * as am4charts from '@amcharts/amcharts4/charts'
 import am4lang_ja_JP from '@amcharts/amcharts4/lang/ja_JP'
 import am4themes_animated from '@amcharts/amcharts4/themes/animated'
-
-
-
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+am4core.useTheme(am4themes_animated);
 
 const ChartApi = ({ child }) => {
 
   const [stockData, setStockData] = useState({})
-  const [value, setValue] = React.useState(1)
-  const [goukei, setGoukei] = React.useState(value)
+  const [value, setValue] = useState(1)
+  const [goukei, setGoukei] = useState(value)
   const [Anime, setAnime] = useState(false)
-  const [BackAnime, setBackAnime] = useState(false)
+  const [BackAnime, setBackAnime] = useState(true)
   const [count, setCount] = useState(0)
   const [lastprice, setLastprice] = useState('')
 
@@ -37,19 +36,21 @@ const ChartApi = ({ child }) => {
     setGoukei(keisan)
   }
 
-  const SlideAnimation = (e) => {
-    setAnime(true)
-  }
-
-  const BackSlideAnimation = (e) => {
+  const SlideAnimation = () => {
     setAnime(true)
     setBackAnime(false)
   }
 
+  const SlideAnimation1 = () => {
+    setAnime(false)
+    setBackAnime(true)
+  }
+
+
 
 
   const API_URL = "http://api.marketstack.com/v1/eod";
-  const API_KEY = "f6284c3d1d5787a0f087f6c610dfd850";
+  const API_KEY = "c244fefb006b4ac43c556acb63267065";
   const symbols = "AAPL";
 
   useEffect(() => {
@@ -85,7 +86,7 @@ const ChartApi = ({ child }) => {
         series.dataFields.highValueY = 'high'
 
         series.tooltipText =
-          'Open: [bold]{openValueY.value}[/]\nLow: [bold]{lowValueY.value}[/]\nHigh: [bold]{highValueY.value}[/]\nClose: [bold]{valueY.value}[/]'
+          'はじまり: [bold]{openValueY.value}[/]\nした: [bold]{lowValueY.value}[/]\nうえ: [bold]{highValueY.value}[/]\nおわり: [bold]{valueY.value}[/]'
 
         chart.cursor = new am4charts.XYCursor()
 
@@ -145,64 +146,95 @@ const ChartApi = ({ child }) => {
     const closeModal = () => {
       setshow(false)
       setAnime(false)
-      setAnime(false)
+      setValue(1)
     }
     if (show) {
       return (
         <div className='overlay'>
-          <div
-            className={`content-HF21 red  ${Anime ? 'DisplayNone' : ''}
-                ${BackAnime ? 'DisplayNone' : ''}
-          `}
-          >
-            <a onClick={(e) => closeModal(e)}>
+          <div className={`content red ${Anime ? 'slide-left' : ''} 
+           ${BackAnime ? '' : ''}
+          
+          `}>
+            <a >
               <CloseIcon color='inherit' sx={{ mr: 100 }} onClick={(e) => closeModal(e)} />
             </a>
-            <p className='p-sell-number-modal'>{148 * value}</p>
-            <Box sx={{ width: 300, m: 'auto' }}>
+            <p className='sell-number'>{lastprice * value}</p>
+            <Box sx={{
+              width: '100%',
+              m: 'auto',
+              pr: 2,
+              pl: 2
+            }}>
               <Slider
-                aria-label='Default'
-                value={value}
+                defaultValue={value}
+                aria-label="Default"
+                valueLabelDisplay="auto"
                 onChange={handleChange}
-                defaultValue={1}
-                valueLabelDisplay='auto'
                 sx={{ m: 'auto' }}
                 min={1}
-                max={10}
+                max={20}
               />
+              <div className='flex'>
+                <div className='money'>
+                  <p className='red'>もってるおかね&emsp;&emsp;&emsp;&emsp;10000円</p>
+                </div>
+
+              </div>
               <Button
-                variant='outlined'
-                sx={{ p: ' 7px 0 ', mt: 3, width: '100%' }}
+                variant='contained'
+                sx={{
+                  p: ' 12px 0 ',
+                  mt: 3,
+                  width: '100%',
+                  m: ' 20px auto auto auto'
+                }}
                 onClick={(e) => SlideAnimation(e)}
-                color='inherit'
+                color='error'
               >
-                ちゅうもんしていいですか？
+                かう
               </Button>
             </Box>
           </div>
-          <div
-            className={`content-HF21 red ${Anime ? '' : 'DisplayNone'}
-          ${BackAnime ? 'DisplayNone' : ''}
-          `}
-          >
-            <a onClick={(e) => closeModal(e)}>
-              <CloseIcon color='inherit' sx={{ mr: 100 }} onClick={(e) => BackSlideAnimation(e)} />
+
+
+          <div className={`content1 red ${Anime ? '' : 'slide-right'}
+           ${BackAnime ? '' : ''}
+          `}>
+            <a>
+              <ArrowBackIosNewIcon color='inherit' sx={{ mr: 100 }} onClick={(e) => SlideAnimation1(e)} />
             </a>
-            <p className='p-sell-number-modal'>{148 * value}</p>
-            <p className='p-sell-number1'>
-              これを<a className='a-sell-number1'>{value}</a>こかうとこのねだんです
-            </p>
-            <Box sx={{ width: 300, m: 'auto' }}>
-              <a onClick={(e) => closeModal(e)}>
-                <Button
-                  variant='outlined'
-                  sx={{ p: ' 7px 0 ', mt: 3, width: '100%' }}
-                  onClick={addMyStock}
-                  color='inherit'
-                >
-                  ちゅうもん
-                </Button>
-              </a>
+
+            <Box sx={{
+              width: '100%',
+              m: 'auto',
+              pr: 2,
+              pl: 2
+            }}>
+              <CheckCircleOutlineIcon sx={{ fontSize: 95, m: 'auto', color: 'green', display: 'flex' }} />
+
+              <div className='flex'>
+                <div className='money'>
+                  <span className='font-Big'>購入完了</span>
+                  <p className='font-Min red'>のこりのおかね&emsp;&emsp;&emsp;&emsp;10000円 <br />
+                    のこりのおかね&emsp;&emsp;&emsp;&emsp;10000円
+                  </p>
+                  <p className='font-Min'></p>
+                </div>
+
+              </div>
+              <Button
+                variant='contained'
+                sx={{
+                  p: ' 12px 0 ',
+                  mt: 3,
+                  width: '100%',
+                  m: ' 20px auto auto auto'
+                }}
+                color='error'
+                onClick={(e) => closeModal(e)}
+              >
+                とじる
+              </Button>
             </Box>
           </div>
         </div>
@@ -221,56 +253,89 @@ const ChartApi = ({ child }) => {
     if (show1) {
       return (
         <div className='overlay'>
-          <div
-            className={`content-HF21  ${Anime ? 'DisplayNone' : ''}
-                ${BackAnime ? 'DisplayNone' : ''}
-          `}
-          >
-            <a onClick={(e) => closeModal1(e)}>
+          <div className={`content ${Anime ? 'slide-left' : ''} 
+           ${BackAnime ? 'DisplayNone' : ''}
+          
+          `}>
+            <a>
               <CloseIcon color='inherit' sx={{ mr: 100 }} onClick={(e) => closeModal1(e)} />
             </a>
-            <p className='p-sell-number-modal'>{148 * value}</p>
-            <Box sx={{ width: 300, m: 'auto' }}>
+            <p className='sell-number'>{lastprice * value}</p>
+            <Box sx={{
+              width: '100%',
+              m: 'auto',
+              pr: 2,
+              pl: 2
+            }}>
               <Slider
-                aria-label='Default'
-                value={value}
+                defaultValue={value}
+                aria-label="Default"
+                valueLabelDisplay="auto"
                 onChange={handleChange}
-                defaultValue={1}
-                valueLabelDisplay='auto'
                 sx={{ m: 'auto' }}
                 min={1}
-                max={10}
+                max={20}
               />
+              <div className='flex'>
+                <div className='money'>
+                  <p className=''>もってるおかね&emsp;&emsp;&emsp;&emsp;10000円</p>
+                </div>
+
+              </div>
               <Button
-                variant='outlined'
-                sx={{ p: ' 7px 0 ', mt: 3, width: '100%' }}
-                onClick={sellMyStock}
-                color='inherit'
+                variant='contained'
+                sx={{
+                  p: ' 12px 0 ',
+                  mt: 3,
+                  width: '100%',
+                  m: ' auto'
+                }}
+                onClick={(e) => SlideAnimation(e)}
+                color='primary'
               >
-                ちゅうもんしてもいいですか
+                うる
               </Button>
             </Box>
           </div>
-          <div
-            className={`content-HF21 ${Anime ? '' : 'DisplayNone'}
-          ${BackAnime ? 'DisplayNone' : ''}
-          `}
-          >
-            <a onClick={(e) => closeModal1(e)}>
-              <CloseIcon color='inherit' sx={{ mr: 100 }} />
+
+
+          <div className={`content1 ${Anime ? '' : 'slide-right'}
+           ${BackAnime ? 'DisplayNone' : ''}
+          `}>
+            <a>
+              <ArrowBackIosNewIcon color='inherit' sx={{ mr: 100 }} onClick={(e) => SlideAnimation1(e)} />
             </a>
-            <p className='p-sell-number-modal'>{148 * value}</p>
-            <p className='p-sell-number1'>
-              これを<a className='a-sell-number1'>{value}</a>こうるとこのねだんです
-            </p>
-            <Box sx={{ width: 300, m: 'auto' }}>
+
+            <Box sx={{
+              width: '100%',
+              m: 'auto',
+              pr: 2,
+              pl: 2
+            }}>
+              <CheckCircleOutlineIcon sx={{ fontSize: 95, m: 'auto', color: 'green', display: 'flex' }} />
+
+              <div className='flex'>
+                <div className='money'>
+                  <span className='font-Big'>購入完了</span>
+                  <p className='font-Min'>のこりのおかね&emsp;&emsp;&emsp;&emsp;10000円 <br />
+                    のこりのおかね&emsp;&emsp;&emsp;&emsp;10000円
+                  </p>
+                  <p className='font-Min'></p>
+                </div>
+
+              </div>
               <Button
-                variant='outlined'
-                sx={{ p: ' 7px 0 ', mt: 3, width: '100%' }}
-                onClick={() => closeModal1()}
-                color='inherit'
+                variant='contained'
+                sx={{
+                  p: ' 12px 0 ',
+                  mt: 3,
+                  width: '100%',
+                  m: ' auto'
+                }}
+                color='primary'
+                onClick={(e) => closeModal1(e)}
               >
-                ちゅうもん
+                とじる
               </Button>
             </Box>
           </div>
@@ -287,35 +352,39 @@ const ChartApi = ({ child }) => {
   // チャート代入
   const name = stockData
 
-
   return (
     <>
-      <div className='Chart-box' id='chart'>
-        <h1 />
-        <h2>{lastprice}</h2>
-        <div id='chartdiv' style={{ width: '100%', height: '95%' }} />
 
-        <div className='data-container'>
+      <div className='wrapper' id='chart'>
+        <h1 />
+        <div className='flex'>
+          <Button onClick={() => setCount(count + 1)}>
+            <ReplayIcon />
+          </Button>
+          <h2>{lastprice}</h2>
+        </div>
+
+
+        <div id='chartdiv' style={{ width: '100%', height: '95%' }} />
+        <div className='trade-container'>
           <div className='high-box'>
             <a onClick={() => setshow1(true)}>
               <p className='sell'>うる</p>
-              <p className='sellnumber'>{lastprice + 0.1}</p>
+              <p className='sellnumber'>{lastprice}</p>
               <div className='line' />
             </a>
           </div>
           <div className='center-box' />
           <div className='low-box'>
             <a onClick={() => setshow(true)}>
-              <p className='sell'>かう</p>
-              <p className='sellnumber'>{lastprice - 0.1}</p>
+              <p className='buy'>かう</p>
+              <p className='sellnumber'>{lastprice}</p>
               <div className='line1' />
             </a>
           </div>
         </div>
 
-        <Button onClick={() => setCount(count + 1)}>
-          <ReplayIcon />
-        </Button>
+
       </div>{' '}
       <Modal show={show} setshow={setshow} />
       <Modal1 show1={show1} setshow1={setshow1} />
