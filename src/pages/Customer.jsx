@@ -5,7 +5,7 @@ import { ExpandLess, ExpandMore, AccountBox, Inbox } from '@mui/icons-material'
 import { Header } from '../components/Header'
 import { MiddleButton, SmallButton, CloseSmall } from '../components/Buttons'
 import { Footer } from '../components/Footer'
-
+import { Link } from 'react-router-dom'
 const textstyle = {
   paddingRight: '200px',
   margin: '0 0 0 10px',
@@ -53,15 +53,16 @@ const Customer = () => {
           <Box sx={{
 
           }}>
-            <TextField id='standard-multiline-flexible' style={{ textstyle }} label='名前' variant='standard' />
-            <TextField id='standard-multiline-flexible' style={{ textstyle }} label='パスワード' variant='standard' />
+            <TextField id='standard-multiline-flexible' style={{ textstyle }} label='名前' variant='standard' value="富士川" />
+            <TextField id='standard-multiline-flexible' style={{ textstyle }} label='パスワード' variant='standard' value="*********" />
             <TextField
               id='standard-multiline-flexible'
               style={{ textstyle }}
               label='新しいパスワード'
               variant='standard'
+
             />
-            <TextField id='standard-multiline-flexible' style={{ textstyle }} label='メールアドレス' variant='standard' />
+            <TextField id='standard-multiline-flexible' style={{ textstyle }} label='メールアドレス' variant='standard' value="nkigvsio@gmail.com" />
             <div style={{ textAlign: 'center' }}>
               <MiddleButton onClick={handleOpen}>変更</MiddleButton>
             </div>
@@ -167,7 +168,7 @@ const Customer = () => {
               <TextField id='standard-multiline-flexible' style={{ textstyle }} label='表示名' variant='standard' />
 
               <Box sx={{ mb: '10px', mt: '10px' }}>
-                <SmallButton onClick={updopen}>作成</SmallButton>
+                <Link to='/mommain/id'><SmallButton onClick={updopen}>作成</SmallButton></Link>
               </Box>
               <Box>
                 <CloseSmall onClick={accountclose}>戻る</CloseSmall>
@@ -203,7 +204,7 @@ const Customer = () => {
               </Typography>
 
               <Box sx={{ mb: '10px' }}>
-                <SmallButton>削除</SmallButton>
+                <Link to='/'><SmallButton>削除</SmallButton></Link>
               </Box>
               <Box>
                 <CloseSmall onClick={dhandleClose}>戻る</CloseSmall>

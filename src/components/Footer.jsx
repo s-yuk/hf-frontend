@@ -18,7 +18,7 @@ export const Footer = () => {
         setValue(newValue)
       }}
     >
-      <BottomNavigationAction label='home' icon={<Home />} component={Link} to='/homepic' />
+      <BottomNavigationAction label='home' icon={<Home />} component={Link} to='/mommain/id' />
       <BottomNavigationAction label='products' icon={<Restore />} component={Link} to='/products' />
       <BottomNavigationAction label='user' icon={<Person />} component={Link} to='/customer' />
     </BottomNavigation>

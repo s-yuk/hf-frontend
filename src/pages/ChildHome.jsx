@@ -187,7 +187,7 @@ const ChildHome = () => {
                       mt: 3,
                     }}
                   >
-                    <MiddleButton>こうかんする</MiddleButton>
+                    <MiddleButton><Link to='/child'>こうかんする</Link></MiddleButton>
                   </Box>
                 </FormControl>
               </Box>

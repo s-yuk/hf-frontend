@@ -62,3 +62,21 @@ div .css-1hdnp4o .css-sfn5k3-MuiButtonBase-root-MuiButton-root {
   overflow-y: hidden;
   overflow-x: hidden;
 }
+
+
+#root .css-cjicf0 {
+  height: 80%;
+}
+
+
+#root .css-10qn51i-MuiButtonBase-root-MuiButton-root,
+#root .css-8uy3uc-MuiButtonBase-root-MuiButton-root:hover {
+  width: 200px;
+}
+
+
+/* button */
+
+#root .css-8uy3uc-MuiButtonBase-root-MuiButton-root {
+  margin-top: 10px;
+}

@@ -158,6 +158,7 @@ const Signup = () => {
                 boxShadow: 24,
                 p: 4,
                 textAlign: 'center',
+                height: '80%'
               }}
             >
               <FormControl fullWidth>
@@ -197,14 +198,14 @@ const Signup = () => {
                   sx={{ mt: 2 }}
                 />
               </FormControl>
-              <MiddleButton
+              <Link to='/'><MiddleButton
                 sx={{
                   mt: '10px',
                 }}
                 onClick={handleSignUp}
               >
                 とうろく
-              </MiddleButton>
+              </MiddleButton></Link>
               <br />
               <br />
               <SmallButton onClick={() => setOpen(false)}>もどる</SmallButton>

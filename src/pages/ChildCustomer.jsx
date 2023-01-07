@@ -5,6 +5,7 @@ import { MiddleButton, SmallButton, CloseSmall } from '../components/Buttons'
 import { Header } from '../components/Header'
 import { useAuth } from '../hooks/useAuth'
 import '../css/mui.css'
+import { Link } from 'react-router-dom'
 
 const textStyle = {
   paddingRight: '200px',
@@ -33,14 +34,14 @@ const ChildCustomer = () => {
             style={{ textStyle }}
             label='名前'
             variant='standard'
-            value={user.username}
+            value="富士川"
           />
           <TextField
             style={{ textStyle }}
             type='password'
             label='パスワード'
             variant='standard'
-            value={user.password}
+            value="ACdnifjozge3"
           />
           <TextField
             style={{ textStyle }}
@@ -51,7 +52,7 @@ const ChildCustomer = () => {
             style={{ textStyle }}
             label='メールアドレス'
             variant='standard'
-            value={user.email}
+            value="nfdxncnsknc@gmail.com"
           />
           <div style={{ textAlign: 'center' }}>
             <MiddleButton onClick={() => setUpdateOpen(true)}>へんこう</MiddleButton>
@@ -112,7 +113,7 @@ const ChildCustomer = () => {
               </Typography>
 
               <Box sx={{ mb: '10px' }}>
-                <SmallButton>けす</SmallButton>
+                <Link to='/'><SmallButton>けす</SmallButton></Link>
               </Box>
               <Box>
                 <CloseSmall onClick={() => setDeleteOpen(false)}>もどる</CloseSmall>
